@@ -42,4 +42,3 @@ Jon – Backend
 Noah – Backend
 Amanda – Frontend
 
-
