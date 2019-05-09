@@ -42,3 +42,7 @@ Jon – Backend
 Noah – Backend
 Amanda – Frontend
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 6915d2ffd3a1fd443b7fac92923944a30376b039
