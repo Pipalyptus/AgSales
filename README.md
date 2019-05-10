@@ -1,48 +1,16 @@
-Name of your team: AgSales
+# Setup and Installation
+npm version 6.4.0+ and Node.js version 10.15.3+ are required to run this repository.
 
-Abstract: 
-There is a lack of products connecting agricultural growers and distributors who buy agricultural products. Our product aims to fill that gap by providing an online forum between these parties. We will connect growers and distributors through profiles, product listings, categories, and user-generated tags.
+After cloning the repository, go into `client/` and run `npm install` to install all frontend dependencies.
 
-Background:
-Kush Marketplace, a wholesale platform connecting cannabis growers with end consumers, already exists. However, Kush Marketplace only serves customers in Washington and California, and only the recreational market. Additionally, Kush Marketplace only deals in cannabis, not all agricultural products. Our product connects growers and distributors, no transactions are handled on our application. 
+Thenm go into `api/` and run `npm install` again to install all backend dependencies.
 
-Users of systems:
-Agricultural product growers
-Agricultural product distributors
+# Frontend
+Go into `client/` and run `npm start` to start the frontend server. Once the server is running, any changes to the frontend source code will cause the server to automatically rebuild with the changes.
 
-Initial Goals:
-Seller profile
-User Profile
-Ability to upload photos of product
-Distinguish different categories of products 
-Product description
+To stop the frontend server, input `CTRL-C` in the terminal window running the server.
 
-Stretch Goals:
-Reviews & ratings
-Favorites list?
-Transactions?
+# Backend
+Go into `api/` and run `npm start` to start the backend server. Once the server is running, any changes to the backend source code will require the server to be restarted manually in order to rebuild with the changes.
 
-Technologies:
-Front end: JavaScript – React
-Back end: database – MySQL, backend server -- NodeJS
-JSON for product data
-Stack: React/Node/MySQL
-
-Team members: 
-Nicolas Pitchon
-Nathan Walker
-Jon Lai
-Noah Stapp
-Amanda Krysl
-
-Roles and responsibilities:
-Nicolas – Frontend
-Nathan – Database
-Jon – Backend
-Noah – Backend
-Amanda – Frontend
-
-<<<<<<< HEAD
-=======
-
->>>>>>> 6915d2ffd3a1fd443b7fac92923944a30376b039
+To stop the backend server, input `CTRL-C` in the terminal window running the server.
