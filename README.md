@@ -3,7 +3,7 @@ npm version 6.4.0+ and Node.js version 10.15.3+ are required to run this reposit
 
 After cloning the repository, go into `client/` and run `npm install` to install all frontend dependencies.
 
-Thenm go into `api/` and run `npm install` again to install all backend dependencies.
+Then go into `api/` and run `npm install` again to install all backend dependencies.
 
 # Frontend
 Go into `client/` and run `npm start` to start the frontend server. Once the server is running, any changes to the frontend source code will cause the server to automatically rebuild with the changes.
