@@ -2,20 +2,19 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Bootstrap from 'react-bootstrap';
-import RegisterPage from './RegisterPage.js';
 
-export default class LoginPage extends Component {
+export default class RegisterPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
+      name: '',
+      Location: '',
     };
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.name.length > 0 && this.state.Location.length > 0;
   }
 
   handleChange = event => {
@@ -30,7 +29,7 @@ export default class LoginPage extends Component {
 
   submitForm = event => {
     console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/login', {
+    fetch('http://localhost:5000/register', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -43,25 +42,23 @@ export default class LoginPage extends Component {
       });
   };
 
-  render() {
+   render() {
     return (
-      <div className="Login">
+      <div className="Register">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="email" bsSize="large">
-	    email
+          <Form.Group controlId="name" bsSize="large">
             <Form.Control
               autoFocus
-              type="email"
-              value={this.state.email}
+              type="name"
+              value={this.state.name}
               onChange={this.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId="password" bsSize="large">
-	    password
+          <Form.Group controlId="Location" bsSize="large">
             <Form.Control
-              value={this.state.password}
+              value={this.state.Location}
               onChange={this.handleChange}
-              type="password"
+              type="Location"
             />
           </Form.Group>
           <Button
@@ -69,23 +66,14 @@ export default class LoginPage extends Component {
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
-            onClick={this.submitForm}
+            //onClick={this.props.changePage("CreateProfile")}
+	    onClick={() => this.props.changePage("CreateProfile")}
           >
-            Login
+            Register
           </Button>
         </Form>
-	<p> Not a member? </p>
-	<Button
-	    block
-	    bsSize="large"
-	    //disabled={!this.validateForm()}
-	    type="submit"
-	    onClick={() => this.props.changePage("Register")}
-	  >
-	    Register
-	  </Button>
       </div>
-
     );
   }
 }
+

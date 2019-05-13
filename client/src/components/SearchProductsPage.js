@@ -2,20 +2,18 @@ import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Bootstrap from 'react-bootstrap';
-import RegisterPage from './RegisterPage.js';
 
-export default class LoginPage extends Component {
+export default class SearchProductsPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
+      searchbar: ''
     };
   }
 
   validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
+    return this.state.searchbar.length > 0;
   }
 
   handleChange = event => {
@@ -30,7 +28,7 @@ export default class LoginPage extends Component {
 
   submitForm = event => {
     console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/login', {
+    fetch('http://localhost:5000/searchproducts', {
       method: 'POST',
       headers: {
         'Content-type': 'application/json'
@@ -43,49 +41,32 @@ export default class LoginPage extends Component {
       });
   };
 
-  render() {
+   render() {
     return (
-      <div className="Login">
+      <div className="SearchProducts">
         <Form onSubmit={this.handleSubmit}>
-          <Form.Group controlId="email" bsSize="large">
-	    email
+	    <Form.Group controlId="searchbar" bsSize="large">
+	    <Form.Label>Search</Form.Label>
             <Form.Control
               autoFocus
-              type="email"
-              value={this.state.email}
+              type="input"
+              value={this.state.searchbar}
               onChange={this.handleChange}
             />
-          </Form.Group>
-          <Form.Group controlId="password" bsSize="large">
-	    password
-            <Form.Control
-              value={this.state.password}
-              onChange={this.handleChange}
-              type="password"
-            />
-          </Form.Group>
-          <Button
+	    </Form.Group>
+
+	    <Button
             block
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
-            onClick={this.submitForm}
+	    onClick={() => this.props.changePage("Login")}
           >
-            Login
+            Log Out
           </Button>
-        </Form>
-	<p> Not a member? </p>
-	<Button
-	    block
-	    bsSize="large"
-	    //disabled={!this.validateForm()}
-	    type="submit"
-	    onClick={() => this.props.changePage("Register")}
-	  >
-	    Register
-	  </Button>
-      </div>
-
+	</Form>
+	</div>
     );
-  }
+   }
 }
+ 
