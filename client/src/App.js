@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-import LoginPage from './components/LoginPage.js';
+import LoginPageContainer from './containers/LoginPageContainer.js';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +12,7 @@ class App extends Component {
     return (
       <div className="App">
         <h1> Please log in </h1>
-        <LoginPage />
+        <LoginPageContainer />
       </div>
     );
   }

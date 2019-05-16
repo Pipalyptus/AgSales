@@ -8,8 +8,15 @@ const login = new Login();
 // Controller for logging in users
 router.post('/', function(req, res, next) {
   console.log(req.body);
-  console.log(login.checkUser(req.body.email, req.body.password));
-  res.json({ test: 'API is working properly!' });
+  login.loginUser(req.body.email, req.body.password, result => {
+    if (result === 'True') {
+      res.json({ loggedIn: 'True' });
+    } else if (result === 'False') {
+      res.json({ logginIn: 'Invalid username or password' });
+    } else {
+      res.json({ loggedIn: 'User does not exist' });
+    }
+  });
 });
 
 module.exports = router;
