@@ -24,18 +24,19 @@ export default class LoginPageContainer extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/login', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(result => result.json())
-      .then(info => {
-        console.log(info);
-      });
+    const userData = JSON.stringify(this.state);
+    this.props.login.loginUser(userData);
+    // fetch('http://localhost:5000/login', {
+    //   method: 'POST',
+    //   headers: {
+    //     'Content-type': 'application/json'
+    //   },
+    //   body: JSON.stringify(this.state)
+    // })
+    //   .then(result => result.json())
+    //   .then(info => {
+    //     console.log(info);
+    //   });
   };
 
   render() {
