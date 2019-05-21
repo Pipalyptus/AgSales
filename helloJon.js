@@ -1,6 +1,6 @@
 var http = require("http");
 
-
+var thisNewvar = 1;
 
 http.createServer(function (request, response) {
    // Send the HTTP header 
