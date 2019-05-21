@@ -28,7 +28,7 @@ export default class LoginPageContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const userData = JSON.stringify(this.state);
-    this.props.login.loginUser(userData);
+    this.props.login.loginUser(userData, this.props.updateAuthenticated);
   };
 
   render() {

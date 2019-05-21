@@ -1,6 +1,6 @@
 export default class User {
   // Log a user in
-  loginUser(userData) {
+  loginUser(userData, callback) {
     console.log(userData);
     fetch('http://localhost:5000/login', {
       method: 'POST',
@@ -9,9 +9,9 @@ export default class User {
       },
       body: userData
     })
-      .then(result => result.json())  
+      .then(result => result.json())
       .then(info => {
-        console.log(info);
+        callback(info.loggedIn);
       });
   }
 }
