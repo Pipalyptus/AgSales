@@ -12,31 +12,23 @@ export default class LoginPageContainer extends Component {
     };
   }
 
+  // Check that the form inputs aren't empty
   validateForm = () => {
     return this.state.email.length > 0 && this.state.password.length > 0;
   };
 
+  // Update the email and password fields
   handleChange = event => {
     this.setState({
       [event.target.id]: event.target.value
     });
   };
 
+  // Submit the login info
   handleSubmit = event => {
     event.preventDefault();
     const userData = JSON.stringify(this.state);
     this.props.login.loginUser(userData);
-    // fetch('http://localhost:5000/login', {
-    //   method: 'POST',
-    //   headers: {
-    //     'Content-type': 'application/json'
-    //   },
-    //   body: JSON.stringify(this.state)
-    // })
-    //   .then(result => result.json())
-    //   .then(info => {
-    //     console.log(info);
-    //   });
   };
 
   render() {

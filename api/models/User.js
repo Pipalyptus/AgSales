@@ -10,7 +10,7 @@ const databaseCreds = {
 };
 
 // Model for logging in and registering users
-class Login {
+class User {
   // Connect to the database
   constructor() {
     this.connection = mysql.createConnection(databaseCreds);
@@ -19,24 +19,25 @@ class Login {
   // TODO: Actually log the user in
   loginUser(email, password, callback) {
     this.connection.query(
-      'SELECT * FROM Grower WHERE email = ' + connection.escape(email),
+      'SELECT * FROM Grower WHERE email = ' + this.connection.escape(email),
       function(error, results) {
         if (error) throw error;
-
+        // If there is a user with the entered email,
+        // check if the password matches the salted + hashed password in the DB
         if (results.length > 0) {
-          if (password == results[0].password) {
-            callback('True');
-          } else {
-            callback('False');
-          }
+          bcrypt.compare(password, results[0].password, function(err, res) {
+            if (res == true) {
+              callback('True');
+            } else {
+              callback('False');
+            }
+          });
         } else {
           callback('None');
         }
-        //   bcrypt.compare(password, results[0].password, function(err, res) {
-        // });
       }
     );
   }
 }
 
-module.exports = Login;
+module.exports = User;

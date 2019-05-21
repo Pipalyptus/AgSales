@@ -1,14 +1,14 @@
-const Login = require('../models/login.js');
+const User = require('../models/User.js');
 
 var express = require('express');
 var router = express.Router();
 
-const login = new Login();
+const user = new User();
 
 // Controller for logging in users
 router.post('/', function(req, res, next) {
   console.log(req.body);
-  login.loginUser(req.body.email, req.body.password, result => {
+  user.loginUser(req.body.email, req.body.password, result => {
     if (result === 'True') {
       res.json({ loggedIn: 'True' });
     } else if (result === 'False') {

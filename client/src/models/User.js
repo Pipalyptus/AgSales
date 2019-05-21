@@ -1,4 +1,5 @@
-export default class LoginModel {
+export default class User {
+  // Log a user in
   loginUser(userData) {
     console.log(userData);
     fetch('http://localhost:5000/login', {
@@ -8,7 +9,7 @@ export default class LoginModel {
       },
       body: userData
     })
-      .then(result => result.json())
+      .then(result => result.json())  
       .then(info => {
         console.log(info);
       });

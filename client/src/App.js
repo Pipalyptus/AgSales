@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
 import LoginPageContainer from './containers/LoginPageContainer.js';
-import LoginModel from './models/LoginModel.js';
+import User from './models/User.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = { apiResponse: '' };
-    this.login = new LoginModel();
+    this.login = new User();
   }
 
   render() {
