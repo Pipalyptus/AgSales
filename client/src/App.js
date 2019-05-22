@@ -1,19 +1,31 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
-import LoginPage from './components/LoginPage.js';
+import LoginPageContainer from './containers/LoginPageContainer.js';
+import User from './models/User.js';
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = { apiResponse: '' };
+    this.state = {
+      isAuthenticated: false
+    };
+    this.login = new User();
   }
+
+  updateAuthenticated = authenticated => {
+    this.setState({
+      isAuthenticated: authenticated
+    });
+  };
 
   render() {
     return (
       <div className="App">
         <h1> Please log in </h1>
-        <LoginPage />
+        <LoginPageContainer
+          login={this.login}
+          updateAuthenticated={this.updateAuthenticated}
+        />
       </div>
     );
   }
