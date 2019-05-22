@@ -32,14 +32,21 @@ export default class LoginPageContainer extends Component {
   };
 
   render() {
-    return (
-      <LoginPage
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        validateForm={this.validateForm}
-        email={this.state.email}
-        password={this.state.password}
-      />
-    );
+    if (!this.props.isAuthenticated) {
+      return (
+        <div>
+          <h1> Please log in </h1>
+          <LoginPage
+            handleSubmit={this.handleSubmit}
+            handleChange={this.handleChange}
+            validateForm={this.validateForm}
+            email={this.state.email}
+            password={this.state.password}
+          />
+        </div>
+      );
+    } else {
+      return <h1> Welcome, {this.state.email} </h1>;
+    }
   }
 }
