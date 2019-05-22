@@ -4,12 +4,13 @@ node_js:
   - "stable"
 
 script:
-  - cd ./api
-  - npm install
-  - npm test
-  - npm run start
-  
-  - cd ../client
+
+  - cd ./client
   - npm install
   - npm test
   - npm run build
+
+  - cd ../api
+  - npm install
+  - npm test
+  - npm run start & 
