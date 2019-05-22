@@ -7,7 +7,6 @@ script:
   - cd ./api
   - npm install
   - npm test
-  - npm run build
   
   - cd ./client
   - npm install
