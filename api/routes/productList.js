@@ -1,4 +1,4 @@
-const Search = require('../models/search.js');
+const Search = require('../models/Search.js');
 
 var express = require('express');
 var router = express.Router();
