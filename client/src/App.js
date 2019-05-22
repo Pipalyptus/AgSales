@@ -21,10 +21,10 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <h1> Please log in </h1>
         <LoginPageContainer
           login={this.login}
           updateAuthenticated={this.updateAuthenticated}
+          isAuthenticated={this.state.isAuthenticated}
         />
       </div>
     );

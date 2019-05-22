@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import Bootstrap from 'react-bootstrap';
 
 export default class LoginPage extends Component {
   render() {
     return (
       <div className="Login">
         <Form onSubmit={this.props.handleSubmit}>
-          <Form.Group controlId="email" bsSize="large">
+          <Form.Group controlId="email" bssize="large">
             <Form.Control
               autoFocus
               type="email"
@@ -16,7 +15,7 @@ export default class LoginPage extends Component {
               onChange={this.props.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId="password" bsSize="large">
+          <Form.Group controlId="password" bssize="large">
             <Form.Control
               value={this.props.password}
               onChange={this.props.handleChange}
@@ -25,7 +24,7 @@ export default class LoginPage extends Component {
           </Form.Group>
           <Button
             block
-            bsSize="large"
+            bssize="large"
             disabled={!this.props.validateForm()}
             type="submit"
           >
