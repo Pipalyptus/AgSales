@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Bootstrap from 'react-bootstrap';
-import RegisterPage from './RegisterPage.js';
+import React, { Component } from "react";
+import Form from "react-bootstrap/Form";
+import Button from "react-bootstrap/Button";
+import Bootstrap from "react-bootstrap";
+import RegisterPage from "./RegisterPage.js";
 
 export default class LoginPage extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      email: '',
-      password: ''
+      email: "",
+      password: ""
     };
   }
 
@@ -30,10 +30,10 @@ export default class LoginPage extends Component {
 
   submitForm = event => {
     console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/login', {
-      method: 'POST',
+    fetch("http://localhost:5000/login", {
+      method: "POST",
       headers: {
-        'Content-type': 'application/json'
+        "Content-type": "application/json"
       },
       body: JSON.stringify(this.state)
     })
@@ -48,7 +48,7 @@ export default class LoginPage extends Component {
       <div className="Login">
         <Form onSubmit={this.handleSubmit}>
           <Form.Group controlId="email" bsSize="large">
-	    email
+            email
             <Form.Control
               autoFocus
               type="email"
@@ -57,10 +57,9 @@ export default class LoginPage extends Component {
             />
           </Form.Group>
           <Form.Group controlId="password" bsSize="large">
-	    password
             <Form.Control
-              value={this.state.password}
-              onChange={this.handleChange}
+              value={this.props.password}
+              onChange={this.props.handleChange}
               type="password"
             />
           </Form.Group>
@@ -69,23 +68,21 @@ export default class LoginPage extends Component {
             bsSize="large"
             disabled={!this.validateForm()}
             type="submit"
-            onClick={this.submitForm}
           >
             Login
           </Button>
         </Form>
-	<p> Not a member? </p>
-	<Button
-	    block
-	    bsSize="large"
-	    //disabled={!this.validateForm()}
-	    type="submit"
-	    onClick={() => this.props.changePage("Register")}
-	  >
-	    Register
-	  </Button>
+        <p> Not a member? </p>
+        <Button
+          block
+          bsSize="large"
+          //disabled={!this.validateForm()}
+          type="submit"
+          onClick={() => this.props.changePage("Register")}
+        >
+          Register
+        </Button>
       </div>
-
     );
   }
 }
