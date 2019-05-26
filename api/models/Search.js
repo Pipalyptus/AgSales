@@ -16,11 +16,19 @@ class Search {
   }
   // Select all products that match the current query
   // TODO: Actually filter the products
-  updateQuery(query, callback) {
-    this.connection.query('SELECT * FROM Product', function(error, results) {
-      if (error) throw error;
-      callback(results);
-    });
+  updateQuery(query, minQty, callback) {
+    this.connection.query(
+      'SELECT * FROM Product WHERE (name LIKE ' +
+        this.connection.escape('%' + query + '%') +
+        'OR description LIKE ' +
+        this.connection.escape('%' + query + '%') +
+        ') AND quantity >= ' +
+        minQty,
+      function(error, results) {
+        if (error) throw error;
+        callback(results);
+      }
+    );
   }
 }
 

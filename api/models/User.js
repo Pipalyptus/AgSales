@@ -27,9 +27,9 @@ class User {
         if (results.length > 0) {
           bcrypt.compare(password, results[0].password, function(err, res) {
             if (res == true) {
-              callback('True');
+              callback(true);
             } else {
-              callback('False');
+              callback(false);
             }
           });
         } else {

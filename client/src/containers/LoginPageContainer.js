@@ -42,6 +42,7 @@ export default class LoginPageContainer extends Component {
             validateForm={this.validateForm}
             email={this.state.email}
             password={this.state.password}
+            changePage={this.props.changePage}
           />
         </div>
       );

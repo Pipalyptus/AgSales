@@ -9,9 +9,9 @@ const user = new User();
 router.post('/', function(req, res, next) {
   console.log(req.body);
   user.loginUser(req.body.email, req.body.password, result => {
-    if (result === 'True') {
-      res.json({ loggedIn: 'True' });
-    } else if (result === 'False') {
+    if (result === true) {
+      res.json({ loggedIn: true });
+    } else if (result === false) {
       res.json({ logginIn: 'Invalid username or password' });
     } else {
       res.json({ loggedIn: 'User does not exist' });

@@ -8,7 +8,7 @@ const search = new Search();
 // Controller for products endpoint
 router.post('/', function(req, res, next) {
   // Get all products that match the search query and return them to the clients
-  search.updateQuery(req.body.email, productList => {
+  search.updateQuery(req.body.query, req.body.minQty, productList => {
     res.json({ products: productList });
   });
 });
