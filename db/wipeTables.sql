@@ -1,7 +1,6 @@
-delete from Ownership;
+delete from ProductReview;
+delete from TagOwnership;
 delete from Distributor;
-delete from GrowerReview;
+delete from Product;
 delete from Grower;
 delete from Tag;
-delete from ProductReview;
-delete from Product;

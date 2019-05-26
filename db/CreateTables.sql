@@ -5,7 +5,7 @@ create table Grower (
     licenseNumber integer,
     email varchar(40),
     password varchar(100),
-    phoneNumber varchar(20),
+    phoneNumber varchar(30),
     description text,
     imageURL varchar(300)
 );
@@ -17,7 +17,7 @@ create table Distributor (
     licenseNumber integer,
     email varchar(40),
     password varchar(100),
-    phoneNumber varchar(20),
+    phoneNumber varchar(30),
     description text,
     imageURL varchar(300)
 );
@@ -35,9 +35,7 @@ create table Product (
 
 create table Tag (
 	id integer primary key,
-    productId integer,
-    value varChar(30),
-    foreign key (productId) references Product (id)
+    value varChar(30)
 );
 
 create table ProductReview (
@@ -48,4 +46,12 @@ create table ProductReview (
     description text,
     foreign key (productId) references Product (id),
     foreign key (reviewerId) references Distributor (id)
+);
+
+create table TagOwnership (
+	tagId integer,
+    productId integer,
+    primary key(tagId, productId),
+    foreign key (tagId) references Tag (id),
+    foreign key (productId) references Product (id)
 );

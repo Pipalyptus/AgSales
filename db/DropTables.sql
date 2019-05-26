@@ -1,5 +1,6 @@
 drop table ProductReview;
+drop table TagOwnership;
 drop table Distributor;
-drop table Tag;
 drop table Product;
 drop table Grower;
+drop table Tag;
