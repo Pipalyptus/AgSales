@@ -8,12 +8,10 @@ export default class SearchProductsPage extends Component {
 
     this.state = {
       query: '',
-      minQty: 0
+      minQty: 0,
+      minRating: 0,
+      tags: []
     };
-  }
-
-  validateForm() {
-    return this.state.query.length > 0;
   }
 
   handleChange = event => {
@@ -58,6 +56,25 @@ export default class SearchProductsPage extends Component {
               type="number"
               required
               value={this.state.minQty}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="minRating" bsSize="large">
+            <Form.Label>Minimum Rating (In stars) </Form.Label>
+            <Form.Control
+              autoFocus
+              type="number"
+              required
+              value={this.state.minRating}
+              onChange={this.handleChange}
+            />
+          </Form.Group>
+          <Form.Group controlId="tags" bsSize="large">
+            <Form.Label>Tags</Form.Label>
+            <Form.Control
+              autoFocus
+              type="input"
+              value={this.state.tags}
               onChange={this.handleChange}
             />
           </Form.Group>
