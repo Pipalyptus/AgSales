@@ -12,7 +12,7 @@ router.post('/', function(req, res, next) {
     req.body.query,
     req.body.minQty,
     req.body.minRating,
-    req.body.tags.split(', '),
+    req.body.tags,
     productList => {
       res.json({ products: productList });
     }

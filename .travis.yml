@@ -12,5 +12,5 @@ script:
 
   - cd ../api
   - npm install
-  - npm test
+  - mocha test/
   - npm run start & 
