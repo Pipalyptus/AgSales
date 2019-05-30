@@ -63,7 +63,7 @@ export default class SearchProductsPage extends Component {
 	    onClick={() => this.props.changePage("Login")}
           >
             Log Out
-          </Button>
+          </Button> 
 	</Form>
 	</div>
     );

@@ -57,6 +57,7 @@ export default class LoginPage extends Component {
             />
           </Form.Group>
           <Form.Group controlId="password" bsSize="large">
+            password
             <Form.Control
               value={this.props.password}
               onChange={this.props.handleChange}

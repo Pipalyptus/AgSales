@@ -6,7 +6,10 @@ import RegisterPage from "./components/RegisterPage.js";
 import CreateProfilePage from "./components/CreateProfilePage.js";
 import SearchProductsPage from "./components/SearchProductsPage.js";
 import LoginPageContainer from "./containers/LoginPageContainer.js";
+import RegisterPageContainer from "./containers/RegisterPageContainer.js"
 import User from "./models/User.js";
+import CreateProfilePageContainer from "./containers/CreateProfilePageContainer";
+import SearchProductsPageContainer from "./containers/SearchProductsPageContainer";
 
 class App extends Component {
   constructor(props) {
@@ -47,21 +50,21 @@ class App extends Component {
       return (
         <div className="App">
           <h1> Register </h1>
-          <RegisterPage changePage={this.changePage} />
+          <RegisterPageContainer changePage={this.changePage} />
         </div>
       );
     } else if (this.state.currentPage === "CreateProfile") {
       return (
         <div className="App">
           <h1> Create Your Profile </h1>
-          <CreateProfilePage changePage={this.changePage} />
+          <CreateProfilePageContainer changePage={this.changePage} />
         </div>
       );
     } else if (this.state.currentPage === "Search") {
       return (
         <div className="App">
           <h1> Product Listings </h1>
-          <SearchProductsPage changePage={this.changePage} />
+          <SearchProductsPageContainer changePage={this.changePage} />
         </div>
       );
     }
