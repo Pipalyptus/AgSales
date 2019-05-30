@@ -14,7 +14,8 @@ router.post('/', function(req, res, next) {
     req.body.minRating,
     req.body.tags,
     productList => {
-      res.json({ products: productList });
+      console.log(productList);
+      res.status(200).json({ products: productList });
     }
   );
 });

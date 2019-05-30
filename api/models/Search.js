@@ -37,7 +37,7 @@ class Search {
           minRating,
         function(error, results) {
           if (error) throw error;
-          callback(results);
+          callback(JSON.parse(JSON.stringify(results)));
         }
       );
     } else {
@@ -56,7 +56,7 @@ class Search {
           minRating,
         function(error, results) {
           if (error) throw error;
-          callback(results);
+          callback(JSON.parse(JSON.stringify(results)));
         }
       );
     }
