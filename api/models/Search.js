@@ -10,28 +10,26 @@ const databaseCreds = {
 
 // Model for searching and displaying a list products
 class Search {
-  // Connect to the database
-  constructor() {
-    this.connection = mysql.createConnection(databaseCreds);
-  }
   // Select all products that match the current query
   updateQuery(query, minQty, minRating, tags, callback) {
+    // Connect to the database
+    let connection = mysql.createConnection(databaseCreds);
     // Tags chosen
-    if (tags != '') {
+    if (tags !== '') {
       tags = tags.split(', ');
-      this.connection.query(
+      connection.query(
         'SELECT Product.id, growerId, name, price, quantity, imageURL, ROUND(AVG(rating), 1) AS AvgRating' +
           ' FROM Product INNER JOIN ProductReview ON Product.id = ProductReview.productID' +
           ' INNER JOIN TagOwnership ON Product.id = TagOwnership.productId' +
           ' INNER JOIN Tag ON TagOwnership.tagid = Tag.id' +
           ' WHERE (name LIKE ' +
-          this.connection.escape('%' + query + '%') +
+          connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
-          this.connection.escape('%' + query + '%') +
+          connection.escape('%' + query + '%') +
           ') AND quantity >= ' +
           minQty +
           ' AND Tag.value IN (' +
-          this.connection.escape(tags.spli) +
+          connection.escape(tags) +
           ') GROUP BY Product.id' +
           ' HAVING COUNT(distinct Tag.Id) = ' +
           tags.length +
@@ -44,13 +42,13 @@ class Search {
       );
     } else {
       // No tags chosen
-      this.connection.query(
+      connection.query(
         'SELECT Product.id, growerId, name, price, quantity, imageURL, ROUND(AVG(rating), 1) AS AvgRating' +
           ' FROM Product INNER JOIN ProductReview ON Product.id = ProductReview.productID' +
           ' WHERE (name LIKE ' +
-          this.connection.escape('%' + query + '%') +
+          connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
-          this.connection.escape('%' + query + '%') +
+          connection.escape('%' + query + '%') +
           ') AND quantity >= ' +
           minQty +
           ' GROUP BY Product.id' +
@@ -62,6 +60,7 @@ class Search {
         }
       );
     }
+    connection.end();
   }
 }
 
