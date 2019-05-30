@@ -1,5 +1,5 @@
 create table Grower (
-	id integer primary key,
+	id integer primary key auto_increment,
     name varchar(50),
     businessType varchar(40),
     licenseNumber integer,
@@ -11,7 +11,7 @@ create table Grower (
 );
 
 create table Distributor (
-	id integer primary key,
+	id integer primary key auto_increment,
     name varchar(50),
     businessType varchar(40),
     licenseNumber integer,
@@ -23,7 +23,7 @@ create table Distributor (
 );
 
 create table Product (
-	id integer primary key,
+	id integer primary key auto_increment,
     growerId integer,
     name varchar(30),
     price double,
@@ -34,12 +34,12 @@ create table Product (
 );
 
 create table Tag (
-	id integer primary key,
+	id integer primary key auto_increment,
     value varChar(30)
 );
 
 create table ProductReview (
-	id integer primary key,
+	id integer primary key auto_increment,
     productId integer,
     reviewerId integer,
     rating integer,

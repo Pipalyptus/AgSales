@@ -2,15 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c3b09a87-3358-4af3-896f-1a623dd6727d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../CreateTables.sql" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/../../DropTables.sql" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../InsertTables_java/src/insertStatementGenerator.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../InsertTables_Sample.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../api/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/../../api/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../CreateTables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../CreateTables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../DropTables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../DropTables.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/insertStatementGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/insertStatementGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../wipeTables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/../wipeTables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/InsertIntoTables.sql" beforeDir="false" afterPath="$PROJECT_DIR$/InsertIntoTables.sql" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/classes/insertStatementGenerator.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/classes/insertStatementGenerator.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/insertStatementGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/insertStatementGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../wipeTables.sql" beforeDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -58,12 +57,10 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/insertStatementGenerator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="270">
-              <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+            <state relative-caret-position="261">
+              <caret line="130" column="68" selection-start-line="130" selection-start-column="68" selection-end-line="130" selection-end-column="68" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#357#358#0" expanded="true" />
-                <element signature="e#419#420#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -72,7 +69,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/InsertIntoTables.sql">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5600" />
+            <state relative-caret-position="-8570" />
           </provider>
         </entry>
       </file>
@@ -106,7 +103,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -137,6 +133,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -190,7 +187,7 @@
     <frame x="154" y="23" width="1111" height="1003" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2787652" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.28344247" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -199,7 +196,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3358946" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.3358946" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -224,12 +221,7 @@
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.sql" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/UserPass.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DistributorPasswords.txt">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/UserPass.txt" />
     <entry file="file://$PROJECT_DIR$/GrowerPasswords.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -240,19 +232,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/DistributorPasswords.txt">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/InsertIntoTables.sql">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5600" />
+        <state relative-caret-position="-8570" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/insertStatementGenerator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="270">
-          <caret line="133" column="17" selection-start-line="133" selection-start-column="17" selection-end-line="133" selection-end-column="17" />
+        <state relative-caret-position="261">
+          <caret line="130" column="68" selection-start-line="130" selection-start-column="68" selection-end-line="130" selection-end-column="68" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#357#358#0" expanded="true" />
-            <element signature="e#419#420#0" expanded="true" />
           </folding>
         </state>
       </provider>
