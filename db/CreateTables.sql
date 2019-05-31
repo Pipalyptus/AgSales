@@ -43,7 +43,7 @@ create table ProductReview (
     productId integer,
     reviewerId integer,
     rating integer,
-    description text,
+    content text,
     foreign key (productId) references Product (id),
     foreign key (reviewerId) references Distributor (id)
 );

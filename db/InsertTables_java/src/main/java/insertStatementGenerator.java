@@ -101,7 +101,7 @@ public class insertStatementGenerator {
         List<String> stmts = new ArrayList<>();
         for(int i = 0; i < NUM_REVIEWS; i++) {
             int rating = faker.number().numberBetween(1, 5);
-            String s = "insert into ProductReview (productId, reviewerId, rating, description) values (";
+            String s = "insert into ProductReview (productId, reviewerId, rating, content) values (";
             s = s + faker.number().numberBetween(1, NUM_PRODUCTS) + ", ";
             s = s + faker.number().numberBetween(1, NUM_DISTRIBUTORS) + ", ";
             s = s + rating + ", ";
