@@ -10,6 +10,8 @@ import RegisterPageContainer from "./containers/RegisterPageContainer.js"
 import User from "./models/User.js";
 import CreateProfilePageContainer from "./containers/CreateProfilePageContainer";
 import SearchProductsPageContainer from "./containers/SearchProductsPageContainer";
+import ViewProfileContainer from "./containers/ViewProfileContainer";
+import ViewProductContainer from "./containers/SearchProductsPageContainer";
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +67,20 @@ class App extends Component {
         <div className="App">
           <h1> Product Listings </h1>
           <SearchProductsPageContainer changePage={this.changePage} />
+        </div>
+      );
+    } else if(this.state.currentPage === "ViewProfile") {
+      return (
+        <div className="App">
+        <h1> Profile </h1>
+        <ViewProfileContainer changePage={this.changePage} />
+      </div>
+      );
+    } else if (this.state.currentPage === "ViewProduct") {
+      return (
+        <div className="App">
+          <h1> View Product </h1>
+          <ViewProductContainer changePage={this.changePage} />
         </div>
       );
     }

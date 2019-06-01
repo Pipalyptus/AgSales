@@ -36,12 +36,20 @@ export default class SearchProductsPage extends Component {
 	    <Button
             block
             bsSize="large"
-            disabled={!this.props.validateForm()}
             type="submit"
 	    onClick={() => this.props.changePage("Login")}
           >
             Log Out
           </Button> 
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+	    onClick={() => this.props.changePage("ViewProfile")}
+          >
+            View My Profile
+          </Button>      
+
 	</Form>
 	</div>
     );
