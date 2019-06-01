@@ -11,15 +11,12 @@ const databaseCreds = {
 
 // Model for logging in and registering users
 class User {
-  // Connect to the database
-  constructor() {
-    this.connection = mysql.createConnection(databaseCreds);
-  }
   // Login a user
-  // TODO: Actually log the user in
   loginUser(email, password, callback) {
-    this.connection.query(
-      'SELECT * FROM Grower WHERE email = ' + this.connection.escape(email),
+    // Connect to the database
+    let connection = mysql.createConnection(databaseCreds);
+    connection.query(
+      'SELECT * FROM Grower WHERE email = ' + connection.escape(email),
       function(error, results) {
         if (error) throw error;
         // If there is a user with the entered email,
@@ -27,16 +24,17 @@ class User {
         if (results.length > 0) {
           bcrypt.compare(password, results[0].password, function(err, res) {
             if (res == true) {
-              callback('True');
+              callback(true);
             } else {
-              callback('False');
+              callback(false);
             }
           });
         } else {
-          callback('None');
+          callback(null);
         }
       }
     );
+    connection.end();
   }
 }
 

@@ -1,20 +1,19 @@
 const User = require('../models/User.js');
 
-var express = require('express');
-var router = express.Router();
+const express = require('express');
+const router = express.Router();
 
 const user = new User();
 
 // Controller for logging in users
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   user.loginUser(req.body.email, req.body.password, result => {
-    if (result === 'True') {
-      res.json({ loggedIn: 'True' });
-    } else if (result === 'False') {
-      res.json({ logginIn: 'Invalid username or password' });
+    if (result === true) {
+      res.status(200).json({ loggedIn: true });
+    } else if (result === false) {
+      res.status(403).json({ logginIn: 'Invalid username or password' });
     } else {
-      res.json({ loggedIn: 'User does not exist' });
+      res.status(400).json({ loggedIn: 'User does not exist' });
     }
   });
 });

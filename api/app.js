@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var loginRoute = require('./routes/login');
-var productListRoute = require('./routes/productList');
+var productsRoute = require('./routes/products');
 
 // Initalize server
 var app = express();
@@ -20,7 +20,7 @@ app.use(cookieParser());
 
 // Set up controllers
 app.use('/login', loginRoute);
-app.use('/products', productListRoute);
+app.use('/products', productsRoute);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
