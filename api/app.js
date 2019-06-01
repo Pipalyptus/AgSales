@@ -7,6 +7,8 @@ var cors = require('cors');
 
 var loginRoute = require('./routes/login');
 var productsRoute = require('./routes/products');
+var registerUserRoute = require('./routes/registerUser');
+var productListRoute = require('./routes/productList');
 
 // Initalize server
 var app = express();
@@ -21,6 +23,8 @@ app.use(cookieParser());
 // Set up controllers
 app.use('/login', loginRoute);
 app.use('/products', productsRoute);
+app.use('/displayUser', displayUserRoute);
+app.use('/registerUser', registerUserRoute);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {
