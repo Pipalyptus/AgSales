@@ -7,8 +7,9 @@ var cors = require('cors');
 
 var loginRoute = require('./routes/login');
 var productsRoute = require('./routes/products');
+var displayUserRoute = require('./routes/displayUser');
 var registerUserRoute = require('./routes/registerUser');
-var productListRoute = require('./routes/productList');
+
 
 // Initalize server
 var app = express();
