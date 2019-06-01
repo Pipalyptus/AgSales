@@ -8,11 +8,11 @@ export default class RegisterPageContainer extends Component {
     
         this.state = {
           name: '',
-          Location: '',
+          Location: ''
         };
       }
     
-      validateForm() {
+      validateForm = () =>{
         return this.state.name.length > 0 && this.state.Location.length > 0;
       }
     

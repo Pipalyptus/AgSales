@@ -4,29 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Bootstrap from 'react-bootstrap';
 
 export default class CreateProfilePage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      nameOfCompany: '',
-    };
-  }
-
-  validateForm() {
-    return this.state.nameOfCompany.length > 0;
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
-  submitForm = event => {
+  /*submitForm = event => {
     console.log(JSON.stringify(this.state));
     fetch('http://localhost:5000/createprofile', {
       method: 'POST',
@@ -39,19 +17,19 @@ export default class CreateProfilePage extends Component {
       .then(info => {
         console.log(info);
       });
-  };
+  };*/
 
    render() {
     return (
       <div className="CreateProfile">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="nameOfCompany" bsSize="large">
 	    <Form.Label>Name of your company</Form.Label>
             <Form.Control
               autoFocus
               type="name"
-              value={this.state.nameOfCompany}
-              onChange={this.handleChange}
+              value={this.props.nameOfCompany}
+              onChange={this.props.handleChange}
             />
 	    </Form.Group>
 	    <Form.Group controlId="growOrDist">
@@ -78,7 +56,7 @@ export default class CreateProfilePage extends Component {
           <Button
             block
             bsSize="large"
-            disabled={!this.validateForm()}
+            disabled={!this.props.validateForm()}
             type="submit"
 	    onClick={() => this.props.changePage("Search")}
           >

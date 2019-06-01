@@ -11,7 +11,7 @@ export default class SearchProductsPageContainer extends Component {
         };
       }
     
-      validateForm() {
+      validateForm = () => {
         return this.state.searchbar.length > 0;
       }
     

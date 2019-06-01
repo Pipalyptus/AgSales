@@ -11,7 +11,7 @@ export default class CreateProfilePageContainer extends Component {
         };
       }
     
-      validateForm() {
+      validateForm = () => {
         return this.state.nameOfCompany.length > 0;
       }
     

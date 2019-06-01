@@ -4,30 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Bootstrap from 'react-bootstrap';
 
 export default class RegisterPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      Location: '',
-    };
-  }
-
-  validateForm() {
-    return this.state.name.length > 0 && this.state.Location.length > 0;
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
-  submitForm = event => {
+  /*submitForm = event => {
     console.log(JSON.stringify(this.state));
     fetch('http://localhost:5000/register', {
       method: 'POST',
@@ -40,31 +17,31 @@ export default class RegisterPage extends Component {
       .then(info => {
         console.log(info);
       });
-  };
+  };*/
 
    render() {
     return (
       <div className="Register">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="name" bsSize="large">
             <Form.Control
               autoFocus
               type="name"
-              value={this.state.name}
-              onChange={this.handleChange}
+              value={this.props.name}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="Location" bsSize="large">
             <Form.Control
-              value={this.state.Location}
-              onChange={this.handleChange}
+              value={this.props.Location}
+              onChange={this.props.handleChange}
               type="Location"
             />
           </Form.Group>
           <Button
             block
             bsSize="large"
-            disabled={!this.validateForm()}
+            disabled={!this.props.validateForm()}
             type="submit"
             //onClick={this.props.changePage("CreateProfile")}
 	    onClick={() => this.props.changePage("CreateProfile")}
