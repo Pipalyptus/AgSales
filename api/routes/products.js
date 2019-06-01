@@ -7,7 +7,7 @@ const router = express.Router();
 const search = new Search();
 const product = new Product();
 
-// Controller for products endpoint
+// Controller for list of products endpoint
 router.post('/listProducts', function(req, res, next) {
   // Get all products that match the search query and return them to the clients
   search.updateQuery(
@@ -21,7 +21,7 @@ router.post('/listProducts', function(req, res, next) {
   );
 });
 
-// Controller for product endpoint
+// Controller for single product endpoint
 router.post('/showProduct', function(req, res, next) {
   // Get the product that was chosen and return it to the client
   product.fetchProduct(req.body.productId, productData => {

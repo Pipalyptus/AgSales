@@ -46,6 +46,80 @@ class Product {
     );
     connection.end();
   }
+
+  // Create a new product and any new associated tags
+  createProduct(
+    growerId,
+    name,
+    price,
+    quantity,
+    description,
+    imageURL,
+    tags,
+    callback
+  ) {
+    const self = this;
+    // Connect to the database
+    let connection = mysql.createConnection(databaseCreds);
+    connection.query(
+      'INSERT INTO Product (growerId, name, price, quantity, description, imageURL) ' +
+        'VALUES ' +
+        '(' +
+        growerId +
+        ', ' +
+        connection.escape(name) +
+        ', ' +
+        price +
+        ', ' +
+        quantity +
+        ', ' +
+        connection.escape(description) +
+        ', ' +
+        connection.escape(imageURL) +
+        ')',
+      function(error, results) {
+        if (error) {
+          console.log(error);
+          callback(false);
+        }
+        console.log('passed');
+        self.createTags(tags, callback);
+      }
+    );
+    connection.end();
+  }
+
+  createTags(tags, callback) {
+    let connection = mysql.createConnection(databaseCreds);
+    console.log('adding tags');
+    connection.query(
+      'SELECT * FROM Tag WHERE value IN (' + connection.escape(tags) + ')',
+      function(error, results) {
+        if (error) {
+          console.log(error);
+          callback(false);
+        }
+        let existingTags = results.map(item => item.value);
+        for (tag in tags) {
+          if (!(tag in existingTags)) {
+            connection.query(
+              'INSERT INTO Tag (value) VALUES (' +
+                +connection.escape(tag) +
+                ')',
+              function(error, results) {
+                if (error) {
+                  console.log(error);
+                  callback(false);
+                }
+                callback(true);
+              }
+            );
+          }
+        }
+      }
+    );
+    connection.end();
+  }
 }
 
 module.exports = Product;
