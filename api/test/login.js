@@ -15,7 +15,7 @@ function createApp() {
   return app;
 }
 
-describe('Login route', function() {
+describe('Login Controller', function() {
   let server = null;
   // Create a new server for each test
   before(function(done) {
