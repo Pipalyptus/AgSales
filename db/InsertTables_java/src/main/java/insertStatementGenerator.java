@@ -37,8 +37,7 @@ public class insertStatementGenerator {
         for(int i = 0; i < NUM_GROWERS; i++) {
             String [] tokens = sc.nextLine().replace("\n", "").split(",");
 
-            String s = "insert into Grower value (";
-            s = s + i + ", ";
+            String s = "insert into Grower (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) values (";
             s = s + makeString(faker.company().name()) + ", ";
             s = s + makeString("marijuana") + ", ";
             s = s + faker.number().numberBetween(100000, 999999) + ", ";
@@ -67,8 +66,7 @@ public class insertStatementGenerator {
         for(int i = 0; i < NUM_DISTRIBUTORS; i++) {
             String [] tokens = sc.nextLine().replace("\n", "").split(",");
 
-            String s = "insert into Distributor value (";
-            s = s + i + ", ";
+            String s = "insert into Distributor (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) values (";
             s = s + makeString(faker.company().name()) + ", ";
             s = s + makeString("marijuana") + ", ";
             s = s + faker.number().numberBetween(100000, 999999) + ", ";
@@ -87,15 +85,13 @@ public class insertStatementGenerator {
     public static List<String> generateProducts() {
         List<String> stmts = new ArrayList<>();
         for(int i = 0; i < NUM_PRODUCTS; i++) {
-            String s = "insert into Product value (";
-            s = s + i + ", ";
-            s = s + faker.number().numberBetween(0, NUM_GROWERS - 1) + ", ";
+            String s = "insert into Product (growerId, name, price, quantity, description, imageURL) values (";
+            s = s + faker.number().numberBetween(1, NUM_GROWERS) + ", ";
             s = s + makeString(faker.funnyName().name()) + ", ";
             s = s + faker.number().numberBetween(15, 150) + "." + faker.number().numberBetween(0, 9) + "0, ";
             s = s + faker.number().numberBetween(0, 99999)  + ", ";
             s = s + makeString("the good stuff") + ", ";
             s = s + makeString("img_21324421525.png");
-
             stmts.add(s + ");\n");
         }
         return stmts;
@@ -105,10 +101,9 @@ public class insertStatementGenerator {
         List<String> stmts = new ArrayList<>();
         for(int i = 0; i < NUM_REVIEWS; i++) {
             int rating = faker.number().numberBetween(1, 5);
-            String s = "insert into ProductReview value (";
-            s = s + i + ", ";
-            s = s + faker.number().numberBetween(0, NUM_PRODUCTS - 1) + ", ";
-            s = s + faker.number().numberBetween(0, NUM_DISTRIBUTORS - 1) + ", ";
+            String s = "insert into ProductReview (productId, reviewerId, rating, content) values (";
+            s = s + faker.number().numberBetween(1, NUM_PRODUCTS) + ", ";
+            s = s + faker.number().numberBetween(1, NUM_DISTRIBUTORS) + ", ";
             s = s + rating + ", ";
             s = s + makeString(reviews[rating]);
             stmts.add(s + ");\n");
@@ -119,8 +114,7 @@ public class insertStatementGenerator {
     public static List<String> generateTags() {
         List<String> stmts = new ArrayList<>();
         for(int i = 0; i < tags.length; i++) {
-            String s = "insert into Tag value (";
-            s = s + i + ", ";
+            String s = "insert into Tag (value) values (";
             s = s + makeString(tags[i]);
             stmts.add(s + ");\n");
         }
@@ -129,18 +123,18 @@ public class insertStatementGenerator {
 
     public static List<String> generateTagOwnerships() {
         List<String> stmts = new ArrayList<>();
-        for(int i = 0; i < NUM_PRODUCTS; i++) {
+        for(int i = 1; i < NUM_PRODUCTS + 1; i++) {
             List<Integer> tagArr = new ArrayList<>();
             for(int j = 0; j < faker.number().numberBetween(0, 5); j++) {
                 int num;
                 do {
-                    num = faker.number().numberBetween(0, tags.length - 1);
+                    num = faker.number().numberBetween(1, tags.length);
                 } while (tagArr.contains(num));
                 tagArr.add(num);
             }
 
             for(int num : tagArr) {
-                String s = "insert into TagOwnership value (";
+                String s = "insert into TagOwnership (tagId, productId) values (";
                 s = s + num + ", ";
                 s = s + i;
                 stmts.add(s + ");\n");
