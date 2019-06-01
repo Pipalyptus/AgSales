@@ -83,13 +83,20 @@ class Product {
           callback(false);
         }
         console.log('passed');
-        self.createTags(tags, callback);
+        connection.query('SELECT LAST_INSERT_ID()', function(error, results) {
+          if (error) {
+            console.log(error);
+            callback(false);
+          }
+          console.log(results);
+          self.createTags(tags, results, callback);
+        });
       }
     );
     connection.end();
   }
 
-  createTags(tags, callback) {
+  createTags(tags, productId, callback) {
     let connection = mysql.createConnection(databaseCreds);
     console.log('adding tags');
     connection.query(
