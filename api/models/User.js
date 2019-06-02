@@ -68,7 +68,7 @@ class User {
               callback(false);
         } else {
           // Otherwise hash password and insert into database
-          bycrypt.hash(body.password, saltRounds, function(error, hash) {
+          bcrypt.hash(body.password, saltRounds, function(error, hash) {
             if(error) throw error;  
 
             connection.query(
