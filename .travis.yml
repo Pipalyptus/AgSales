@@ -9,6 +9,7 @@ node_js:
 before_install:
   - cd ./db/
   - mysql -e 'source ./db_setup.sql;'
+  - cd ../
 
 script:
   - cd ./client
