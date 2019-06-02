@@ -1,3 +1,5 @@
-CREATE DATABASE agsales;
+CREATE DATABASE IF NOT EXISTS agsales;
 use agsales;
-source CreateTables.sql;
+source DropTables.sql;
+source CreateTables.sql
+source InsertIntoTables.sql;

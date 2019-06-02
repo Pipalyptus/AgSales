@@ -63,7 +63,7 @@ describe('Product model', function() {
     it('Create a new product', function(done) {
       assert.doesNotThrow(function() {
         product.createProduct(
-          0,
+          1,
           'Test',
           10,
           1000,
