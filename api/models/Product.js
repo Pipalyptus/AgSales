@@ -5,7 +5,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
 };
 
 // Model for fetching and creating specific products

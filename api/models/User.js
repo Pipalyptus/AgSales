@@ -6,7 +6,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
 };
 
 // Model for logging in and registering users
