@@ -10,7 +10,17 @@ router.post('/', function(req, res, next) {
   // Debug info
   console.log(req.body);
 
-  user.registerUser(req.body, result => {
+  user.registerUser(
+    req.body.table,
+    req.body.name,
+    req.body.businessType,
+    req.body.licenseNumber,
+    req.body.email,
+    req.body.password,
+    req.body.phoneNumber,
+    req.body.description,
+    req.body.imageURL,
+    result => {
     
     if (result === true) {
       // User Successfully Created

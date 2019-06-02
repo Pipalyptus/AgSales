@@ -38,13 +38,13 @@ class User {
   }
 
   // Retrieve user info from database to display
-  displayUser(table, id, callback) {
+  displayUser(table, UserId, callback) {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
       // TODO : Limit returned data
       'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' + 
       'FROM ' + table +
-      'WHERE id = ' + connection.escape(id),
+      'WHERE id = ' + connection.escape(UserId),
       function(error, results) {
         if(error) throw error;
 
@@ -56,10 +56,21 @@ class User {
   }
 
   // Validate and register user
-  registerUser(body, callback) {
+  registerUser(
+    table, 
+    name, 
+    businessType, 
+    licenseNumber, 
+    email, 
+    password, 
+    phoneNumber, 
+    description, 
+    imageURL, 
+    callback
+  ) {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT email FROM Grower WHERE email = ' + connection.escape(body.email),
+      'SELECT email FROM Grower WHERE email = ' + connection.escape(email),
       function(error, results) {
         if (error) throw error;
         // If there is a user with the entered email,
@@ -68,24 +79,30 @@ class User {
               callback(false);
         } else {
           // Otherwise hash password and insert into database
-          bycrypt.hash(body.password, saltRounds, function(error, hash) {
-            if(error) throw error;  
+          bycrypt.hash(password, saltRounds, function(error, hash) {
+            if(error) {
+              console.log(error);
+              callback(null);
+            }
 
             connection.query(
-              'INSERT INTO ' + body.table + 
+              'INSERT INTO ' + table + 
               ' (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) ' +
               'VALUES (' +
-              connection.escape(body.name) + ', ' +
-              connection.escape(body.businessType) + ', ' +
-              connection.escape(body.licenseNumber) + ', ' +
-              connection.escape(body.email) + ', ' +
+              connection.escape(name) + ', ' +
+              connection.escape(businessType) + ', ' +
+              connection.escape(licenseNumber) + ', ' +
+              connection.escape(email) + ', ' +
               connection.escape(hash) + ', ' +
-              connection.escape(body.phoneNumber) + ', ' +
-              connection.escape(body.description) + ', ' +
-              connection.escape(body.imageURL) +
+              connection.escape(phoneNumber) + ', ' +
+              connection.escape(description) + ', ' +
+              connection.escape(imageURL) +
               ")", 
               function(error, results) {
-                if(error) throw error;
+                if(error) {
+                  console.log(error);
+                  callback(null);
+                }
 
                 if(results.length > 0){
                   callback(true);
@@ -103,6 +120,7 @@ class User {
     );
     connection.end();
   }
+  
 }
 
 module.exports = User;
