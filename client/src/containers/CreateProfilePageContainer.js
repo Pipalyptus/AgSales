@@ -7,12 +7,13 @@ export default class CreateProfilePageContainer extends Component {
         super(props);
     
         this.state = {
-          nameOfCompany: '',
+          bio: '',
+          profile_pic: ''
         };
       }
     
       validateForm = () => {
-        return this.state.nameOfCompany.length > 0;
+        return this.state.bio.length > 0 && this.state.profile_pic.length > 0;
       }
     
       handleChange = event => {
@@ -31,7 +32,8 @@ export default class CreateProfilePageContainer extends Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         validateForm={this.validateForm}
-        nameOfCompany={this.state.nameOfCompany}
+        bio={this.state.bio}
+        profile_pic={this.state.profile_pic}
         changePage={this.props.changePage}
       />
     );

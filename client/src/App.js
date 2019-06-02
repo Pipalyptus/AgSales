@@ -12,6 +12,7 @@ import CreateProfilePageContainer from "./containers/CreateProfilePageContainer"
 import SearchProductsPageContainer from "./containers/SearchProductsPageContainer";
 import ViewProfileContainer from "./containers/ViewProfileContainer";
 import ViewProductContainer from "./containers/SearchProductsPageContainer";
+import CreateProductPageContainer from "./containers/CreateProductPageContainer";
 
 class App extends Component {
   constructor(props) {
@@ -81,6 +82,13 @@ class App extends Component {
         <div className="App">
           <h1> View Product </h1>
           <ViewProductContainer changePage={this.changePage} />
+        </div>
+      );
+    } else if (this.state.currentPage === "CreateProduct") {
+      return (
+        <div className="App">
+          <h1> Create Product </h1>
+          <CreateProductPageContainer changePage={this.changePage} />
         </div>
       );
     }
