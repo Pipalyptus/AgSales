@@ -69,6 +69,7 @@ class User {
     callback
   ) {
     let connection = mysql.createConnection(databaseCreds);
+    let saltRounds = 10;
     connection.query(
       'SELECT email FROM Grower WHERE email = ' + connection.escape(email),
       function(error, results) {
