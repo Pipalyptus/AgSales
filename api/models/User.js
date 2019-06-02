@@ -79,7 +79,7 @@ class User {
               callback(false);
         } else {
           // Otherwise hash password and insert into database
-          bycrypt.hash(password, saltRounds, function(error, hash) {
+          bcrypt.hash(password, saltRounds, function(error, hash) {
             if(error) {
               console.log(error);
               callback(null);
