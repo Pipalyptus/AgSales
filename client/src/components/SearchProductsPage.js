@@ -27,7 +27,7 @@ export default class SearchProductsPage extends Component {
 	    <Form.Label>Search</Form.Label>
             <Form.Control
               autoFocus
-              type="input"
+              type="text"
               value={this.props.searchbar}
               onChange={this.props.handleChange}
             />

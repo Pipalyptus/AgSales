@@ -23,35 +23,19 @@ export default class CreateProfilePage extends Component {
     return (
       <div className="CreateProfile">
         <Form onSubmit={this.props.handleSubmit}>
-          <Form.Group controlId="nameOfCompany" bsSize="large">
-	    <Form.Label>Name of your company</Form.Label>
+          <Form.Group controlId="profile_pic" bsSize="large">
+	    <Form.Label>Profile picture URL: </Form.Label>
             <Form.Control
               autoFocus
-              type="name"
-              value={this.props.nameOfCompany}
+              type="text"
+              value={this.props.profile_pic}
               onChange={this.props.handleChange}
             />
 	    </Form.Group>
-	    <Form.Group controlId="growOrDist">
-	        <Form.Label>Are you a grower or a distributor?</Form.Label>
-	        <Form.Control as="select">
-	          <option>Grower</option>
-	          <option>Distributor</option>
-	        </Form.Control>
-	  </Form.Group>
-	  <Form.Group controlId="productType">
-	        <Form.Label>What type of products are you interested in?</Form.Label>
-	        <Form.Control as="select">
-	          <option>Cannabis</option>
-	          <option>Food</option>
-	          <option>Feed</option>
-	          <option>Livestock</option>
-	          <option>Other</option>
-	        </Form.Control>
-    	  </Form.Group>
-	  <Form.Group controlId="bioTextArea">
+	  <Form.Group controlId="bio">
 	        <Form.Label>Please tell us about yourself.</Form.Label>
-	        <Form.Control as="textarea" rows="4" />
+	        <Form.Control as="textarea" rows="4" 
+          value={this.props.bio} />
           </Form.Group>
           <Button
             block

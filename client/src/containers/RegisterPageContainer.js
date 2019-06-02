@@ -20,7 +20,7 @@ export default class RegisterPageContainer extends Component {
       validateForm = () =>{
         return (this.state.name.length > 0 && this.state.phone.length > 0 && this.state.id_num.length > 0 
         && this.state.email.length > 0 && this.state.password.length > 0 
-        && this.state.password ===this.state.repeat_password);
+        && this.state.password === this.state.repeat_password);
       }
     
       handleChange = event => {

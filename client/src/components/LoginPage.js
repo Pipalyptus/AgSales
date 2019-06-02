@@ -25,7 +25,7 @@ export default class LoginPage extends Component {
       <div className="Login">
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="email" bsSize="large">
-            email
+            email:  
             <Form.Control
               autoFocus
               type="email"
@@ -34,7 +34,7 @@ export default class LoginPage extends Component {
             />
           </Form.Group>
           <Form.Group controlId="password" bsSize="large">
-            password
+            password:  
             <Form.Control
               value={this.props.password}
               onChange={this.props.handleChange}
