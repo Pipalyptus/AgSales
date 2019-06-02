@@ -38,16 +38,6 @@ describe('Register User route', function() {
       .post('/registerUser')
       .set('Content-Type', 'application/json')
       .send({ 
-        table: 'Distributor',  
-        email: 'new@tiny.com',  
-        delete: true })
-      .expect('Content-Type', /json/)
-      .expect(200, { userDeleted: true }, done);
-
-    request(app)
-      .post('/registerUser')
-      .set('Content-Type', 'application/json')
-      .send({ 
         table: 'Distributor', 
         name: 'New guys', 
         businessType: 'Tiny farm', 
@@ -62,31 +52,21 @@ describe('Register User route', function() {
   });
 
   it('Fail to register an exisiting user', function(done) {
-    request(app)
-      .post('/registerUser')
-      .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor',  
-        email: 'new@tiny.com',  
-        delete: true })
-      .expect('Content-Type', /json/)
-      .expect(200, { userDeleted: true }, done);
-
-    request(app)
-      .post('/registerUser')
-      .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor', 
-        name: 'New guys', 
-        businessType: 'Tiny farm', 
-        licenseNumber: '111111111', 
-        email: 'new@tiny.com', 
-        password: 'password', 
-        phoneNumber: '123-456-7890', 
-        description: 'A guy!', 
-        imageURL: 'img_123412361.png' })
-      .expect('Content-Type', /json/)
-      .expect(200, { userCreated: true }, done);
+    // request(app)
+    //   .post('/registerUser')
+    //   .set('Content-Type', 'application/json')
+    //   .send({ 
+    //     table: 'Distributor', 
+    //     name: 'New guys', 
+    //     businessType: 'Tiny farm', 
+    //     licenseNumber: '111111111', 
+    //     email: 'new@tiny.com', 
+    //     password: 'password', 
+    //     phoneNumber: '123-456-7890', 
+    //     description: 'A guy!', 
+    //     imageURL: 'img_123412361.png' })
+    //   .expect('Content-Type', /json/)
+    //   .expect(200, { userCreated: true }, done);
 
     request(app)
       .post('/registerUser')
