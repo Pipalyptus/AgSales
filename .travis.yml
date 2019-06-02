@@ -6,8 +6,10 @@ services:
 node_js:
   - "stable"
 
-script:
+before_install:
+  - mysql -e 'source ./db/db_setup.sql;'
 
+script:
   - cd ./client
   - npm install
   - npm test
