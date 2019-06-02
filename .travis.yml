@@ -1,5 +1,8 @@
 language: node_js
 
+services:
+  - mysql
+
 node_js:
   - "stable"
 
