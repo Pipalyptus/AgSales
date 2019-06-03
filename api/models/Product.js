@@ -78,6 +78,7 @@ class Product {
         connection.escape(imageURL) +
         ')',
       function(error, results) {
+        connection.end();
         if (error) {
           console.log(error);
           callback(false);
@@ -93,7 +94,6 @@ class Product {
         });
       }
     );
-    connection.end();
   }
 
   createTags(tags, productId, callback) {
@@ -114,6 +114,7 @@ class Product {
                 +connection.escape(tag) +
                 ')',
               function(error, results) {
+                connection.end();
                 if (error) {
                   console.log(error);
                   callback(false);
@@ -125,7 +126,6 @@ class Product {
         }
       }
     );
-    connection.end();
   }
 }
 

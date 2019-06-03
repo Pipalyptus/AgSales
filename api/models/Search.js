@@ -36,6 +36,7 @@ class Search {
           ' AND ROUND(AVG(rating), 1) >= ' +
           minRating,
         function(error, results) {
+          connection.end();
           if (error) throw error;
           callback(JSON.parse(JSON.stringify(results)));
         }
@@ -55,12 +56,12 @@ class Search {
           ' HAVING ROUND(AVG(rating), 1) >= ' +
           minRating,
         function(error, results) {
+          connection.end();
           if (error) throw error;
           callback(JSON.parse(JSON.stringify(results)));
         }
       );
     }
-    connection.end();
   }
 }
 

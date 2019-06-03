@@ -1,10 +1,7 @@
-const chai = require('chai');
 const assert = require('assert');
 const express = require('express');
 const loginRoute = require('../routes/login');
-
 const request = require('supertest');
-const should = chai.should();
 
 function createApp() {
   app = express();

@@ -10,7 +10,6 @@ var productsRoute = require('./routes/products');
 var displayUserRoute = require('./routes/displayUser');
 var registerUserRoute = require('./routes/registerUser');
 
-
 // Initalize server
 var app = express();
 

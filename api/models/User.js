@@ -22,6 +22,7 @@ class User {
         // If there is a user with the entered email,
         // check if the password matches the salted + hashed password in the DB
         if (results.length > 0) {
+          connection.end();
           bcrypt.compare(password, results[0].password, function(err, res) {
             if (res == true) {
               callback(true);
@@ -34,7 +35,6 @@ class User {
         }
       }
     );
-    connection.end();
   }
 
   // Retrieve user info from database to display
@@ -42,66 +42,71 @@ class User {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
       // TODO : Limit returned data
-      'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' + 
-      'FROM ' + table +
-      'WHERE id = ' + connection.escape(id),
+      'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' +
+        'FROM ' +
+        table +
+        'WHERE id = ' +
+        connection.escape(id),
       function(error, results) {
-        if(error) throw error;
-
+        connection.end();
+        if (error) throw error;
         callback(results);
-
       }
     );
-    connection.end();
   }
 
   // Validate and register user
   registerUser(body, callback) {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT email FROM Grower WHERE email = ' + connection.escape(body.email),
+      'SELECT email FROM ' +
+        body.table +
+        ' WHERE email = ' +
+        connection.escape(body.email),
       function(error, results) {
         if (error) throw error;
         // If there is a user with the entered email,
         // user already exists, cannot create duplicate users
         if (results.length > 0) {
-              callback(false);
+          callback(false);
         } else {
           // Otherwise hash password and insert into database
-          bcrypt.hash(body.password, saltRounds, function(error, hash) {
-            if(error) throw error;  
-
+          bcrypt.hash(body.password, 10, function(error, hash) {
+            if (error) throw error;
             connection.query(
-              'INSERT INTO ' + body.table + 
-              ' (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) ' +
-              'VALUES (' +
-              connection.escape(body.name) + ', ' +
-              connection.escape(body.businessType) + ', ' +
-              connection.escape(body.licenseNumber) + ', ' +
-              connection.escape(body.email) + ', ' +
-              connection.escape(hash) + ', ' +
-              connection.escape(body.phoneNumber) + ', ' +
-              connection.escape(body.description) + ', ' +
-              connection.escape(body.imageURL) +
-              ")", 
+              'INSERT INTO ' +
+                body.table +
+                ' (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) ' +
+                'VALUES (' +
+                connection.escape(body.name) +
+                ', ' +
+                connection.escape(body.businessType) +
+                ', ' +
+                connection.escape(body.licenseNumber) +
+                ', ' +
+                connection.escape(body.email) +
+                ', ' +
+                connection.escape(hash) +
+                ', ' +
+                connection.escape(body.phoneNumber) +
+                ', ' +
+                connection.escape(body.description) +
+                ', ' +
+                connection.escape(body.imageURL) +
+                ')',
               function(error, results) {
-                if(error) throw error;
-
-                if(results.length > 0){
-                  callback(true);
-                } else {
+                connection.end();
+                if (error) {
+                  throw error;
                   callback(null);
                 }
-
-                
+                callback(true);
               }
-            )
+            );
           });
-    
         }
-      }    
+      }
     );
-    connection.end();
   }
 }
 
