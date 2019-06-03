@@ -5,7 +5,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
 };
 
 // Model for fetching and creating specific products
@@ -24,11 +24,11 @@ class Product {
         productId +
         ' GROUP BY Product.id',
       function(error, results) {
+        connection.end();
         if (error) throw error;
         callback(JSON.parse(JSON.stringify(results)));
       }
     );
-    connection.end();
   }
   // Fetch all the reviews for a specific product
   fetchReviews(productId, callback) {
@@ -40,11 +40,11 @@ class Product {
         'WHERE Product.id = ' +
         productId,
       function(error, results) {
+        connection.end();
         if (error) throw error;
         callback(JSON.parse(JSON.stringify(results)));
       }
     );
-    connection.end();
   }
 
   // Create a new product and any new associated tags
@@ -78,13 +78,14 @@ class Product {
         connection.escape(imageURL) +
         ')',
       function(error, results) {
-        connection.end();
         if (error) {
+          connection.end();
           console.log(error);
           callback(false);
         }
         console.log('passed');
         connection.query('SELECT LAST_INSERT_ID()', function(error, results) {
+          connection.end();
           if (error) {
             console.log(error);
             callback(false);
@@ -103,6 +104,7 @@ class Product {
       'SELECT * FROM Tag WHERE value IN (' + connection.escape(tags) + ')',
       function(error, results) {
         if (error) {
+          connection.end();
           console.log(error);
           callback(false);
         }

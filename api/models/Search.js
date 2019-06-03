@@ -5,7 +5,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
 };
 
 // Model for searching and displaying a list products
@@ -19,9 +19,9 @@ class Search {
       tags = tags.split(', ');
       connection.query(
         'SELECT Product.id, growerId, name, price, quantity, imageURL, ROUND(AVG(rating), 1) AS AvgRating' +
-          ' FROM Product INNER JOIN ProductReview ON Product.id = ProductReview.productID' +
-          ' INNER JOIN TagOwnership ON Product.id = TagOwnership.productId' +
-          ' INNER JOIN Tag ON TagOwnership.tagid = Tag.id' +
+          ' FROM Product LEFT JOIN ProductReview ON Product.id = ProductReview.productID' +
+          ' LEFT JOIN TagOwnership ON Product.id = TagOwnership.productId' +
+          ' LEFT JOIN Tag ON TagOwnership.tagid = Tag.id' +
           ' WHERE (name LIKE ' +
           connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
@@ -45,7 +45,7 @@ class Search {
       // No tags chosen
       connection.query(
         'SELECT Product.id, growerId, name, price, quantity, imageURL, ROUND(AVG(rating), 1) AS AvgRating' +
-          ' FROM Product INNER JOIN ProductReview ON Product.id = ProductReview.productID' +
+          ' FROM Product LEFT JOIN ProductReview ON Product.id = ProductReview.productID' +
           ' WHERE (name LIKE ' +
           connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
@@ -53,7 +53,7 @@ class Search {
           ') AND quantity >= ' +
           minQty +
           ' GROUP BY Product.id' +
-          ' HAVING ROUND(AVG(rating), 1) >= ' +
+          ' HAVING IFNULL(ROUND(AVG(rating), 1), 0) >= ' +
           minRating,
         function(error, results) {
           connection.end();

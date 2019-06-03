@@ -9,6 +9,7 @@ var loginRoute = require('./routes/login');
 var productsRoute = require('./routes/products');
 var displayUserRoute = require('./routes/displayUser');
 var registerUserRoute = require('./routes/registerUser');
+var reviewsRoute = require('./routes/reviews');
 
 // Initalize server
 var app = express();
@@ -25,6 +26,7 @@ app.use('/login', loginRoute);
 app.use('/products', productsRoute);
 app.use('/displayUser', displayUserRoute);
 app.use('/registerUser', registerUserRoute);
+app.use('/reviews', reviewsRoute);
 
 // Catch 404 and forward to error handler
 app.use(function(req, res, next) {

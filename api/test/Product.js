@@ -8,7 +8,7 @@ describe('Product model', function() {
     it('Fetch for a specific existing product', function(done) {
       assert.doesNotThrow(function() {
         product.fetchProduct(
-          0,
+          2,
           function(res) {
             assert.equal(res.length, 1);
             done();
@@ -21,7 +21,7 @@ describe('Product model', function() {
     it('Fetch for a specific non-existing product', function(done) {
       assert.doesNotThrow(function() {
         product.fetchProduct(
-          50,
+          1000,
           function(res) {
             assert.equal(res.length, 0);
             done();
@@ -36,9 +36,9 @@ describe('Product model', function() {
     it('Fetch the reviews for a specific existing product', function(done) {
       assert.doesNotThrow(function() {
         product.fetchReviews(
-          0,
+          2,
           function(res) {
-            assert.equal(res.length, 1);
+            assert.equal(res.length, 2);
             done();
           },
           done
@@ -49,7 +49,7 @@ describe('Product model', function() {
     it('Fetch the reviews for a specific non-existing product', function(done) {
       assert.doesNotThrow(function() {
         product.fetchReviews(
-          50,
+          1000,
           function(res) {
             assert.equal(res.length, 0);
             done();
@@ -59,37 +59,24 @@ describe('Product model', function() {
       });
     });
   });
-  describe('createProduct', function() {
-    it('Create a new product', function(done) {
-      assert.doesNotThrow(function() {
-        product.createProduct(
-          0,
-          'Test',
-          10,
-          1000,
-          'A test product',
-          'fakeurl.com',
-          ['OG', 'TestTag'],
-          function(res) {
-            assert.equal(res, true);
-            done();
-          },
-          done
-        );
-      });
-    });
-
-    // it('Fetch the reviews for a specific non-existing product', function(done) {
-    //   assert.doesNotThrow(function() {
-    //     product.fetchReviews(
-    //       50,
-    //       function(res) {
-    //         assert.equal(res.length, 0);
-    //         done();
-    //       },
-    //       done
-    //     );
-    //   });
-    // });
-  });
+  // describe('createProduct', function() {
+  //   it('Create a new product', function(done) {
+  //     assert.doesNotThrow(function() {
+  //       product.createProduct(
+  //         1,
+  //         'Test',
+  //         10,
+  //         1000,
+  //         'A test product',
+  //         'fakeurl.com',
+  //         ['OG', 'TestTag'],
+  //         function(res) {
+  //           assert.equal(res, true);
+  //           done();
+  //         },
+  //         done
+  //       );
+  //     });
+  //   });
+  // });
 });

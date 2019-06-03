@@ -12,7 +12,7 @@ describe('Search model', function() {
         0,
         '',
         function(res) {
-          assert.equal(res.length, 2);
+          assert.equal(res.length, 100);
           done();
         },
         done
@@ -23,12 +23,12 @@ describe('Search model', function() {
   it('Search for a product by exact title only', function(done) {
     assert.doesNotThrow(function() {
       search.updateQuery(
-        'Weed',
+        'Minny van Gogh',
         0,
         0,
         '',
         function(res) {
-          assert.equal(res.length, 1);
+          assert.equal(res.length, 2);
           done();
         },
         done
@@ -58,11 +58,11 @@ describe('Search model', function() {
     assert.doesNotThrow(function() {
       search.updateQuery(
         '',
-        100,
+        50000,
         0,
         '',
         function(res) {
-          assert.equal(res.length, 2);
+          assert.equal(res.length, 41);
           done();
         },
         done
@@ -76,7 +76,7 @@ describe('Search model', function() {
     assert.doesNotThrow(function() {
       search.updateQuery(
         '',
-        5000,
+        100000,
         0,
         '',
         function(res) {
@@ -96,7 +96,7 @@ describe('Search model', function() {
         3,
         '',
         function(res) {
-          assert.equal(res.length, 2);
+          assert.equal(res.length, 38);
           done();
         },
         done
@@ -125,10 +125,10 @@ describe('Search model', function() {
       search.updateQuery(
         '',
         0,
-        3,
-        'OG',
+        0,
+        'green',
         function(res) {
-          assert.equal(res.length, 1);
+          assert.equal(res.length, 19);
           done();
         },
         done
@@ -141,7 +141,7 @@ describe('Search model', function() {
       search.updateQuery(
         '',
         0,
-        10,
+        0,
         'Fake',
         function(res) {
           assert.equal(res.length, 0);
@@ -157,10 +157,10 @@ describe('Search model', function() {
   ) {
     assert.doesNotThrow(function() {
       search.updateQuery(
-        'Weed',
-        100,
+        'Curt N. Rodd',
+        8000,
         3,
-        'OG',
+        'green',
         function(res) {
           assert.equal(res.length, 1);
           done();

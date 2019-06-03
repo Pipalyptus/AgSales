@@ -1,10 +1,17 @@
 language: node_js
 
+services:
+  - mysql
+
 node_js:
   - "stable"
 
-script:
+before_install:
+  - cd ./db/
+  - mysql -e 'source ./db_setup.sql;'
+  - cd ../
 
+script:
   - cd ./client
   - npm install
   - npm test
