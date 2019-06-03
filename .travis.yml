@@ -7,9 +7,7 @@ node_js:
   - "stable"
 
 before_install:
-  - cd ./db/
-  - mysql -e 'source ./db_setup.sql;'
-  - cd ../
+  - ./before_install.sh
 
 script:
   - cd ./client
