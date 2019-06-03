@@ -7,8 +7,9 @@ describe('User model', function() {
   it('Fail to login a user with an incorrect password', function(done) {
     assert.doesNotThrow(function() {
       user.loginUser(
-        'billy@tiny.com',
-        'wrongpassword',
+        'Distributor',
+        'owen.donnelly@hotmail.com',
+        'password',
         function(res) {
           assert.equal(res, false);
           done();
@@ -21,8 +22,9 @@ describe('User model', function() {
   it('Login a user with a correct password', function(done) {
     assert.doesNotThrow(function() {
       user.loginUser(
-        'billy@tiny.com',
-        'password',
+        'Distributor',
+        'owen.donnelly@hotmail.com',
+        'purple9',
         function(res) {
           assert.equal(res, true);
           done();
@@ -35,6 +37,7 @@ describe('User model', function() {
   it('User does not exist', function(done) {
     assert.doesNotThrow(function() {
       user.loginUser(
+        'Grower',
         'doesnotexist@air.com',
         'password',
         function(res) {
@@ -49,6 +52,7 @@ describe('User model', function() {
   it('Prevent SQL injection attack', function(done) {
     assert.doesNotThrow(function() {
       user.loginUser(
+        'Distributor',
         'doesnotexist@air.com OR email = billy@tiny.com',
         'password',
         function(res) {

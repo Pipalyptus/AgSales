@@ -6,18 +6,19 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
 };
 
 // Model for logging in and registering users
 class User {
   // Login a user
-  loginUser(email, password, callback) {
+  loginUser(table, email, password, callback) {
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT * FROM Grower WHERE email = ' + connection.escape(email),
+      'SELECT * FROM ' + table + ' WHERE email = ' + connection.escape(email),
       function(error, results) {
+        connection.end();
         if (error) throw error;
         // If there is a user with the entered email,
         // check if the password matches the salted + hashed password in the DB
@@ -34,74 +35,90 @@ class User {
         }
       }
     );
-    connection.end();
   }
 
   // Retrieve user info from database to display
-  displayUser(table, id, callback) {
+  displayUser(table, UserId, callback) {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      // TODO : Limit returned data
-      'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' + 
-      'FROM ' + table +
-      'WHERE id = ' + connection.escape(id),
+      'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' +
+        'FROM ' +
+        table +
+        'WHERE id = ' +
+        connection.escape(UserId),
       function(error, results) {
-        if(error) throw error;
-
+        connection.end();
+        if (error) throw error;
         callback(results);
-
       }
     );
-    connection.end();
   }
 
   // Validate and register user
-  registerUser(body, callback) {
+  registerUser(
+    table,
+    name,
+    businessType,
+    licenseNumber,
+    email,
+    password,
+    phoneNumber,
+    description,
+    imageURL,
+    callback
+  ) {
     let connection = mysql.createConnection(databaseCreds);
+    let saltRounds = 10;
     connection.query(
-      'SELECT email FROM Grower WHERE email = ' + connection.escape(body.email),
+      'SELECT email FROM ' +
+        table +
+        ' WHERE email = ' +
+        connection.escape(email),
       function(error, results) {
         if (error) throw error;
         // If there is a user with the entered email,
         // user already exists, cannot create duplicate users
         if (results.length > 0) {
-              callback(false);
+          connection.end();
+          callback(false);
         } else {
           // Otherwise hash password and insert into database
-          bcrypt.hash(body.password, saltRounds, function(error, hash) {
-            if(error) throw error;  
-
+          bcrypt.hash(password, saltRounds, function(error, hash) {
+            if (error) throw error;
             connection.query(
-              'INSERT INTO ' + body.table + 
-              ' (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) ' +
-              'VALUES (' +
-              connection.escape(body.name) + ', ' +
-              connection.escape(body.businessType) + ', ' +
-              connection.escape(body.licenseNumber) + ', ' +
-              connection.escape(body.email) + ', ' +
-              connection.escape(hash) + ', ' +
-              connection.escape(body.phoneNumber) + ', ' +
-              connection.escape(body.description) + ', ' +
-              connection.escape(body.imageURL) +
-              ")", 
+              'INSERT INTO ' +
+                table +
+                ' (name, businessType, licenseNumber, email, password, phoneNumber, description, imageURL) ' +
+                'VALUES (' +
+                connection.escape(name) +
+                ', ' +
+                connection.escape(businessType) +
+                ', ' +
+                connection.escape(licenseNumber) +
+                ', ' +
+                connection.escape(email) +
+                ', ' +
+                connection.escape(hash) +
+                ', ' +
+                connection.escape(phoneNumber) +
+                ', ' +
+                connection.escape(description) +
+                ', ' +
+                connection.escape(imageURL) +
+                ')',
               function(error, results) {
-                if(error) throw error;
-
-                if(results.length > 0){
-                  callback(true);
-                } else {
+                connection.end();
+                if (error) {
+                  throw error;
                   callback(null);
                 }
-
-                
+                callback(true);
               }
-            )
+            );
           });
-    
         }
-      }    
+      }
     );
-    connection.end();
   }
 }
 

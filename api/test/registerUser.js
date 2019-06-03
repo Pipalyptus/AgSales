@@ -1,10 +1,8 @@
-const chai = require('chai');
 const assert = require('assert');
 const express = require('express');
 const registerRoute = require('../routes/registerUser');
 
 const request = require('supertest');
-const should = chai.should();
 
 function createApp() {
   app = express();
@@ -15,7 +13,7 @@ function createApp() {
   return app;
 }
 
-describe('Register User route', function() {
+describe('Register User Controller', function() {
   let server = null;
   // Create a new server for each test
   before(function(done) {
@@ -37,26 +35,17 @@ describe('Register User route', function() {
     request(app)
       .post('/registerUser')
       .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor',  
-        email: 'new@tiny.com',  
-        delete: true })
-      .expect('Content-Type', /json/)
-      .expect(200, { userDeleted: true }, done);
-
-    request(app)
-      .post('/registerUser')
-      .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor', 
-        name: 'New guys', 
-        businessType: 'Tiny farm', 
-        licenseNumber: '111111111', 
-        email: 'new@tiny.com', 
-        password: 'password', 
-        phoneNumber: '123-456-7890', 
-        description: 'A guy!', 
-        imageURL: 'img_123412361.png' })
+      .send({
+        table: 'Distributor',
+        name: 'New guys',
+        businessType: 'Tiny farm',
+        licenseNumber: '111111111',
+        email: 'new@tiny.com',
+        password: 'password',
+        phoneNumber: '123-456-7890',
+        description: 'A guy!',
+        imageURL: 'img_123412361.png'
+      })
       .expect('Content-Type', /json/)
       .expect(200, { userCreated: true }, done);
   });
@@ -65,44 +54,18 @@ describe('Register User route', function() {
     request(app)
       .post('/registerUser')
       .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor',  
-        email: 'new@tiny.com',  
-        delete: true })
-      .expect('Content-Type', /json/)
-      .expect(200, { userDeleted: true }, done);
-
-    request(app)
-      .post('/registerUser')
-      .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor', 
-        name: 'New guys', 
-        businessType: 'Tiny farm', 
-        licenseNumber: '111111111', 
-        email: 'new@tiny.com', 
-        password: 'password', 
-        phoneNumber: '123-456-7890', 
-        description: 'A guy!', 
-        imageURL: 'img_123412361.png' })
-      .expect('Content-Type', /json/)
-      .expect(200, { userCreated: true }, done);
-
-    request(app)
-      .post('/registerUser')
-      .set('Content-Type', 'application/json')
-      .send({ 
-        table: 'Distributor', 
-        name: 'New guys', 
-        businessType: 'Tiny farm', 
-        licenseNumber: '111111111', 
-        email: 'new@tiny.com', 
-        password: 'password', 
-        phoneNumber: '123-456-7890', 
-        description: 'A guy!', 
-        imageURL: 'img_123412361.png' })
+      .send({
+        table: 'Distributor',
+        name: 'New guys',
+        businessType: 'Tiny farm',
+        licenseNumber: '111111111',
+        email: 'new@tiny.com',
+        password: 'password',
+        phoneNumber: '123-456-7890',
+        description: 'A guy!',
+        imageURL: 'img_123412361.png'
+      })
       .expect('Content-Type', /json/)
       .expect(403, { userCreated: 'User already exists' }, done);
   });
-
 });

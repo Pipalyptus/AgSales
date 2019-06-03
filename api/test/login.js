@@ -1,10 +1,7 @@
-const chai = require('chai');
 const assert = require('assert');
 const express = require('express');
 const loginRoute = require('../routes/login');
-
 const request = require('supertest');
-const should = chai.should();
 
 function createApp() {
   app = express();
@@ -33,20 +30,54 @@ describe('Login Controller', function() {
     server.close(done);
   });
 
-  it('Login a valid user', function(done) {
+  it('Login a valid Distributor', function(done) {
     request(app)
       .post('/login')
       .set('Content-Type', 'application/json')
-      .send({ email: 'billy@tiny.com', password: 'password' })
+      .send({
+        table: 'Distributor',
+        email: 'owen.donnelly@hotmail.com',
+        password: 'purple9'
+      })
       .expect('Content-Type', /json/)
       .expect(200, { loggedIn: true }, done);
   });
 
-  it('Fail to login an invalid user', function(done) {
+  it('Login a valid Grower', function(done) {
     request(app)
       .post('/login')
       .set('Content-Type', 'application/json')
-      .send({ email: 'billy@tiny.com', password: 'wrongpassword' })
+      .send({
+        table: 'Grower',
+        email: 'monique.littel@yahoo.com',
+        password: 'grey5'
+      })
+      .expect('Content-Type', /json/)
+      .expect(200, { loggedIn: true }, done);
+  });
+
+  it('Fail to login an invalid Distributor', function(done) {
+    request(app)
+      .post('/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        table: 'Distributor',
+        email: 'owen.donnelly@hotmail.com',
+        password: 'password'
+      })
+      .expect('Content-Type', /json/)
+      .expect(403, { logginIn: 'Invalid username or password' }, done);
+  });
+
+  it('Fail to login an invalid Grower', function(done) {
+    request(app)
+      .post('/login')
+      .set('Content-Type', 'application/json')
+      .send({
+        table: 'Grower',
+        email: 'monique.littel@yahoo.com',
+        password: 'password'
+      })
       .expect('Content-Type', /json/)
       .expect(403, { logginIn: 'Invalid username or password' }, done);
   });
@@ -55,7 +86,11 @@ describe('Login Controller', function() {
     request(app)
       .post('/login')
       .set('Content-Type', 'application/json')
-      .send({ email: 'doesnotexist@air.com', password: 'password' })
+      .send({
+        table: 'Grower',
+        email: 'doesnotexist@air.com',
+        password: 'password'
+      })
       .expect('Content-Type', /json/)
       .expect(400, { loggedIn: 'User does not exist' }, done);
   });
