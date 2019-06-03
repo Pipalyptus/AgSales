@@ -1,5 +1,5 @@
-const bcrypt = require('../api/node_modules/bcrypt');
-const mysql = require('../api/node_modules/mysql');
+const bcrypt = require('bcrypt');
+const mysql = require('mysql');
 
 // Credentials for database connection
 const databaseCreds = {
@@ -12,10 +12,7 @@ const databaseCreds = {
 
 
   // Single use function to encrpty db passwords
-  var encryptPassword = function (
-    table, 
-    callback
-  ) {
+  var encryptPassword = function (table) {
     let connection = mysql.createConnection(databaseCreds);
     let count = 0;
     connection.query(
@@ -23,7 +20,6 @@ const databaseCreds = {
       function(error, results) {
         if (error) throw error;
         // console.log(results);
-        // console.log(results[0].email);
        
         results.forEach(user => {
           
@@ -32,30 +28,27 @@ const databaseCreds = {
             
           //console.log('UPDATE ' + table + ' SET password = ' + hash + ' WHERE email = ' + user.email);
           connection.query(
-            'UPDATE ' + table + 
+            'UPDATE ' + 
+            table + 
             ' SET password =' +
             connection.escape(hash) +
             ' ' +
             'WHERE email = ' +
             connection.escape(user.email),
 
-          function(error, results) {
-            if (error) {
-              console.log(error);
-              callback(null);
+            function(error, results) {
+              if (error) {
+                console.log(error);
+                callback(null);
+              }
             }
           );
         });
         connection.end();
       }    
     );
-    
   }
 
 
-encryptPassword('Grower', results => {
-  console.log(results + ' user(s) fixed.');
-})
-encryptPassword('Distributor', results => {
-  console.log(results + ' user(s) fixed.');
-})
+encryptPassword('Grower');
+encryptPassword('Distributor');
