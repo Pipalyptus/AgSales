@@ -79,11 +79,25 @@ export default class SearchProductsPage extends Component {
             />
           </Form.Group>
 
+<<<<<<< HEAD
           <Button block bsSize="large" type="submit">
             Search
           </Button>
         </Form>
       </div>
+=======
+	    <Button
+            block
+            bsSize="large"
+            disabled={!this.validateForm()}
+            type="submit"
+	    onClick={() => this.props.changePage("Login")}
+          >
+            Log Out
+          </Button> 
+	</Form>
+	</div>
+>>>>>>> created containers for other pages
     );
   }
 }
