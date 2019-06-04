@@ -7,6 +7,7 @@ export default class CreateProfilePageContainer extends Component {
         super(props);
     
         this.state = {
+<<<<<<< HEAD
           bio: '',
           profile_pic: ''
         };
@@ -14,6 +15,14 @@ export default class CreateProfilePageContainer extends Component {
     
       validateForm = () => {
         return this.state.bio.length > 0 && this.state.profile_pic.length > 0;
+=======
+          nameOfCompany: '',
+        };
+      }
+    
+      validateForm() {
+        return this.state.nameOfCompany.length > 0;
+>>>>>>> 4da99dba59bc8242567bbcbc7a76787e042c69fa
       }
     
       handleChange = event => {
@@ -32,8 +41,12 @@ export default class CreateProfilePageContainer extends Component {
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         validateForm={this.validateForm}
+<<<<<<< HEAD
         bio={this.state.bio}
         profile_pic={this.state.profile_pic}
+=======
+        nameOfCompany={this.state.nameOfCompany}
+>>>>>>> 4da99dba59bc8242567bbcbc7a76787e042c69fa
         changePage={this.props.changePage}
       />
     );
