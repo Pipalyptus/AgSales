@@ -364,7 +364,6 @@ insert into ProductReview (productId, reviewerId, rating, content) values (42, 7
 insert into ProductReview (productId, reviewerId, rating, content) values (6, 63, 4, "decent");
 insert into ProductReview (productId, reviewerId, rating, content) values (46, 23, 4, "decent");
 insert into ProductReview (productId, reviewerId, rating, content) values (79, 87, 3, "okay");
-insert into ProductReview (productId, reviewerId, rating, content) values (49, 84, 5, "good");
 insert into ProductReview (productId, reviewerId, rating, content) values (48, 6, 5, "good");
 insert into ProductReview (productId, reviewerId, rating, content) values (9, 20, 1, "awful");
 insert into ProductReview (productId, reviewerId, rating, content) values (61, 7, 4, "decent");
@@ -377,7 +376,6 @@ insert into ProductReview (productId, reviewerId, rating, content) values (2, 65
 insert into ProductReview (productId, reviewerId, rating, content) values (70, 50, 4, "decent");
 insert into ProductReview (productId, reviewerId, rating, content) values (47, 21, 4, "decent");
 insert into ProductReview (productId, reviewerId, rating, content) values (21, 57, 5, "good");
-insert into ProductReview (productId, reviewerId, rating, content) values (32, 18, 3, "okay");
 insert into ProductReview (productId, reviewerId, rating, content) values (85, 54, 3, "okay");
 insert into ProductReview (productId, reviewerId, rating, content) values (79, 9, 2, "bad");
 insert into ProductReview (productId, reviewerId, rating, content) values (71, 19, 4, "decent");
