@@ -3,11 +3,27 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default class LoginPage extends Component {
+  /*submitForm = event => {
+    console.log(JSON.stringify(this.state));
+    fetch("http://localhost:5000/login", {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json"
+      },
+      body: JSON.stringify(this.state)
+    })
+      .then(result => result.json())
+      .then(info => {
+        console.log(info);
+      });
+  };*/
+
   render() {
     return (
       <div className="Login">
         <Form onSubmit={this.props.handleSubmit}>
-          <Form.Group controlId="email" bssize="large">
+          <Form.Group controlId="email" bsSize="large">
+            email:  
             <Form.Control
               autoFocus
               type="email"
@@ -15,7 +31,8 @@ export default class LoginPage extends Component {
               onChange={this.props.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId="password" bssize="large">
+          <Form.Group controlId="password" bsSize="large">
+            password:  
             <Form.Control
               value={this.props.password}
               onChange={this.props.handleChange}
@@ -24,7 +41,7 @@ export default class LoginPage extends Component {
           </Form.Group>
           <Button
             block
-            bssize="large"
+            bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
           >

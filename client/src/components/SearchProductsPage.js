@@ -3,43 +3,36 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default class SearchProductsPage extends Component {
-  constructor(props) {
-    super(props);
 
-    this.state = {
-      query: '',
-      minQty: 0,
-      minRating: 0,
-      tags: []
-    };
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-    console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/products', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(result => result.json())
-      .then(info => {
-        console.log(info);
-      });
-  };
+  // handleSubmit = event => {
+  //   event.preventDefault();
+  //   console.log(JSON.stringify(this.state));
+  //   fetch('http://localhost:5000/products', {
+  //     method: 'POST',
+  //     headers: {
+  //       'Content-type': 'application/json'
+  //     },
+  //     body: JSON.stringify(this.state)
+  //   })
+  //     .then(result => result.json())
+  //     .then(info => {
+  //       console.log(info);
+  //     });
+  // };
 
   render() {
     return (
       <div className="SearchProducts">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.handleSubmit}>
+	    <Form.Group controlId="searchbar" bsSize="large">
+	    <Form.Label>Search</Form.Label>
+            <Form.Control
+              autoFocus
+              type="text"
+              value={this.props.searchbar}
+              onChange={this.props.handleChange}
+            />
+      </Form.Group>
           <Form.Group controlId="query" bsSize="large">
             <Form.Label>Search</Form.Label>
             <Form.Control
@@ -78,12 +71,29 @@ export default class SearchProductsPage extends Component {
               onChange={this.handleChange}
             />
           </Form.Group>
-
           <Button block bsSize="large" type="submit">
             Search
           </Button>
-        </Form>
-      </div>
+
+	    <Button
+            block
+            bsSize="large"
+            type="submit"
+	    onClick={() => this.props.changePage("Login")}
+          >
+            Log Out
+          </Button> 
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+	    onClick={() => this.props.changePage("ViewProfile")}
+          >
+            View My Profile
+          </Button>      
+
+	  </Form>
+	</div>
     );
   }
 }
