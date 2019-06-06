@@ -2,10 +2,10 @@ create table Grower (
 	id integer primary key auto_increment,
     name varchar(50),
     businessType varchar(40),
-    licenseNumber integer unique,
-    email varchar(40) unique,
+    licenseNumber integer,
+    email varchar(40),
     password varchar(100),
-    phoneNumber varchar(30) unique,
+    phoneNumber varchar(30),
     description text,
     imageURL varchar(300)
 );
@@ -14,10 +14,10 @@ create table Distributor (
 	id integer primary key auto_increment,
     name varchar(50),
     businessType varchar(40),
-    licenseNumber integer unique,
-    email varchar(40) unique,
+    licenseNumber integer,
+    email varchar(40),
     password varchar(100),
-    phoneNumber varchar(30) unique,
+    phoneNumber varchar(30),
     description text,
     imageURL varchar(300)
 );
@@ -33,11 +33,9 @@ create table Product (
     foreign key (growerId) references Grower (id)
 );
 
-alter table Product add unique unique_index (growerId, name);
-
 create table Tag (
 	id integer primary key auto_increment,
-    value varChar(30) unique
+    value varChar(30)
 );
 
 create table ProductReview (
@@ -45,12 +43,10 @@ create table ProductReview (
     productId integer,
     reviewerId integer,
     rating integer,
-    content text,
+    description text,
     foreign key (productId) references Product (id),
     foreign key (reviewerId) references Distributor (id)
 );
-
-alter table ProductReview add unique unique_index (reviewerId, productId);
 
 create table TagOwnership (
 	tagId integer,
