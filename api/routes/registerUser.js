@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
     req.body.description,
     req.body.imageURL,
     result => {
+      console.log(result);
       if (result === true) {
         // User Successfully Created
         res.status(200).json({ userCreated: true });

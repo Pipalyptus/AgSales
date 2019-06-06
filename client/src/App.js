@@ -22,7 +22,7 @@ class App extends Component {
       isAuthenticated: false,
       currentPage: 'Login'
     };
-    this.login = new User();
+    this.user = new User();
   }
   changePage = page => {
     this.setState({
@@ -36,13 +36,23 @@ class App extends Component {
     });
   };
 
+  updateRegistration = registered => {
+   /* if(registered === true)
+    {
+      this.setState({
+        isAuthenticated: authenticated
+      });
+    }*/
+    console.log(registered);
+  }
+
   render() {
     console.log(this.state);
-    if (!this.state.isAuthenticated) {
+    if (!this.state.isAuthenticated && this.state.currentPage === 'Login') {
       return (
         <div className="App">
           <LoginPageContainer
-            login={this.login}
+            login={this.user}
             updateAuthenticated={this.updateAuthenticated}
             isAuthenticated={this.state.isAuthenticated}
             changePage={this.changePage}
@@ -53,21 +63,7 @@ class App extends Component {
       return (
         <div className="App">
           <h1> Register </h1>
-          <RegisterPageContainer changePage={this.changePage} />
-        </div>
-      );
-    } else if (this.state.currentPage === 'CreateProfile') {
-      return (
-        <div className="App">
-          <h1> Create Your Profile </h1>
-          <CreateProfilePageContainer changePage={this.changePage} />
-        </div>
-      );
-    } else if (this.state.isAuthenticated) {
-      return (
-        <div className="App">
-          <h1> Product Listings </h1>
-          <SearchProductsPageContainer changePage={this.changePage} />
+          <RegisterPageContainer register={this.user.registerUser} changePage={this.changePage} />
         </div>
       );
     } else if(this.state.currentPage === "ViewProfile") {
@@ -89,6 +85,14 @@ class App extends Component {
         <div className="App">
           <h1> Create Product </h1>
           <CreateProductPageContainer changePage={this.changePage} />
+        </div>
+      );
+    }
+    else if (this.state.isAuthenticated) {
+      return (
+        <div className="App">
+          <h1> Product Listings </h1>
+          <SearchProductsPageContainer changePage={this.changePage} />
         </div>
       );
     }
