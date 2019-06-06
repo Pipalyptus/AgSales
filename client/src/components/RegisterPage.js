@@ -26,20 +26,6 @@ export default class RegisterPage extends Component {
     event.preventDefault();
   };
 
-  submitForm = event => {
-    console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/register', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(result => result.json())
-      .then(info => {
-        console.log(info);
-      });
-  };*/
 
   render() {
     return (
