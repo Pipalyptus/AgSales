@@ -8,7 +8,7 @@ const user = new User();
 // Controller for registering user
 router.post('/', function(req, res, next) {
   // Debug info
-  // console.log(req.body);
+  console.log(req.body);
 
   user.registerUser(
     req.body.table,

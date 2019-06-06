@@ -20,7 +20,8 @@ class App extends Component {
     this.state = {
       apiResponse: '',
       isAuthenticated: false,
-      currentPage: 'Login'
+      currentPage: 'Login',
+      products: []
     };
     this.user = new User();
   }
@@ -33,6 +34,12 @@ class App extends Component {
   updateAuthenticated = authenticated => {
     this.setState({
       isAuthenticated: authenticated
+    });
+  };
+  
+  updateProducts = newProducts => {
+    this.setState({
+      products: newProducts
     });
   };
 
@@ -64,6 +71,20 @@ class App extends Component {
         <div className="App">
           <h1> Register </h1>
           <RegisterPageContainer register={this.user.registerUser} changePage={this.changePage} />
+        </div>
+      );
+    } else if (this.state.currentPage === 'CreateProfile') {
+      return (
+        <div className="App">
+          <h1> Create Your Profile </h1>
+          <CreateProfilePageContainer changePage={this.changePage} />
+        </div>
+      );
+    } else if (this.state.isAuthenticated) {
+      return (
+        <div className="App">
+          <h1> Product Listings </h1>
+          <SearchProductsPageContainer changePage={this.changePage} products={this.state.products} updateProducts={this.updateProducts} />
         </div>
       );
     } else if(this.state.currentPage === "ViewProfile") {
