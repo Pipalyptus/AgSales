@@ -18,9 +18,9 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiResponse: "",
+      apiResponse: '',
       isAuthenticated: false,
-      currentPage: "Login"
+      currentPage: 'Login'
     };
     this.login = new User();
   }
@@ -38,32 +38,32 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    if (this.state.currentPage === "Login") {
+    if (!this.state.isAuthenticated) {
       return (
         <div className="App">
-          <h1> Please log in </h1>
           <LoginPageContainer
             login={this.login}
-			updateAuthenticated={this.updateAuthenticated}
-			changePage={this.changePage}
+            updateAuthenticated={this.updateAuthenticated}
+            isAuthenticated={this.state.isAuthenticated}
+            changePage={this.changePage}
           />
         </div>
       );
-    } else if (this.state.currentPage === "Register") {
+    } else if (this.state.currentPage === 'Register') {
       return (
         <div className="App">
           <h1> Register </h1>
           <RegisterPageContainer changePage={this.changePage} />
         </div>
       );
-    } else if (this.state.currentPage === "CreateProfile") {
+    } else if (this.state.currentPage === 'CreateProfile') {
       return (
         <div className="App">
           <h1> Create Your Profile </h1>
           <CreateProfilePageContainer changePage={this.changePage} />
         </div>
       );
-    } else if (this.state.currentPage === "Search") {
+    } else if (this.state.isAuthenticated) {
       return (
         <div className="App">
           <h1> Product Listings </h1>

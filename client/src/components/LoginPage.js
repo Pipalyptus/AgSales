@@ -1,8 +1,6 @@
-import React, { Component } from "react";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
-import Bootstrap from "react-bootstrap";
-import RegisterPage from "./RegisterPage.js";
+import React, { Component } from 'react';
+import Form from 'react-bootstrap/Form';
+import Button from 'react-bootstrap/Button';
 
 export default class LoginPage extends Component {
   /*submitForm = event => {
@@ -55,7 +53,7 @@ export default class LoginPage extends Component {
           block
           bsSize="large"
           type="submit"
-          onClick={() => this.props.changePage("Register")}
+          onClick={() => this.props.changePage('Register')}
         >
           Register
         </Button>
