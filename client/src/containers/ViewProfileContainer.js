@@ -1,29 +1,21 @@
 import React, { Component } from 'react';
-import LoginPage from '../components/ViewProfile.js';
+import ViewProfile from '../components/ViewProfile.js';
 
-export default class ViewProfilePageContainer extends Component {
+export default class ViewProfileContainer extends Component {
     constructor(props) {
-        super(props);
-    
-      }
-    
-      handleChange = event => {
-        this.setState({
-          [event.target.id]: event.target.value
-        });
-      };
-    
-      handleSubmit = event => {
+      super(props);
+    }
+  
+    handleSubmit = event => {
         event.preventDefault();
       };
 
-  render() {
-    return (
-      <CreateProfilePage
-        handleSubmit={this.handleSubmit}
-        handleChange={this.handleChange}
-        changePage={this.props.changePage}
-      />
-    );
+    render() {
+      return (
+        <ViewProfile
+          handleSubmit={this.handleSubmit}
+          changePage={this.props.changePage}
+        />
+      );
+    }
   }
-}

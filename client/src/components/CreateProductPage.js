@@ -3,7 +3,7 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Bootstrap from 'react-bootstrap';
 
-export default class RegisterPage extends Component {
+export default class CreateProductPage extends Component {
   /*submitForm = event => {
     console.log(JSON.stringify(this.state));
     fetch('http://localhost:5000/register', {
@@ -21,10 +21,10 @@ export default class RegisterPage extends Component {
 
    render() {
     return (
-      <div className="Register">
+      <div className="CreateProduct">
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="name" bsSize="large">
-          Company Name:
+          Product Name:
             <Form.Control
               autoFocus
               type="name"
@@ -32,52 +32,41 @@ export default class RegisterPage extends Component {
               onChange={this.props.handleChange}
             /> 
           </Form.Group>
-          <Form.Group controlId="phone" bsSize="large">
-          Phone Number:
+          <Form.Group controlId="price" bsSize="large">
+          Price (USD):
             <Form.Control
-              value={this.props.phone}
+              value={this.props.price}
               onChange={this.props.handleChange}
               type="number"
             /> 
           </Form.Group>
-          <Form.Group controlId="growOrDist">
-	        <Form.Label>Are you a grower or a distributor?</Form.Label>
-	        <Form.Control as="select">
-	          <option>Grower</option>
-	          <option>Distributor</option>
-            value={this.props.growOrDist}
-	        </Form.Control>
-	        </Form.Group>
-          <Form.Group controlId="id_num" bsSize="large">
-          License Number: 
+          <Form.Group controlId="quantity" bsSize="large">
+          Product Quantity (lbs.): 
             <Form.Control
-              value={this.props.id_num}
+              value={this.props.quantity}
               onChange={this.props.handleChange}
               type="number"
             /> 
           </Form.Group>
-          <Form.Group controlId="email" bsSize="large">
-          email: 
+          <Form.Group controlId="description">
+	        <Form.Label>Product description</Form.Label>
+	        <Form.Control as="textarea" rows="4" 
+          value={this.props.description} />
+          </Form.Group>
+          <Form.Group controlId="image" bsSize="large">
+          Image URL:
             <Form.Control
-              value={this.props.email}
+              value={this.props.image}
               onChange={this.props.handleChange}
-              type="email"
+              type="text"
             /> 
           </Form.Group>
-          <Form.Group controlId="password" bsSize="large">
-          Password: 
+          <Form.Group controlId="tags" bsSize="large">
+          Tags: 
             <Form.Control
-              value={this.props.password}
+              value={this.props.tags}
               onChange={this.props.handleChange}
-              type="password"
-            /> 
-          </Form.Group>
-          <Form.Group controlId="repeat_password" bsSize="large">
-          Please re-enter your password: 
-            <Form.Control
-              value={this.props.repeat_password}
-              onChange={this.props.handleChange}
-              type="password"
+              type="text"
             /> 
           </Form.Group>
           <Button
@@ -85,9 +74,17 @@ export default class RegisterPage extends Component {
             bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
-	    onClick={() => this.props.changePage("CreateProfile")}
+	    onClick={() => this.props.changePage("ViewProduct")}
           >
-            Register
+            Create Product
+          </Button>
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+	    onClick={() => this.props.changePage("Search")}
+          >
+            Cancel
           </Button>
         </Form>
       </div>

@@ -4,29 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Bootstrap from 'react-bootstrap';
 
 export default class SearchProductsPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchbar: ''
-    };
-  }
-
-  validateForm() {
-    return this.state.searchbar.length > 0;
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
-  submitForm = event => {
+  /*submitForm = event => {
     console.log(JSON.stringify(this.state));
     fetch('http://localhost:5000/searchproducts', {
       method: 'POST',
@@ -39,31 +17,39 @@ export default class SearchProductsPage extends Component {
       .then(info => {
         console.log(info);
       });
-  };
+  };*/
 
    render() {
     return (
       <div className="SearchProducts">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.handleSubmit}>
 	    <Form.Group controlId="searchbar" bsSize="large">
 	    <Form.Label>Search</Form.Label>
             <Form.Control
               autoFocus
-              type="input"
-              value={this.state.searchbar}
-              onChange={this.handleChange}
+              type="text"
+              value={this.props.searchbar}
+              onChange={this.props.handleChange}
             />
 	    </Form.Group>
 
 	    <Button
             block
             bsSize="large"
-            disabled={!this.validateForm()}
             type="submit"
 	    onClick={() => this.props.changePage("Login")}
           >
             Log Out
           </Button> 
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+	    onClick={() => this.props.changePage("ViewProfile")}
+          >
+            View My Profile
+          </Button>      
+
 	</Form>
 	</div>
     );

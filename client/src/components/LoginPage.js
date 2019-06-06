@@ -5,30 +5,7 @@ import Bootstrap from "react-bootstrap";
 import RegisterPage from "./RegisterPage.js";
 
 export default class LoginPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      email: "",
-      password: ""
-    };
-  }
-
-  validateForm() {
-    return this.state.email.length > 0 && this.state.password.length > 0;
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
-  submitForm = event => {
+  /*submitForm = event => {
     console.log(JSON.stringify(this.state));
     fetch("http://localhost:5000/login", {
       method: "POST",
@@ -41,23 +18,23 @@ export default class LoginPage extends Component {
       .then(info => {
         console.log(info);
       });
-  };
+  };*/
 
   render() {
     return (
       <div className="Login">
-        <Form onSubmit={this.handleSubmit}>
+        <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="email" bsSize="large">
-            email
+            email:  
             <Form.Control
               autoFocus
               type="email"
-              value={this.state.email}
-              onChange={this.handleChange}
+              value={this.props.email}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="password" bsSize="large">
-            password
+            password:  
             <Form.Control
               value={this.props.password}
               onChange={this.props.handleChange}
@@ -67,7 +44,7 @@ export default class LoginPage extends Component {
           <Button
             block
             bsSize="large"
-            disabled={!this.validateForm()}
+            disabled={!this.props.validateForm()}
             type="submit"
           >
             Login
@@ -77,7 +54,6 @@ export default class LoginPage extends Component {
         <Button
           block
           bsSize="large"
-          //disabled={!this.validateForm()}
           type="submit"
           onClick={() => this.props.changePage("Register")}
         >
