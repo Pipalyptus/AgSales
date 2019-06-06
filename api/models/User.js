@@ -38,14 +38,14 @@ class User {
   }
 
   // Retrieve user info from database to display
-  displayUser(table, UserId, callback) {
+  displayUser(table, userId, callback) {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
       'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' +
         'FROM ' +
         table +
         'WHERE id = ' +
-        connection.escape(UserId),
+        connection.escape(userId),
       function(error, results) {
         connection.end();
         if (error) throw error;
