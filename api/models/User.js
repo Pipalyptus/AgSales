@@ -6,7 +6,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
   //password: '' /* Use this for Travis */
 };
 

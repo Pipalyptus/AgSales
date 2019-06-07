@@ -66,6 +66,7 @@ export default class SearchProductsPage extends Component {
             View My Profile
           </Button>
         </Form>
+        {this.props.renderProducts()}
       </div>
     );
   }

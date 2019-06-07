@@ -23,6 +23,10 @@
   color: #61dafb;
 }
 
+.ProductItem {
+  text-align: left;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
