@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import SearchProductsPage from '../components/SearchProductsPage.js';
+import Product from '../components/Product.js';
 // import Bootstrap from 'react-bootstrap';
 
 export default class SearchProductsPageContainer extends Component {
@@ -10,7 +11,8 @@ export default class SearchProductsPageContainer extends Component {
           query: '',
 	        minQty: 0,
           minRating: 0,
-          tags: ''
+          tags: '',
+          productItems: []
         };
       }
     
@@ -35,8 +37,20 @@ export default class SearchProductsPageContainer extends Component {
       handleProduct = event => {
          event.preventDefault();
          console.log(event);
-  
-
+      }
+    
+      renderProducts = () => {
+        if(this.props.products != {}) {
+        this.props.products.map(product => (
+         <Product
+            product={product.Product}
+            grower={product.Grower}
+            price={product.price}
+            quantity={product.quantity}
+            image={product.imageURL}
+            avgRating={product.AvgRating}
+          ></Product>
+        ))}
       }
 
   render() {
