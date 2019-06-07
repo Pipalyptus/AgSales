@@ -96,7 +96,7 @@ describe('Search model', function() {
         3,
         '',
         function(res) {
-          assert.equal(res.length, 38);
+          assert.equal(res.length, 37);
           done();
         },
         done
@@ -128,7 +128,7 @@ describe('Search model', function() {
         0,
         'green',
         function(res) {
-          assert.equal(res.length, 19);
+          assert.equal(res.length, 30);
           done();
         },
         done
@@ -157,10 +157,10 @@ describe('Search model', function() {
   ) {
     assert.doesNotThrow(function() {
       search.updateQuery(
-        'Curt N. Rodd',
+        'Minny van Gogh',
         8000,
         3,
-        'green',
+        'cheap',
         function(res) {
           assert.equal(res.length, 1);
           done();

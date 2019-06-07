@@ -36,14 +36,14 @@ describe('Register User Controller', function() {
       .post('/registerUser')
       .set('Content-Type', 'application/json')
       .send({
-        table: 'Distributor',
+        userType: 'Distributor',
         name: 'New guys',
         businessType: 'Tiny farm',
         licenseNumber: '111111111',
         email: 'new@tiny.com',
         password: 'password',
         phoneNumber: '123-456-7890',
-        description: 'A guy!',
+        bio: 'A guy!',
         imageURL: 'img_123412361.png'
       })
       .expect('Content-Type', /json/)
@@ -55,14 +55,14 @@ describe('Register User Controller', function() {
       .post('/registerUser')
       .set('Content-Type', 'application/json')
       .send({
-        table: 'Distributor',
+        userType: 'Distributor',
         name: 'New guys',
         businessType: 'Tiny farm',
         licenseNumber: '111111111',
         email: 'new@tiny.com',
         password: 'password',
         phoneNumber: '123-456-7890',
-        description: 'A guy!',
+        bio: 'A guy!',
         imageURL: 'img_123412361.png'
       })
       .expect('Content-Type', /json/)

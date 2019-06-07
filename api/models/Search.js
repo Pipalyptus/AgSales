@@ -19,12 +19,12 @@ class Search {
     if (tags !== '') {
       tags = tags.split(', ');
       connection.query(
-        'SELECT Product.id AS productId, growerId, Grower.name AS growerName, Product.name AS productName, price, quantity, imageURL, IFNULL(ROUND(AVG(rating), 1), 0) AS AvgRating' +
+        'SELECT Product.id AS productId, growerId, Grower.name AS growerName, Product.name AS productName, price, quantity, Product.imageURL, IFNULL(ROUND(AVG(rating), 1), 0) AS AvgRating' +
           ' FROM Product LEFT JOIN ProductReview ON Product.id = ProductReview.productID' +
           ' LEFT JOIN TagOwnership ON Product.id = TagOwnership.productId' +
           ' LEFT JOIN Tag ON TagOwnership.tagid = Tag.id' +
           ' JOIN Grower ON Grower.id = Product.growerId' +
-          ' WHERE (name LIKE ' +
+          ' WHERE (Product.name LIKE ' +
           connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
           connection.escape('%' + query + '%') +
@@ -35,7 +35,7 @@ class Search {
           ') GROUP BY Product.id' +
           ' HAVING COUNT(distinct Tag.Id) = ' +
           tags.length +
-          ' AND ROUND(AVG(rating), 1) >= ' +
+          ' AND IFNULL(ROUND(AVG(rating), 1), 0) >= ' +
           minRating,
         function(error, results) {
           connection.end();
@@ -46,10 +46,10 @@ class Search {
     } else {
       // No tags chosen
       connection.query(
-        'SELECT Product.id AS productId, growerId, Grower.name AS growerName, Product.name AS productName, price, quantity, imageURL, IFNULL(ROUND(AVG(rating), 1), 0) AS AvgRating' +
+        'SELECT Product.id AS productId, growerId, Grower.name AS growerName, Product.name AS productName, price, quantity, Product.imageURL, IFNULL(ROUND(AVG(rating), 1), 0) AS AvgRating' +
           ' FROM Product LEFT JOIN ProductReview ON Product.id = ProductReview.productID' +
           ' JOIN Grower ON Grower.id = Product.growerId' +
-          ' WHERE (name LIKE ' +
+          ' WHERE (Product.name LIKE ' +
           connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
           connection.escape('%' + query + '%') +

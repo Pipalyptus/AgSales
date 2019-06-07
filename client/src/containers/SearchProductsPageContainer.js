@@ -15,6 +15,10 @@ export default class SearchProductsPageContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   validateForm = () => {
     return this.state.searchbar.length > 0;
   };
@@ -33,9 +37,8 @@ export default class SearchProductsPageContainer extends Component {
     this.props.search(queryData, this.props.updateProducts);
   };
 
-  handleProduct = event => {
-    event.preventDefault();
-    console.log(event);
+  handleProduct = productId => {
+    console.log(productId);
   };
 
   renderProducts = () => {
@@ -46,7 +49,7 @@ export default class SearchProductsPageContainer extends Component {
         <div>
           <ProductItem
             key={product.productId}
-            id={product.productId}
+            productId={product.productId}
             productName={product.productName}
             growerId={product.growerId}
             growerName={product.growerName}
@@ -54,6 +57,7 @@ export default class SearchProductsPageContainer extends Component {
             quantity={product.quantity}
             image={product.imageURL}
             avgRating={product.AvgRating}
+            handleProduct={this.handleProduct}
           />
         </div>
       ));
