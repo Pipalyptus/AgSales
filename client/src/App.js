@@ -121,7 +121,9 @@ class App extends Component {
       return (
         <div className="App">
           <h1> View Product </h1>
-          <ViewProductContainer changePage={this.changePage} currentProduct={this.state.currentProduct}/>
+          <ViewProductContainer 
+          changePage={this.changePage} 
+          currentProduct={this.state.currentProduct}/>
         </div>
       );
     } else if (this.state.currentPage === 'CreateProduct') {
