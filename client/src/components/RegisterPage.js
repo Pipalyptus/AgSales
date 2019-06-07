@@ -3,43 +3,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default class RegisterPage extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      name: '',
-      Location: ''
-    };
-  }
-
-  validateForm() {
-    return this.state.name.length > 0 && this.state.Location.length > 0;
-  }
-
-  handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
-  };
-
-  handleSubmit = event => {
-    event.preventDefault();
-  };
-
-  submitForm = event => {
-    console.log(JSON.stringify(this.state));
-    fetch('http://localhost:5000/register', {
-      method: 'POST',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(result => result.json())
-      .then(info => {
-        console.log(info);
-      });
-  };*/
 
   render() {
     return (
@@ -102,12 +65,32 @@ export default class RegisterPage extends Component {
               type="password"
             /> 
           </Form.Group>
+          <Form.Group controlId="profile_pic" bsSize="large">
+	    <Form.Label>Profile picture URL: </Form.Label>
+            <Form.Control
+              autoFocus
+              type="text"
+              value={this.props.profile_pic}
+              onChange={this.props.handleChange}
+            />
+	    </Form.Group>
+	  <Form.Group controlId="bio">
+	        <Form.Label>Please tell us about yourself.</Form.Label>
+          <Form.Control 
+          as="textarea" 
+          rows={4} 
+          cols={20}
+          input="text"
+          value={this.props.bio}
+          onChange={this.props.handleChange}
+          />
+          </Form.Group>
           <Button
             block
             bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
-            onClick={() => this.props.changePage('CreateProfile')}
+            //onClick={() => this.props.changePage("Search")}
           >
             Register
           </Button>

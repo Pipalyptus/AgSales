@@ -6,8 +6,11 @@ export default class SearchProductsPageContainer extends Component {
     constructor(props) {
         super(props);
     
-        this.state = {
-          searchbar: ''
+       this.state = {
+          query: '',
+	  minQty: 0,
+          minRating: 0,
+          tags: ''
         };
       }
     
@@ -19,10 +22,14 @@ export default class SearchProductsPageContainer extends Component {
         this.setState({
           [event.target.id]: event.target.value
         });
+
+	console.log(this.state);
       };
     
       handleSubmit = event => {
         event.preventDefault();
+        const queryData=this.state;
+        this.props.search.updateQuery(queryData, this.props.updateProducts);
       };
     
 

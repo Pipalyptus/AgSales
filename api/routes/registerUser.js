@@ -8,7 +8,7 @@ const user = new User();
 // Controller for registering user
 router.post('/', function(req, res, next) {
   // Debug info
-  // console.log(req.body);
+  console.log(req.body);
 
   user.registerUser(
     req.body.table,
@@ -21,6 +21,7 @@ router.post('/', function(req, res, next) {
     req.body.description,
     req.body.imageURL,
     result => {
+      console.log(result);
       if (result === true) {
         // User Successfully Created
         res.status(200).json({ userCreated: true });

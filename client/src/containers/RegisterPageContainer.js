@@ -13,7 +13,9 @@ export default class RegisterPageContainer extends Component {
           id_num: '',
           email: '',
           password: '',
-          repeat_password: ''
+          repeat_password: '',
+          bio: '',
+          profile_pic: ''
         };
       }
     
@@ -31,6 +33,8 @@ export default class RegisterPageContainer extends Component {
     
       handleSubmit = event => {
         event.preventDefault();
+        const userData = JSON.stringify(this.state);
+        this.props.register(userData, this.props.updateRegistration);
       };
 
   render() {
@@ -46,6 +50,8 @@ export default class RegisterPageContainer extends Component {
         email={this.state.email}
         password={this.state.password}
         repeat_password={this.state.repeat_password}
+        bio={this.state.bio}
+        profile_pic={this.state.profile_pic}
         changePage={this.props.changePage}
       />
     );

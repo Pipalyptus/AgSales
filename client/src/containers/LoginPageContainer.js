@@ -32,7 +32,7 @@ export default class LoginPageContainer extends Component {
   };
 
   render() {
-    if (!this.props.isAuthenticated) {
+    //if (!this.props.isAuthenticated) {
       return (
         <div>
           <h1> Please log in </h1>
@@ -46,8 +46,8 @@ export default class LoginPageContainer extends Component {
           />
         </div>
       );
-    } else {
-      return <h1> Welcome, {this.state.email} </h1>;
-    }
+    //} else {
+      //return <h1> Welcome, {this.state.email} </h1>;
+    //}
   }
 }

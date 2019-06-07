@@ -24,14 +24,6 @@ export default class SearchProductsPage extends Component {
     return (
       <div className="SearchProducts">
         <Form onSubmit={this.props.handleSubmit}>
-	    <Form.Group controlId="searchbar" bsSize="large">
-	    <Form.Label>Search</Form.Label>
-            <Form.Control
-              autoFocus
-              type="text"
-              value={this.props.searchbar}
-              onChange={this.props.handleChange}
-            />
       </Form.Group>
           <Form.Group controlId="query" bsSize="large">
             <Form.Label>Search</Form.Label>
