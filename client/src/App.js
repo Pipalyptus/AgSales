@@ -46,7 +46,7 @@ class App extends Component {
   updateProducts = newProducts => {
     this.setState({
       products: newProducts
-    });
+    },function(){console.log(this.state)});
   };
 
   showProducts = currentProduct => {

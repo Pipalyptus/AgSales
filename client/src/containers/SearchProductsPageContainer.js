@@ -28,8 +28,8 @@ export default class SearchProductsPageContainer extends Component {
     
       handleSubmit = event => {
         event.preventDefault();
-        const queryData=this.state;
-        this.props.search.updateQuery(queryData, this.props.updateProducts);
+        const queryData=JSON.stringify(this.state);
+        this.props.search(queryData, this.props.updateProducts);
       };
      
       handleProduct = event => {
@@ -48,6 +48,7 @@ export default class SearchProductsPageContainer extends Component {
         searchbar={this.state.searchbar}
         changePage={this.props.changePage}
         handleProduct={this.handleProduct}
+        products={this.props.products}
       />
     );
   }

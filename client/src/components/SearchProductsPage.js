@@ -13,7 +13,7 @@ export default class SearchProductsPage extends Component {
               autoFocus
               type="input"
               value={this.props.query}
-              onChange={this.handleChange}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="minQty" bsSize="large">
@@ -23,7 +23,7 @@ export default class SearchProductsPage extends Component {
               type="number"
               required
               value={this.props.minQty}
-              onChange={this.handleChange}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="minRating" bsSize="large">
@@ -33,7 +33,7 @@ export default class SearchProductsPage extends Component {
               type="number"
               required
               value={this.props.minRating}
-              onChange={this.handleChange}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
           <Form.Group controlId="tags" bsSize="large">
@@ -42,7 +42,7 @@ export default class SearchProductsPage extends Component {
               autoFocus
               type="input"
               value={this.props.tags}
-              onChange={this.handleChange}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
           <Button block bsSize="large" type="submit">
