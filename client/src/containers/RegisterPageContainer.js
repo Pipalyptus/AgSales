@@ -3,39 +3,52 @@ import RegisterPage from '../components/RegisterPage.js';
 // import Bootstrap from 'react-bootstrap';
 
 export default class RegisterPageContainer extends Component {
-    constructor(props) {
-        super(props);
-    
-        this.state = {
-          name: '',
-          growOrDist: '',
-          phone: '',
-          id_num: '',
-          email: '',
-          password: '',
-          repeat_password: '',
-          bio: '',
-          profile_pic: ''
-        };
-      }
-    
-      validateForm = () =>{
-        return (this.state.name.length > 0 && this.state.phone.length > 0 && this.state.id_num.length > 0 
-        && this.state.email.length > 0 && this.state.password.length > 0 
-        && this.state.password === this.state.repeat_password);
-      }
-    
-      handleChange = event => {
-        this.setState({
-          [event.target.id]: event.target.value
-        });
-      };
-    
-      handleSubmit = event => {
-        event.preventDefault();
-        const userData = JSON.stringify(this.state);
-        this.props.register(userData, this.props.updateRegistration);
-      };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      userType: 'Grower',
+      name: '',
+      businessType: '',
+      licenseNumber: '',
+      email: '',
+      password: '',
+      repeatPassword: '',
+      phoneNumber: '',
+      bio: '',
+      profilePic: ''
+    };
+  }
+
+  validateForm = () => {
+    return (
+      this.state.name.length > 0 &&
+      this.state.phoneNumber.length > 0 &&
+      this.state.licenseNumber.length > 0 &&
+      this.state.email.length > 0 &&
+      this.state.password.length > 0 &&
+      this.state.password === this.state.repeatPassword &&
+      this.state.businessType.length > 0 &&
+      this.state.profilePic.length > 0 &&
+      this.state.userType.length > 0 &&
+      this.state.bio.length > 0
+    );
+  };
+
+  handleChange = event => {
+    this.setState(
+      {
+        [event.target.id]: event.target.value
+      },
+      console.log(this.state)
+    );
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const userData = JSON.stringify(this.state);
+    this.props.register(userData, this.props.updateRegistration);
+  };
 
   render() {
     return (
@@ -44,14 +57,15 @@ export default class RegisterPageContainer extends Component {
         handleChange={this.handleChange}
         validateForm={this.validateForm}
         name={this.state.name}
-        growOrDist={this.state.growOrDist}
-        phone={this.state.phone}
-        id_num={this.state.id_num}
+        userType={this.state.userType}
+        businessType={this.state.businessType}
+        phoneNumber={this.state.phoneNumber}
+        licenseNumber={this.state.licenseNumber}
         email={this.state.email}
         password={this.state.password}
-        repeat_password={this.state.repeat_password}
+        repeatPassword={this.state.repeatPassword}
         bio={this.state.bio}
-        profile_pic={this.state.profile_pic}
+        profilePic={this.state.profilePic}
         changePage={this.props.changePage}
       />
     );
