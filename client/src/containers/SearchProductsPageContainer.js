@@ -1,37 +1,70 @@
 import React, { Component } from 'react';
 import SearchProductsPage from '../components/SearchProductsPage.js';
+import ProductItem from '../components/ProductItem.js';
 // import Bootstrap from 'react-bootstrap';
 
 export default class SearchProductsPageContainer extends Component {
-    constructor(props) {
-        super(props);
-    
-       this.state = {
-          query: '',
-	  minQty: 0,
-          minRating: 0,
-          tags: ''
-        };
-      }
-    
-      validateForm = () => {
-        return this.state.searchbar.length > 0;
-      }
-    
-      handleChange = event => {
-        this.setState({
-          [event.target.id]: event.target.value
-        });
+  constructor(props) {
+    super(props);
 
-	console.log(this.state);
-      };
-    
-      handleSubmit = event => {
-        event.preventDefault();
-        const queryData=this.state;
-        this.props.search.updateQuery(queryData, this.props.updateProducts);
-      };
-    
+    this.state = {
+      query: '',
+      minQty: 0,
+      minRating: 0,
+      tags: ''
+    };
+  }
+
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
+  validateForm = () => {
+    return this.state.searchbar.length > 0;
+  };
+
+  handleChange = event => {
+    this.setState({
+      [event.target.id]: event.target.value
+    });
+
+    console.log(this.state);
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    const queryData = JSON.stringify(this.state);
+    this.props.search(queryData, this.props.updateProducts);
+  };
+
+  handleProduct = productId => {
+    console.log(productId);
+  };
+
+  renderProducts = () => {
+    var productList = [];
+    if (this.props.products !== []) {
+      console.log(this.props.products);
+      var productList = this.props.products.map(product => (
+        <div>
+          <ProductItem
+            key={product.productId}
+            productId={product.productId}
+            productName={product.productName}
+            growerId={product.growerId}
+            growerName={product.growerName}
+            price={product.price}
+            quantity={product.quantity}
+            image={product.imageURL}
+            avgRating={product.AvgRating}
+            handleProduct={this.handleProduct}
+          />
+        </div>
+      ));
+    }
+    console.log(productList);
+    return productList;
+  };
 
   render() {
     return (
@@ -41,6 +74,9 @@ export default class SearchProductsPageContainer extends Component {
         validateForm={this.validateForm}
         searchbar={this.state.searchbar}
         changePage={this.props.changePage}
+        handleProduct={this.handleProduct}
+        products={this.props.products}
+        renderProducts={this.renderProducts}
       />
     );
   }

@@ -12,6 +12,10 @@ export default class LoginPageContainer extends Component {
     };
   }
 
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
+
   // Check that the form inputs aren't empty
   validateForm = () => {
     return this.state.email.length > 0 && this.state.password.length > 0;
@@ -22,6 +26,7 @@ export default class LoginPageContainer extends Component {
     this.setState({
       [event.target.id]: event.target.value
     });
+    console.log(this.state);
   };
 
   // Submit the login info
@@ -33,21 +38,21 @@ export default class LoginPageContainer extends Component {
 
   render() {
     //if (!this.props.isAuthenticated) {
-      return (
-        <div>
-          <h1> Please log in </h1>
-          <LoginPage
-            handleSubmit={this.handleSubmit}
-            handleChange={this.handleChange}
-            validateForm={this.validateForm}
-            email={this.state.email}
-            password={this.state.password}
-            changePage={this.props.changePage}
-          />
-        </div>
-      );
+    return (
+      <div>
+        <h1> Please log in </h1>
+        <LoginPage
+          handleSubmit={this.handleSubmit}
+          handleChange={this.handleChange}
+          validateForm={this.validateForm}
+          email={this.state.email}
+          password={this.state.password}
+          changePage={this.props.changePage}
+        />
+      </div>
+    );
     //} else {
-      //return <h1> Welcome, {this.state.email} </h1>;
+    //return <h1> Welcome, {this.state.email} </h1>;
     //}
   }
 }

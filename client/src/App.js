@@ -1,18 +1,16 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LoginPage from './components/LoginPage.js';
-import RegisterPage from './components/RegisterPage.js';
-import CreateProfilePage from './components/CreateProfilePage.js';
-import SearchProductsPage from './components/SearchProductsPage.js';
 import LoginPageContainer from './containers/LoginPageContainer.js';
 import RegisterPageContainer from './containers/RegisterPageContainer.js';
 import User from './models/User.js';
-import CreateProfilePageContainer from './containers/CreateProfilePageContainer';
+import Search from './models/Search.js';
+import Product from './models/Product.js';
 import SearchProductsPageContainer from './containers/SearchProductsPageContainer';
 import ViewProfileContainer from './containers/ViewProfileContainer';
 import ViewProductContainer from './containers/SearchProductsPageContainer';
 import CreateProductPageContainer from './containers/CreateProductPageContainer';
+import ViewProduct from './components/ViewProduct';
 
 class App extends Component {
   constructor(props) {
@@ -21,9 +19,12 @@ class App extends Component {
       apiResponse: '',
       isAuthenticated: false,
       currentPage: 'Login',
-      products: []
+      products: [],
+      currentProduct: {}
     };
     this.user = new User();
+    this.search = new Search();
+    this.product = new Product();
   }
   changePage = page => {
     this.setState({
@@ -38,8 +39,20 @@ class App extends Component {
   };
 
   updateProducts = newProducts => {
+    this.setState(
+      {
+        products: newProducts
+      },
+      function() {
+        console.log(this.state);
+      }
+    );
+  };
+
+  showProducts = currentProduct => {
     this.setState({
-      products: newProducts
+      currentProduct: currentProduct,
+      currentPage: ViewProduct
     });
   };
 
@@ -77,13 +90,6 @@ class App extends Component {
           />
         </div>
       );
-    } else if (this.state.currentPage === 'CreateProfile') {
-      return (
-        <div className="App">
-          <h1> Create Your Profile </h1>
-          <CreateProfilePageContainer changePage={this.changePage} />
-        </div>
-      );
     } else if (this.state.isAuthenticated) {
       return (
         <div className="App">
@@ -92,6 +98,8 @@ class App extends Component {
             changePage={this.changePage}
             products={this.state.products}
             updateProducts={this.updateProducts}
+            search={this.search.updateQuery}
+            product={this.product.showProduct}
           />
         </div>
       );
@@ -106,7 +114,10 @@ class App extends Component {
       return (
         <div className="App">
           <h1> View Product </h1>
-          <ViewProductContainer changePage={this.changePage} />
+          <ViewProductContainer
+            changePage={this.changePage}
+            currentProduct={this.state.currentProduct}
+          />
         </div>
       );
     } else if (this.state.currentPage === 'CreateProduct') {

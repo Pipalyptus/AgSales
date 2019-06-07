@@ -4,20 +4,6 @@ import Button from "react-bootstrap/Button";
 import Bootstrap from "react-bootstrap";
 
 export default class ViewProduct extends Component {
-    /*submitForm = event => {
-      console.log(JSON.stringify(this.state));
-      fetch('http://localhost:5000/register', {
-        method: 'POST',
-        headers: {
-          'Content-type': 'application/json'
-        },
-        body: JSON.stringify(this.state)
-      })
-        .then(result => result.json())
-        .then(info => {
-          console.log(info);
-        });
-    };*/
   
      render() {
       return (
