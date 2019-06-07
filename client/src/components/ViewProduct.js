@@ -33,8 +33,12 @@ export default class ViewProduct extends Component {
             >
               Log Out
             </Button>
-            <script>document.write(this.props.product.</script>
-            document.write()
+            <h4>Product name: </h4>
+            <script>document.write(this.props.product.name)</script>
+            <h4>Product name: </h4>
+            <script>document.write(this.props.product.name)</script>
+            <h4>Product name: </h4>
+            <script>document.write(this.props.product.name)</script>
             <Form.Group controlId="rating">
             <Form.Label>Rate this product</Form.Label>
             <Form.Control as="select" onChange={this.props.handleChange}>

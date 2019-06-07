@@ -39,6 +39,7 @@ export default class SearchProductsPageContainer extends Component {
 
   handleProduct = productId => {
     console.log(productId);
+    this.props.product(JSON.stringify(productId), this.props.updateCurrentProduct);
   };
 
   renderProducts = () => {
