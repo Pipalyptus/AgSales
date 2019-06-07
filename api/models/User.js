@@ -6,7 +6,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'password'
+  password: ''
   //password: '' /* Use this for Travis */
 };
 
@@ -17,9 +17,11 @@ class User {
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT name, email, password FROM Grower WHERE email = ' + connection.escape(email) + 
-      ' UNION ' + 
-      'SELECT name, email, password FROM Distributor WHERE email = ' + connection.escape(email),
+      'SELECT name, email, password FROM Grower WHERE email = ' +
+        connection.escape(email) +
+        ' UNION ' +
+        'SELECT name, email, password FROM Distributor WHERE email = ' +
+        connection.escape(email),
       function(error, results) {
         connection.end();
         if (error) throw error;

@@ -1,16 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import LoginPage from './components/LoginPage.js';
-import RegisterPage from './components/RegisterPage.js';
-import CreateProfilePage from './components/CreateProfilePage.js';
-import SearchProductsPage from './components/SearchProductsPage.js';
 import LoginPageContainer from './containers/LoginPageContainer.js';
 import RegisterPageContainer from './containers/RegisterPageContainer.js';
 import User from './models/User.js';
 import Search from './models/Search.js';
 import Product from './models/Product.js';
-import CreateProfilePageContainer from './containers/CreateProfilePageContainer';
 import SearchProductsPageContainer from './containers/SearchProductsPageContainer';
 import ViewProfileContainer from './containers/ViewProfileContainer';
 import ViewProductContainer from './containers/SearchProductsPageContainer';
@@ -44,9 +39,14 @@ class App extends Component {
   };
 
   updateProducts = newProducts => {
-    this.setState({
-      products: newProducts
-    },function(){console.log(this.state)});
+    this.setState(
+      {
+        products: newProducts
+      },
+      function() {
+        console.log(this.state);
+      }
+    );
   };
 
   showProducts = currentProduct => {
@@ -90,13 +90,6 @@ class App extends Component {
           />
         </div>
       );
-    } else if (this.state.currentPage === 'CreateProfile') {
-      return (
-        <div className="App">
-          <h1> Create Your Profile </h1>
-          <CreateProfilePageContainer changePage={this.changePage} />
-        </div>
-      );
     } else if (this.state.isAuthenticated) {
       return (
         <div className="App">
@@ -121,9 +114,16 @@ class App extends Component {
       return (
         <div className="App">
           <h1> View Product </h1>
+<<<<<<< HEAD
           <ViewProductContainer 
           changePage={this.changePage} 
           currentProduct={this.state.currentProduct}/>
+=======
+          <ViewProductContainer
+            changePage={this.changePage}
+            currentProduct={this.state.currentProduct}
+          />
+>>>>>>> f20222b02bbe589764377b0d4b1f405a644e46b6
         </div>
       );
     } else if (this.state.currentPage === 'CreateProduct') {
