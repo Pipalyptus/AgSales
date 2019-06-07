@@ -61,6 +61,7 @@ class Product {
     const self = this;
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
+    // Insert the new product
     connection.query(
       'INSERT INTO Product (growerId, name, price, quantity, description, imageURL) ' +
         'VALUES ' +
@@ -78,28 +79,23 @@ class Product {
         connection.escape(imageURL) +
         ')',
       function(error, results) {
+        connection.end();
         if (error) {
           connection.end();
           console.log(error);
           callback(false);
+        } else {
+          // Create the needed tags for the product
+          self.createTags(tags, results.insertId, callback);
         }
-        console.log('passed');
-        connection.query('SELECT LAST_INSERT_ID()', function(error, results) {
-          connection.end();
-          if (error) {
-            console.log(error);
-            callback(false);
-          }
-          console.log(results);
-          self.createTags(tags, results, callback);
-        });
       }
     );
   }
 
   createTags(tags, productId, callback) {
+    // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
-    console.log('adding tags');
+    // Get all existing tags
     connection.query(
       'SELECT * FROM Tag WHERE value IN (' + connection.escape(tags) + ')',
       function(error, results) {
@@ -107,24 +103,49 @@ class Product {
           connection.end();
           console.log(error);
           callback(false);
-        }
-        let existingTags = results.map(item => item.value);
-        for (tag in tags) {
-          if (!(tag in existingTags)) {
-            connection.query(
-              'INSERT INTO Tag (value) VALUES (' +
-                +connection.escape(tag) +
-                ')',
-              function(error, results) {
-                connection.end();
-                if (error) {
-                  console.log(error);
-                  callback(false);
-                }
-                callback(true);
-              }
-            );
+        } else {
+          // Get all tags for the new product that don't exist
+          let existingTags = results.map(item => item.value);
+          let newTags = [];
+          for (var i = 0; i < tags.length; i++) {
+            if (!(tags[i] in existingTags)) {
+              newTags.push([tags[i]]);
+            }
           }
+          // Insert the new tags into the database
+          connection.query(
+            'INSERT INTO Tag (value) VALUES ' + connection.escape(newTags),
+            function(error, results) {
+              if (error) {
+                connection.end();
+                console.log(error);
+                callback(false);
+              } else {
+                let tagIds = [];
+                for (var i = 0; i < newTags.length; i++) {
+                  tagIds.push(results.insertId + i);
+                }
+                let tagOwnershipItems = [];
+                for (var i = 0; i < newTags.length; i++) {
+                  tagOwnershipItems.push([tagIds[i], productId]);
+                }
+                // Connect the new product and the new tags
+                connection.query(
+                  'INSERT INTO TagOwnership (tagId, productId) VALUES ' +
+                    connection.escape(tagOwnershipItems),
+                  function(error, results) {
+                    connection.end();
+                    if (error) {
+                      console.log(error);
+                      callback(false);
+                    } else {
+                      callback(true);
+                    }
+                  }
+                );
+              }
+            }
+          );
         }
       }
     );

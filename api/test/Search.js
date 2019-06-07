@@ -12,7 +12,7 @@ describe('Search model', function() {
         0,
         '',
         function(res) {
-          assert.equal(res.length, 100);
+          assert.equal(res.length, 101);
           done();
         },
         done

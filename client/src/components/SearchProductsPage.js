@@ -3,28 +3,10 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default class SearchProductsPage extends Component {
-
-  // handleSubmit = event => {
-  //   event.preventDefault();
-  //   console.log(JSON.stringify(this.state));
-  //   fetch('http://localhost:5000/products', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-type': 'application/json'
-  //     },
-  //     body: JSON.stringify(this.state)
-  //   })
-  //     .then(result => result.json())
-  //     .then(info => {
-  //       console.log(info);
-  //     });
-  // };
-
   render() {
     return (
       <div className="SearchProducts">
         <Form onSubmit={this.props.handleSubmit}>
-      </Form.Group>
           <Form.Group controlId="query" bsSize="large">
             <Form.Label>Search</Form.Label>
             <Form.Control
@@ -67,25 +49,24 @@ export default class SearchProductsPage extends Component {
             Search
           </Button>
 
-	    <Button
-            block
-            bsSize="large"
-            type="submit"
-	    onClick={() => this.props.changePage("Login")}
-          >
-            Log Out
-          </Button> 
           <Button
             block
             bsSize="large"
             type="submit"
-	    onClick={() => this.props.changePage("ViewProfile")}
+            onClick={() => this.props.changePage('Login')}
+          >
+            Log Out
+          </Button>
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+            onClick={() => this.props.changePage('ViewProfile')}
           >
             View My Profile
-          </Button>      
-
-	  </Form>
-	</div>
+          </Button>
+        </Form>
+      </div>
     );
   }
 }

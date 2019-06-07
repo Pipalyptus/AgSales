@@ -11,15 +11,15 @@ router.post('/', function(req, res, next) {
   console.log(req.body);
 
   user.registerUser(
-    req.body.table,
+    req.body.userType,
     req.body.name,
     req.body.businessType,
     req.body.licenseNumber,
     req.body.email,
     req.body.password,
     req.body.phoneNumber,
-    req.body.description,
-    req.body.imageURL,
+    req.body.bio,
+    req.body.profilePic,
     result => {
       console.log(result);
       if (result === true) {
