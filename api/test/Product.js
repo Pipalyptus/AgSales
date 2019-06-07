@@ -38,7 +38,7 @@ describe('Product model', function() {
         product.fetchReviews(
           2,
           function(res) {
-            assert.equal(res.length, 2);
+            assert.equal(res.length, 3);
             done();
           },
           done
