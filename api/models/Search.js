@@ -19,11 +19,11 @@ class Search {
     if (tags !== '') {
       tags = tags.split(', ');
       connection.query(
-        'SELECT Product.id, growerId, Grower.name, Product.name, price, quantity, imageURL, ROUND(AVG(rating), 1) AS AvgRating' +
+        'SELECT Product.id, growerId, Grower.name AS Grower, Product.name AS Product, price, quantity, imageURL, ROUND(AVG(rating), 1) AS AvgRating' +
           ' FROM Product LEFT JOIN ProductReview ON Product.id = ProductReview.productID' +
           ' LEFT JOIN TagOwnership ON Product.id = TagOwnership.productId' +
           ' LEFT JOIN Tag ON TagOwnership.tagid = Tag.id' +
-          ' JOIN Grower ON Grower.id = Product.growerId' +
+          ' LEFT JOIN Grower ON Grower.id = Product.growerId' +
           ' WHERE (name LIKE ' +
           connection.escape('%' + query + '%') +
           ' OR Product.description LIKE ' +
