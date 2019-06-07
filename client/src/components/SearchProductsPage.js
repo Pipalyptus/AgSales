@@ -12,7 +12,7 @@ export default class SearchProductsPage extends Component {
             <Form.Control
               autoFocus
               type="input"
-              value={this.state.query}
+              value={this.props.query}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -22,7 +22,7 @@ export default class SearchProductsPage extends Component {
               autoFocus
               type="number"
               required
-              value={this.state.minQty}
+              value={this.props.minQty}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -32,7 +32,7 @@ export default class SearchProductsPage extends Component {
               autoFocus
               type="number"
               required
-              value={this.state.minRating}
+              value={this.props.minRating}
               onChange={this.handleChange}
             />
           </Form.Group>
@@ -41,7 +41,7 @@ export default class SearchProductsPage extends Component {
             <Form.Control
               autoFocus
               type="input"
-              value={this.state.tags}
+              value={this.props.tags}
               onChange={this.handleChange}
             />
           </Form.Group>

@@ -6,7 +6,8 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: ''
+  password: 'password'
+  //password: '' /* Use this for Travis */
 };
 
 // Model for logging in and registering users
@@ -16,7 +17,9 @@ class User {
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT * FROM ' + table + ' WHERE email = ' + connection.escape(email),
+      'SELECT name, email, password FROM Grower WHERE email = ' + connection.escape(email) + 
+      ' UNION ' + 
+      'SELECT name, email, password FROM Distributor WHERE email = ' + connection.escape(email),
       function(error, results) {
         connection.end();
         if (error) throw error;
@@ -112,6 +115,7 @@ class User {
                   throw error;
                   callback(null);
                 }
+                console.log(results);
                 callback(true);
               }
             );
