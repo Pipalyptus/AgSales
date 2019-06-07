@@ -1,6 +1,6 @@
 export default class Search {
-  // Log a user in
-  UpdateQuery(queryData, callback) {
+  // Query a Product
+  updateQuery(queryData, callback) {
     console.log(queryData);
     fetch('http://localhost:5000/products/listProducts', {
       method: 'POST',

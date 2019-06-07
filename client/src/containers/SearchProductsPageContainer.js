@@ -8,7 +8,7 @@ export default class SearchProductsPageContainer extends Component {
     
        this.state = {
           query: '',
-	  minQty: 0,
+	        minQty: 0,
           minRating: 0,
           tags: ''
         };
@@ -23,7 +23,7 @@ export default class SearchProductsPageContainer extends Component {
           [event.target.id]: event.target.value
         });
 
-	console.log(this.state);
+	    console.log(this.state);
       };
     
       handleSubmit = event => {
@@ -31,7 +31,13 @@ export default class SearchProductsPageContainer extends Component {
         const queryData=this.state;
         this.props.search.updateQuery(queryData, this.props.updateProducts);
       };
-    
+     
+      handleProduct = event => {
+         event.preventDefault();
+         console.log(event);
+  
+
+      }
 
   render() {
     return (
@@ -41,6 +47,7 @@ export default class SearchProductsPageContainer extends Component {
         validateForm={this.validateForm}
         searchbar={this.state.searchbar}
         changePage={this.props.changePage}
+        handleProduct={this.handleProduct}
       />
     );
   }
