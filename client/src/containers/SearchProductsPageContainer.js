@@ -15,10 +15,6 @@ export default class SearchProductsPageContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
   validateForm = () => {
     return this.state.searchbar.length > 0;
   };
@@ -46,7 +42,7 @@ export default class SearchProductsPageContainer extends Component {
     var productList = [];
     if (this.props.products !== []) {
       console.log(this.props.products);
-      var productList = this.props.products.map(product => (
+      productList = this.props.products.map(product => (
         <div>
           <ProductItem
             key={product.productId}

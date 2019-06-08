@@ -6,7 +6,7 @@ const databaseCreds = {
   host: 'localhost',
   database: 'agsales',
   user: 'root',
-  password: 'Saturn1'
+  password: ''
 };
 
 // Model for logging in and registering users
@@ -20,15 +20,12 @@ class User {
       results
     ) {
       if (error) throw error;
-      // console.log(results);
-      // console.log(results[0].email);
 
       for (let i = 0; i < results.length; i++) {
         user = results[i];
         // Otherwise hash password and insert into database
         var hash = bcrypt.hashSync(user.password, 10);
 
-        //console.log('UPDATE ' + table + ' SET password = ' + hash + ' WHERE email = ' + user.email);
         connection.query(
           'UPDATE ' +
             table +

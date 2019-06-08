@@ -56,18 +56,20 @@ describe('Products Controller', function() {
           {
             products: [
               {
-                id: 1,
+                productId: 1,
                 growerId: 21,
-                name: 'Minny van Gogh',
+                productName: 'Minny van Gogh',
+                growerName: 'Lind-Corkery',
                 price: 56.2,
                 quantity: 32679,
                 imageURL: 'https://imgur.com/gallery/JgtdT',
                 AvgRating: 0
               },
               {
-                id: 36,
+                productId: 36,
                 growerId: 47,
-                name: 'Minny van Gogh',
+                productName: 'Minny van Gogh',
+                growerName: 'Lesch Inc',
                 price: 61.8,
                 quantity: 10160,
                 imageURL: 'https://imgur.com/gallery/JgtdT',
@@ -203,50 +205,56 @@ describe('Products Controller', function() {
         });
     });
 
-    // describe('showProduct route', function() {
-    //   it('Fetch a specific existing product and its reviews', function(done) {
-    //     request(app)
-    //       .post('/products/showProduct')
-    //       .set('Content-Type', 'application/json')
-    //       .send({ productId: 0 })
-    //       .expect('Content-Type', /json/)
-    //       .expect(
-    //         200,
-    //         {
-    //           product: [
-    //             {
-    //               id: 0,
-    //               growerId: 10,
-    //               name: 'Weed',
-    //               price: 100.5,
-    //               quantity: 100,
-    //               imageURL: 'fakeURL.com',
-    //               AvgRating: 3,
-    //               description: 'Some dank bud bro'
-    //             }
-    //           ],
-    //           reviews: [
-    //             { id: 0, reviewerId: 0, content: 'Pretty good weed', rating: 3 }
-    //           ]
-    //         },
-    //         done
-    //       );
-    //   });
+    describe('showProduct route', function() {
+      it('Fetch a specific existing product and its reviews', function(done) {
+        request(app)
+          .post('/products/showProduct')
+          .set('Content-Type', 'application/json')
+          .send({ productId: 36 })
+          .expect('Content-Type', /json/)
+          .expect(
+            200,
+            {
+              product: [
+                {
+                  AvgRating: 3.5,
+                  description: 'the good stuff',
+                  email: 'ramonita.mosciski@gmail.com',
+                  growerId: 47,
+                  productId: 36,
+                  growerImage: 'https://imgur.com/gallery/5AjlRhE',
+                  growerName: 'Lesch Inc',
+                  phoneNumber: '395-046-4994 x178',
+                  price: 61.8,
+                  productImage: 'https://imgur.com/gallery/JgtdT',
+                  productName: 'Minny van Gogh',
+                  quantity: 10160
+                }
+              ],
+              reviews: [
+                { id: 36, reviewerId: 79, content: 'decent', rating: 4 },
+                { id: 36, reviewerId: 22, content: 'okay', rating: 3 }
+              ]
+            },
+            done
+          );
+      });
+    });
 
-    //   it('Fetch a specific non-existing product and its reviews', function(done) {
-    //     request(app)
-    //       .post('/products/showProduct')
-    //       .set('Content-Type', 'application/json')
-    //       .send({ productId: 50 })
-    //       .expect('Content-Type', /json/)
-    //       .expect(
-    //         200,
-    //         {
-    //           product: [],
-    //           reviews: []
-    //         },
-    //         done
-    //       );
-    //   });
+    it('Fetch a specific non-existing product and its reviews', function(done) {
+      request(app)
+        .post('/products/showProduct')
+        .set('Content-Type', 'application/json')
+        .send({ productId: 0 })
+        .expect('Content-Type', /json/)
+        .expect(
+          200,
+          {
+            product: [],
+            reviews: []
+          },
+          done
+        );
+    });
   });
 });

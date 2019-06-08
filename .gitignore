@@ -4,4 +4,5 @@ node_modules/
 client/package-lock.json
 api/package-lock.json
 api/node_modules
+api/.nyc_output/
 client/node_modules

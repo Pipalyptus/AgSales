@@ -19,5 +19,6 @@ script:
 
   - cd ../api
   - npm install
+  - node hashPws.js
   - mocha test/
   - npm run start & 

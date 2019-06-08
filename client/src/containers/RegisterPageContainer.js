@@ -20,10 +20,6 @@ export default class RegisterPageContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
   validateForm = () => {
     return (
       this.state.name.length > 0 &&

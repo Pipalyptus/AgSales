@@ -7,7 +7,6 @@ const user = new User();
 
 // Controller for logging in users
 router.post('/', function(req, res, next) {
-  console.log(req.body);
   user.displayUser(req.body.table, req.body.id, result => {
     res.json({ result });
   });
