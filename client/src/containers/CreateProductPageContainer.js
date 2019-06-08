@@ -15,9 +15,6 @@ export default class CreateProductPageContainer extends Component {
       tags: ''
     };
   }
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
 
   validateForm = () => {
     return (

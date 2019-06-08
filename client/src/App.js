@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import LoginPageContainer from './containers/LoginPageContainer.js';
 import RegisterPageContainer from './containers/RegisterPageContainer.js';
@@ -10,7 +9,6 @@ import SearchProductsPageContainer from './containers/SearchProductsPageContaine
 import ViewProfileContainer from './containers/ViewProfileContainer';
 import ViewProductContainer from './containers/SearchProductsPageContainer';
 import CreateProductPageContainer from './containers/CreateProductPageContainer';
-import ViewProduct from './components/ViewProduct';
 
 class App extends Component {
   constructor(props) {

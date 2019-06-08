@@ -12,10 +12,6 @@ export default class LoginPageContainer extends Component {
     };
   }
 
-  componentDidMount() {
-    window.scrollTo(0, 0);
-  }
-
   // Check that the form inputs aren't empty
   validateForm = () => {
     return this.state.email.length > 0 && this.state.password.length > 0;
