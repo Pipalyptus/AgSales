@@ -13,20 +13,25 @@ const databaseCreds = {
 class Product {
   // Fetch a specific product
   fetchProduct(productId, callback) {
+    console.log(productId);
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT Product.id, growerId, name, price, quantity, imageURL, ' +
-        'ROUND(AVG(rating), 1) AS AvgRating, description ' +
-        'FROM Product INNER JOIN ProductReview ON Product.id = ProductReview.productID ' +
-        'INNER JOIN TagOwnership ON Product.id = TagOwnership.productId ' +
-        'INNER JOIN Tag ON TagOwnership.tagid = Tag.id ' +
+      'SELECT Product.id, email, phoneNumber, Grower.name AS growerName, growerId, Product.name AS productName, price, quantity, Product.imageURL AS productImage, Grower.imageURL AS growerImage , ' +
+        'ROUND(AVG(rating), 1) AS AvgRating, Product.description ' +
+        'FROM Product LEFT JOIN ProductReview ON Product.id = ProductReview.productID ' +
+        'LEFT JOIN TagOwnership ON Product.id = TagOwnership.productId ' +
+        'LEFT JOIN Tag ON TagOwnership.tagid = Tag.id ' +
+        'INNER JOIN Grower ON Product.growerId = Grower.id ' +
         'WHERE Product.id = ' +
         productId +
         ' GROUP BY Product.id',
       function(error, results) {
         connection.end();
-        if (error) throw error;
+        if (error) {
+          console.log(error);
+          throw error;
+        }
         callback(JSON.parse(JSON.stringify(results)));
       }
     );

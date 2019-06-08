@@ -1,24 +1,24 @@
-import React, { Component } from "react";
-import logo from "./logo.svg";
-import "./App.css";
-import LoginPageContainer from "./containers/LoginPageContainer.js";
-import RegisterPageContainer from "./containers/RegisterPageContainer.js";
-import User from "./models/User.js";
-import Search from "./models/Search.js";
-import Product from "./models/Product.js";
-import SearchProductsPageContainer from "./containers/SearchProductsPageContainer";
-import ViewProfileContainer from "./containers/ViewProfileContainer";
-import ViewProductContainer from "./containers/SearchProductsPageContainer";
-import CreateProductPageContainer from "./containers/CreateProductPageContainer";
-import ViewProduct from "./components/ViewProduct";
+import React, { Component } from 'react';
+import logo from './logo.svg';
+import './App.css';
+import LoginPageContainer from './containers/LoginPageContainer.js';
+import RegisterPageContainer from './containers/RegisterPageContainer.js';
+import User from './models/User.js';
+import Search from './models/Search.js';
+import Product from './models/Product.js';
+import SearchProductsPageContainer from './containers/SearchProductsPageContainer';
+import ViewProfileContainer from './containers/ViewProfileContainer';
+import ViewProductContainer from './containers/SearchProductsPageContainer';
+import CreateProductPageContainer from './containers/CreateProductPageContainer';
+import ViewProduct from './components/ViewProduct';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      apiResponse: "",
+      apiResponse: '',
       isAuthenticated: false,
-      currentPage: "Login",
+      currentPage: 'Login',
       products: [],
       currentProduct: {}
     };
@@ -50,11 +50,16 @@ class App extends Component {
   };
 
   updateCurrentProduct = currentProduct => {
-    console.log("got");
-    this.setState({
-      currentProduct: currentProduct,
-      currentPage: "ViewProduct"
-    });
+    console.log('got');
+    this.setState(
+      {
+        currentProduct: currentProduct,
+        currentPage: 'ViewProduct'
+      },
+      function() {
+        console.log(this.state);
+      }
+    );
   };
 
   updateRegistration = registered => {
@@ -69,7 +74,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    if (!this.state.isAuthenticated && this.state.currentPage === "Login") {
+    if (!this.state.isAuthenticated) {
       return (
         <div className="App">
           <LoginPageContainer
@@ -80,7 +85,7 @@ class App extends Component {
           />
         </div>
       );
-    } else if (this.state.currentPage === "Register") {
+    } else if (this.state.currentPage === 'Register') {
       return (
         <div className="App">
           <h1> Register </h1>
@@ -89,6 +94,30 @@ class App extends Component {
             updateRegistration={this.updateRegistration}
             changePage={this.changePage}
           />
+        </div>
+      );
+    } else if (this.state.currentPage === 'ViewProfile') {
+      return (
+        <div className="App">
+          <h1> Profile </h1>
+          <ViewProfileContainer changePage={this.changePage} />
+        </div>
+      );
+    } else if (this.state.currentPage === 'ViewProduct') {
+      return (
+        <div className="App">
+          <h1> View Product </h1>
+          <ViewProductContainer
+            changePage={this.changePage}
+            currentProduct={this.state.currentProduct}
+          />
+        </div>
+      );
+    } else if (this.state.currentPage === 'CreateProduct') {
+      return (
+        <div className="App">
+          <h1> Create Product </h1>
+          <CreateProductPageContainer changePage={this.changePage} />
         </div>
       );
     } else if (this.state.isAuthenticated) {
@@ -103,37 +132,6 @@ class App extends Component {
             product={this.product.showProduct}
             updateCurrentProduct={this.updateCurrentProduct}
           />
-        </div>
-      );
-    } else if (this.state.currentPage === "ViewProfile") {
-      return (
-        <div className="App">
-          <h1> Profile </h1>
-          <ViewProfileContainer changePage={this.changePage} />
-        </div>
-      );
-    } else if (this.state.currentPage === "ViewProduct") {
-      return (
-        <div className="App">
-          <h1> View Product </h1>
-          <ViewProductContainer
-            changePage={this.changePage}
-            currentProduct={this.state.currentProduct}
-          />
-        </div>
-      );
-    } else if (this.state.currentPage === "CreateProduct") {
-      return (
-        <div className="App">
-          <h1> Create Product </h1>
-          <CreateProductPageContainer changePage={this.changePage} />
-        </div>
-      );
-    } else if (this.state.isAuthenticated) {
-      return (
-        <div className="App">
-          <h1> Product Listings </h1>
-          <SearchProductsPageContainer changePage={this.changePage} />
         </div>
       );
     }

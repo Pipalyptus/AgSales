@@ -24,8 +24,10 @@ router.post('/listProducts', function(req, res, next) {
 // Controller for single product endpoint
 router.post('/showProduct', function(req, res, next) {
   // Get the product that was chosen and return it to the client
-  product.fetchProduct(req.body.productId, productData => {
-    product.fetchReviews(req.body.productId, productReviews => {
+  product.fetchProduct(parseInt(req.body.productId), productData => {
+    product.fetchReviews(parseInt(req.body.productId), productReviews => {
+      console.log(productData);
+      console.log(productReviews);
       res.status(200).json({ product: productData, reviews: productReviews });
     });
   });
