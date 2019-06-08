@@ -1,3 +1,5 @@
+https://travis-ci.org/Pipalyptus/AgSales.svg?branch=master
+
 # Setup and Installation
 npm version 6.4.0+ and Node.js version 10.15.3+ are required to run this repository.
 
