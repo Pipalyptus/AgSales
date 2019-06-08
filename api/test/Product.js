@@ -59,6 +59,7 @@ describe('Product model', function() {
       });
     });
   });
+
   describe('createProduct', function() {
     it('Create a new product with new tags', function(done) {
       assert.doesNotThrow(function() {
@@ -70,6 +71,41 @@ describe('Product model', function() {
           'A test product',
           'fakeurl.com',
           ['TestTag1', 'TestTag2'],
+          function(res) {
+            assert.equal(res, true);
+            done();
+          },
+          done
+        );
+      });
+    });
+
+    it('Create a new product without new tags', function(done) {
+      assert.doesNotThrow(function() {
+        product.createProduct(
+          1,
+          'Test no new tags',
+          10,
+          1000,
+          'A test product',
+          'fakeurl.com',
+          ['green', 'cheap'],
+          function(res) {
+            assert.equal(res, true);
+            done();
+          },
+          done
+        );
+      });
+    });
+  });
+
+  describe('createTags', function() {
+    it('Create new valid tags', function(done) {
+      assert.doesNotThrow(function() {
+        product.createTags(
+          ['testingTag'],
+          101,
           function(res) {
             assert.equal(res, true);
             done();

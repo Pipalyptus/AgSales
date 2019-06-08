@@ -8,7 +8,6 @@ const user = new User();
 // Controller for registering user
 router.post('/', function(req, res, next) {
   // Debug info
-  console.log(req.body);
 
   user.registerUser(
     req.body.userType,
@@ -21,7 +20,6 @@ router.post('/', function(req, res, next) {
     req.body.bio,
     req.body.profilePic,
     result => {
-      console.log(result);
       if (result === true) {
         // User Successfully Created
         res.status(200).json({ userCreated: true });

@@ -12,7 +12,7 @@ describe('Search model', function() {
         0,
         '',
         function(res) {
-          assert.equal(res.length, 101);
+          assert.equal(res.length, 102);
           done();
         },
         done
@@ -128,7 +128,7 @@ describe('Search model', function() {
         0,
         'green',
         function(res) {
-          assert.equal(res.length, 30);
+          assert.equal(res.length, 31);
           done();
         },
         done

@@ -46,10 +46,10 @@ class User {
   displayUser(table, userId, callback) {
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL' +
+      'SELECT name, businessType, licenseNumber, email, phoneNumber, description, imageURL ' +
         'FROM ' +
         table +
-        'WHERE id = ' +
+        ' WHERE id = ' +
         connection.escape(userId),
       function(error, results) {
         connection.end();
@@ -75,8 +75,11 @@ class User {
     let connection = mysql.createConnection(databaseCreds);
     let saltRounds = 10;
     connection.query(
-      'SELECT email FROM ' +
-        table +
+      'SELECT email FROM Grower ' +
+        ' WHERE email = ' +
+        connection.escape(email) +
+        ' UNION ' +
+        'SELECT email FROM Distributor ' +
         ' WHERE email = ' +
         connection.escape(email),
       function(error, results) {
@@ -117,7 +120,6 @@ class User {
                   throw error;
                   callback(null);
                 }
-                console.log(results);
                 callback(true);
               }
             );
