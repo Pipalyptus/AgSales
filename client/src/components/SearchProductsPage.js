@@ -1,11 +1,29 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default class SearchProductsPage extends Component {
   render() {
     return (
       <div className="SearchProducts">
+        <Button
+          block
+          bsSize="large"
+          type="submit"
+          onClick={() => this.props.changePage('Login')}
+        >
+          Log Out
+        </Button>
+        <Button
+          block
+          bsSize="large"
+          type="submit"
+          onClick={() => this.props.changePage('ViewProfile')}
+        >
+          View My Profile
+        </Button>
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="query" bsSize="large">
             <Form.Label>Search</Form.Label>
@@ -48,24 +66,16 @@ export default class SearchProductsPage extends Component {
           <Button block bsSize="large" type="submit">
             Search
           </Button>
-
-          <Button
-            block
-            bsSize="large"
-            type="submit"
-            onClick={() => this.props.changePage('Login')}
-          >
-            Log Out
-          </Button>
-          <Button
-            block
-            bsSize="large"
-            type="submit"
-            onClick={() => this.props.changePage('ViewProfile')}
-          >
-            View My Profile
-          </Button>
         </Form>
+        <div className="listingHeader">
+          <Row>
+            <Col xs={3}>Product Name</Col>
+            <Col xs={3}>Grower Name</Col>
+            <Col xs={1}>Price per pound</Col>
+            <Col xs={1}>Quantity available</Col>
+            <Col xs={1}>Average rating</Col>
+          </Row>
+        </div>
         {this.props.renderProducts()}
       </div>
     );

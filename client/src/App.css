@@ -27,6 +27,11 @@
   text-align: left;
 }
 
+.listingHeader {
+  text-align: left;
+  border-bottom: 1px solid #007bff;
+}
+
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
