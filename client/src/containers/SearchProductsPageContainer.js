@@ -76,5 +76,5 @@ export default class SearchProductsPageContainer extends Component {
         renderProducts={this.renderProducts}
       />
     );
-  }
+  } 
 }

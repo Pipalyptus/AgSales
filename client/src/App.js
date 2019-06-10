@@ -72,7 +72,7 @@ class App extends Component {
 
   render() {
     console.log(this.state);
-    if (!this.state.isAuthenticated) {
+    if (!this.state.isAuthenticated && this.state.currentPage === 'Login') {
       return (
         <div className="App">
           <LoginPageContainer
