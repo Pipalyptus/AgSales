@@ -70,7 +70,7 @@ describe('Product model', function() {
           1000,
           'A test product',
           'fakeurl.com',
-          ['TestTag1', 'TestTag2'],
+          'TestTag1, TestTag2',
           function(res) {
             assert.equal(res, true);
             done();
@@ -89,7 +89,7 @@ describe('Product model', function() {
           1000,
           'A test product',
           'fakeurl.com',
-          ['green', 'cheap'],
+          'green, cheap',
           function(res) {
             assert.equal(res, true);
             done();
