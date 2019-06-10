@@ -16,6 +16,8 @@ class App extends Component {
     this.state = {
       apiResponse: '',
       isAuthenticated: false,
+      userID: '',
+      userTable: '',
       currentPage: 'Login',
       products: [],
       currentProduct: {}
@@ -30,9 +32,11 @@ class App extends Component {
     });
   };
 
-  updateAuthenticated = authenticated => {
+  updateAuthenticated = result => {
     this.setState({
-      isAuthenticated: authenticated
+      isAuthenticated: result.loggedIn,
+      userTable: result.table,
+      userID: result.id
     });
   };
 
@@ -115,7 +119,12 @@ class App extends Component {
       return (
         <div className="App">
           <h1> Create Product </h1>
-          <CreateProductPageContainer changePage={this.changePage} />
+          <CreateProductPageContainer
+            growerId={this.state.userID}
+            changePage={this.changePage}
+            createProduct={this.product.createProduct}
+            updateCurrentProduct={this.updateCurrentProduct}
+          />
         </div>
       );
     } else if (this.state.isAuthenticated) {

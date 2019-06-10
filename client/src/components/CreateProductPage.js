@@ -34,17 +34,16 @@ export default class CreateProductPage extends Component {
             />
           </Form.Group>
           <Form.Group controlId="description">
-            <Form.Label>Product description</Form.Label>
-            <Form.Control
-              as="textarea"
-              rows="4"
+              Product description:
+            <Form.Control as="textarea" rows="4"
               value={this.props.description}
+              onChange={this.props.handleChange}
             />
           </Form.Group>
-          <Form.Group controlId="image" bsSize="large">
+          <Form.Group controlId="imageURL" bsSize="large">
             Image URL:
             <Form.Control
-              value={this.props.image}
+              value={this.props.imageURL}
               onChange={this.props.handleChange}
               type="text"
             />
@@ -62,7 +61,6 @@ export default class CreateProductPage extends Component {
             bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
-            onClick={() => this.props.changePage('ViewProduct')}
           >
             Create Product
           </Button>
@@ -70,7 +68,7 @@ export default class CreateProductPage extends Component {
             block
             bsSize="large"
             type="submit"
-            onClick={() => this.props.changePage('Search')}
+	          onClick={() => this.props.changePage("Search")}
           >
             Cancel
           </Button>

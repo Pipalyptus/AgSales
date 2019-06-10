@@ -9,21 +9,30 @@ export default class SearchProductsPage extends Component {
     return (
       <div className="SearchProducts">
         <Button
-          block
-          bsSize="large"
-          type="submit"
-          onClick={() => this.props.changePage('Login')}
-        >
-          Log Out
-        </Button>
-        <Button
-          block
-          bsSize="large"
-          type="submit"
-          onClick={() => this.props.changePage('ViewProfile')}
-        >
-          View My Profile
-        </Button>
+            block
+            bsSize="large"
+            type="submit"
+            onClick={() => this.props.changePage('Login')}
+          >
+            Log Out
+          </Button>
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+            onClick={() => this.props.changePage('ViewProfile')}
+          >
+            View My Profile
+          </Button>
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+            onClick={() => this.props.changePage('CreateProduct')}
+          >
+            Create A Product
+          </Button>
+        
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="query" bsSize="large">
             <Form.Label>Search</Form.Label>
