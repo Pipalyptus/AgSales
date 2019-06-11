@@ -33,4 +33,29 @@ router.post('/showProduct', function(req, res, next) {
   });
 });
 
+// Controller for product creation endpoint
+router.post('/createProduct', function(req, res, next) {
+  // Create the product with the provided information
+  console.log(req.body);
+  product.createProduct(
+    req.body.growerId,
+    req.body.name,
+    req.body.price,
+    req.body.quantity,
+    req.body.description,
+    req.body.imageURL,
+    req.body.tags,
+    result => {
+      if (result === true) {
+        // Product Successfully Created
+        res.status(200).json({ productCreated: true });
+      } else {
+        // Unable to create Product
+        res.status(400).json({ productCreated: 'Unable to create Product' });
+      }
+    }
+  )
+
+});
+
 module.exports = router;

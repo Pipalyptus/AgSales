@@ -11,7 +11,7 @@ export default class User {
     })
       .then(result => result.json())
       .then(info => {
-        callback(info.loggedIn);
+        callback(info);
       });
   }
   registerUser(userData, callback) {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import RegisterPage from '../components/RegisterPage.js';
+import CreateProductPage from '../components/CreateProductPage.js';
 // import Bootstrap from 'react-bootstrap';
 
 export default class CreateProductPageContainer extends Component {
@@ -7,11 +7,12 @@ export default class CreateProductPageContainer extends Component {
     super(props);
 
     this.state = {
+      growerId: this.props.growerId,
       name: '',
       price: '',
       quantity: '',
       description: '',
-      image: '',
+      imageURL: '',
       tags: ''
     };
   }
@@ -20,34 +21,37 @@ export default class CreateProductPageContainer extends Component {
     return (
       this.state.name.length > 0 &&
       this.state.price.length > 0 &&
-      this.state.amount.length > 0 &&
-      this.state.description.length > 0 &&
-      this.state.image.length > 0 &&
-      this.state.tags.length > 0
+      this.state.quantity.length > 0 &&
+      this.state.description.length > 0
     );
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+      this.setState({
+        [event.target.id]: event.target.value
+      });
+    console.log(this.state);
   };
 
   handleSubmit = event => {
     event.preventDefault();
+    const productData = JSON.stringify(this.state);
+    //console.log(productData);
+    this.props.createProduct(productData, this.props.changePage);
   };
 
   render() {
     return (
-      <RegisterPage
+      <CreateProductPage
         handleSubmit={this.handleSubmit}
         handleChange={this.handleChange}
         validateForm={this.validateForm}
+        growerId={this.state.growerId}
         name={this.state.name}
         price={this.state.price}
         amount={this.state.amount}
         description={this.state.description}
-        image={this.state.image}
+        imageURL={this.state.imageURL}
         tags={this.state.tags}
         changePage={this.props.changePage}
       />

@@ -40,7 +40,15 @@ describe('Login Controller', function() {
         password: 'purple9'
       })
       .expect('Content-Type', /json/)
-      .expect(200, { loggedIn: true }, done);
+      .expect(
+        200, 
+        { 
+          loggedIn: true,
+          table: 'Distributor',
+          id: 69,
+          name: 'Kutch Inc'
+         }, 
+         done);
   });
 
   it('Login a valid Grower', function(done) {
@@ -53,7 +61,15 @@ describe('Login Controller', function() {
         password: 'grey5'
       })
       .expect('Content-Type', /json/)
-      .expect(200, { loggedIn: true }, done);
+      .expect(
+        200, 
+        { 
+          loggedIn: true,
+          table: 'Grower',
+          id: 81,
+          name: 'Mosciski Group'
+         }, 
+         done);
   });
 
   it('Fail to login an invalid Distributor', function(done) {

@@ -66,6 +66,7 @@ class Product {
     const self = this;
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
+    tags = tags.split(', ');
     // Insert the new product
     connection.query(
       'INSERT INTO Product (growerId, name, price, quantity, description, imageURL) ' +
@@ -84,14 +85,19 @@ class Product {
         connection.escape(imageURL) +
         ')',
       function(error, results) {
-        connection.end();
+        //connection.end();
         if (error) {
           connection.end();
           console.log(error);
           callback(false);
         } else {
+          connection.end();
           // Create the needed tags for the product
-          self.createTags(tags, results.insertId, callback);
+          if(tags.length > 0){
+            self.createTags(tags, results.insertId, callback);
+          }else{
+            callback(true);
+          }
         }
       }
     );

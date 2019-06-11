@@ -17,10 +17,10 @@ class User {
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT name, email, password FROM Grower WHERE email = ' +
+      'SELECT \'Grower\' AS \'table\', id, name, email, password FROM Grower WHERE email = ' +
         connection.escape(email) +
         ' UNION ' +
-        'SELECT name, email, password FROM Distributor WHERE email = ' +
+        'SELECT \'Distributor\' AS \'table\', id, name, email, password FROM Distributor WHERE email = ' +
         connection.escape(email),
       function(error, results) {
         connection.end();
@@ -30,7 +30,8 @@ class User {
         if (results.length > 0) {
           bcrypt.compare(password, results[0].password, function(err, res) {
             if (res == true) {
-              callback(true);
+              let user = results[0];
+              callback(true, user.table, user.id, user.name);
             } else {
               callback(false);
             }
