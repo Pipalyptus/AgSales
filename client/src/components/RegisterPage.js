@@ -102,7 +102,16 @@ export default class RegisterPage extends Component {
           >
             Register
           </Button>
+          <Button
+            block
+            bsSize="large"
+            type="submit"
+            onClick={() => this.props.changePage("Login")}
+          >
+            Cancel
+          </Button>
         </Form>
+
       </div>
     );
   }

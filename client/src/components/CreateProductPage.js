@@ -1,11 +1,49 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 
 export default class CreateProductPage extends Component {
   render() {
     return (
       <div className="CreateProduct">
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="home">AgSales</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link
+              href="#Search"
+              onClick={() => this.props.changePage("Search")}
+            >
+              Search
+            </Nav.Link>
+            <Nav.Link
+              href="#CreateProduct"
+              onClick={() => this.props.changePage('CreateProduct')}
+            >
+              Create Product
+            </Nav.Link>
+            <Nav.Link
+              href="#home"
+              onClick={() => this.props.logout()}
+            >
+              Log Out
+            </Nav.Link>
+          </Nav>
+          <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                Signed in as: &nbsp;
+                <a
+                  href="#Profile"
+                  onClick={() => this.props.changePage('ViewProfile')}
+                >
+                  {this.props.userName}
+                </a>
+              </Navbar.Text>
+            </Navbar.Collapse>
+        </Navbar>
+
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="name" bsSize="large">
             Product Name:

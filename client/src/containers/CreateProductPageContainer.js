@@ -54,6 +54,8 @@ export default class CreateProductPageContainer extends Component {
         imageURL={this.state.imageURL}
         tags={this.state.tags}
         changePage={this.props.changePage}
+        userName={this.props.userName}
+        logout={this.props.logout}
       />
     );
   }
