@@ -46,7 +46,12 @@ describe('Login Controller', function() {
           loggedIn: true,
           table: 'Distributor',
           id: 69,
-          name: 'Kutch Inc'
+          name: 'Kutch Inc',
+          email: 'owen.donnelly@hotmail.com',
+          licenseNumber: 348834,
+          phoneNumber: '934-963-6936 x28970',
+          description: 'we sell weed',
+          imageURL: 'https://i.imgur.com/MjyKeqG.jpg'
          }, 
          done);
   });
@@ -67,7 +72,12 @@ describe('Login Controller', function() {
           loggedIn: true,
           table: 'Grower',
           id: 81,
-          name: 'Mosciski Group'
+          name: 'Mosciski Group',
+          email: 'monique.littel@yahoo.com',
+          licenseNumber: 901837,
+          phoneNumber: '572.547.8521',
+          description: 'we sell weed',
+          imageURL: 'https://i.imgur.com/MjyKeqG.jpg'
          }, 
          done);
   });

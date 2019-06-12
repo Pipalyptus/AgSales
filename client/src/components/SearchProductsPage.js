@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 
@@ -8,30 +10,41 @@ export default class SearchProductsPage extends Component {
   render() {
     return (
       <div className="SearchProducts">
-        <Button
-            block
-            bsSize="large"
-            type="submit"
-            onClick={() => this.props.changePage('Login')}
-          >
-            Log Out
-          </Button>
-          <Button
-            block
-            bsSize="large"
-            type="submit"
-            onClick={() => this.props.changePage('ViewProfile')}
-          >
-            View My Profile
-          </Button>
-          <Button
-            block
-            bsSize="large"
-            type="submit"
-            onClick={() => this.props.changePage('CreateProduct')}
-          >
-            Create A Product
-          </Button>
+        <Navbar bg="light" variant="light">
+          <Navbar.Brand href="home">AgSales</Navbar.Brand>
+          <Nav className="mr-auto">
+            <Nav.Link
+              href="#Search"
+            >
+              Search
+            </Nav.Link>
+            {this.props.showCreateButton &&
+            <Nav.Link
+              href="#CreateProduct"
+              onClick={() => this.props.changePage('CreateProduct')}
+            >
+              Create Product
+          </Nav.Link>}
+          <Nav.Link
+              href="#home"
+              onClick={() => this.props.logout()}
+            >
+              Log Out
+          </Nav.Link>
+          </Nav>
+          <Navbar.Toggle />
+            <Navbar.Collapse className="justify-content-end">
+              <Navbar.Text>
+                Signed in as: &nbsp;
+                <a
+                  href="#Profile"
+                  onClick={() => this.props.changePage('ViewProfile')}
+                >
+                  {this.props.userName}
+                </a>
+              </Navbar.Text>
+            </Navbar.Collapse>
+        </Navbar>
         
         <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="query" bsSize="large">

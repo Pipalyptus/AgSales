@@ -62,7 +62,7 @@ describe('Products Controller', function() {
                 growerName: 'Lind-Corkery',
                 price: 56.2,
                 quantity: 32679,
-                imageURL: 'https://imgur.com/gallery/JgtdT',
+                imageURL: 'https://i.imgur.com/jM1DGTl.jpg',
                 AvgRating: 0
               },
               {
@@ -72,7 +72,7 @@ describe('Products Controller', function() {
                 growerName: 'Lesch Inc',
                 price: 61.8,
                 quantity: 10160,
-                imageURL: 'https://imgur.com/gallery/JgtdT',
+                imageURL: 'https://i.imgur.com/jM1DGTl.jpg',
                 AvgRating: 3.5
               }
             ]
@@ -222,11 +222,11 @@ describe('Products Controller', function() {
                   email: 'ramonita.mosciski@gmail.com',
                   growerId: 47,
                   productId: 36,
-                  growerImage: 'https://imgur.com/gallery/5AjlRhE',
+                  growerImage: 'https://i.imgur.com/MjyKeqG.jpg',
                   growerName: 'Lesch Inc',
                   phoneNumber: '395-046-4994 x178',
                   price: 61.8,
-                  productImage: 'https://imgur.com/gallery/JgtdT',
+                  productImage: 'https://i.imgur.com/jM1DGTl.jpg',
                   productName: 'Minny van Gogh',
                   quantity: 10160
                 }

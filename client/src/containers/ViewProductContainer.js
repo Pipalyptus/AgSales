@@ -34,6 +34,7 @@ export default class ViewProductContainer extends Component {
         newReview={this.state.newReview}
         currentProduct={this.props.currentProduct}
         changePage={this.props.changePage}
+        logout={this.props.logout}
       />
     );
   }

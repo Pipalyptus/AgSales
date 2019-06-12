@@ -18,6 +18,12 @@ class App extends Component {
       isAuthenticated: false,
       userID: '',
       userTable: '',
+      userName: '',
+      email: '',
+      licenseNumber: '',
+      phoneNumber: '',
+      description: '',
+      imageURL: '',
       currentPage: 'Login',
       products: [],
       currentProduct: {}
@@ -32,11 +38,32 @@ class App extends Component {
     });
   };
 
+  logout = status => {
+    this.setState({
+      currentPage: 'Login',
+      isAuthenticated: false,
+      userID: '',
+      userTable: '',
+      userName: '',
+      email: '',
+      licenseNumber: '',
+      phoneNumber: '',
+      description: '',
+      imageURL: ''
+    });
+  };
+
   updateAuthenticated = result => {
     this.setState({
       isAuthenticated: result.loggedIn,
       userTable: result.table,
-      userID: result.id
+      userID: result.id,
+      userName: result.name,
+      email: result.email,
+      licenseNumber: result.licenseNumber,
+      phoneNumber: result.phoneNumber,
+      description: result.description,
+      imageURL: result.imageURL
     });
   };
 
@@ -102,7 +129,17 @@ class App extends Component {
       return (
         <div className="App">
           <h1> Profile </h1>
-          <ViewProfileContainer changePage={this.changePage} />
+          <ViewProfileContainer
+            changePage={this.changePage} 
+            userName={this.state.userName}
+            email={this.state.email}
+            licenseNumber={this.state.licenseNumber}
+            phoneNumber={this.state.phoneNumber}
+            description={this.state.description}
+            imageURL={this.state.imageURL}
+            showCreateButton={this.state.userTable === 'Grower' ? true:false}
+            logout={this.logout}
+          />
         </div>
       );
     } else if (this.state.currentPage === 'ViewProduct') {
@@ -112,6 +149,7 @@ class App extends Component {
           <ViewProductContainer
             changePage={this.changePage}
             currentProduct={this.state.currentProduct}
+            logout={this.logout}
           />
         </div>
       );
@@ -124,6 +162,8 @@ class App extends Component {
             changePage={this.changePage}
             createProduct={this.product.createProduct}
             updateCurrentProduct={this.updateCurrentProduct}
+            logout={this.logout}
+            userName={this.state.userName}
           />
         </div>
       );
@@ -138,6 +178,9 @@ class App extends Component {
             search={this.search.updateQuery}
             product={this.product.showProduct}
             updateCurrentProduct={this.updateCurrentProduct}
+            showCreateButton={this.state.userTable === 'Grower' ? true:false}
+            userName={this.state.userName}
+            logout={this.logout}
           />
         </div>
       );

@@ -74,6 +74,9 @@ export default class SearchProductsPageContainer extends Component {
         handleProduct={this.handleProduct}
         products={this.props.products}
         renderProducts={this.renderProducts}
+        showCreateButton={this.props.showCreateButton}
+        userName={this.props.userName}
+        logout={this.props.logout}
       />
     );
   } 

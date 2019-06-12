@@ -7,13 +7,18 @@ const user = new User();
 
 // Controller for logging in users
 router.post('/', function(req, res, next) {
-  user.loginUser(req.body.table, req.body.email, req.body.password, (result, table, id, name) => {
+  user.loginUser(req.body.table, req.body.email, req.body.password, (result, user) => {
     if (result === true) {
       res.status(200).json({
         loggedIn: true,
-        table: table,
-        id: id,
-        name: name
+        table: user.table,
+        id: user.id,
+        name: user.name,
+        email: user.email,
+        licenseNumber: user.licenseNumber,
+        phoneNumber: user.phoneNumber,
+        description: user.description,
+        imageURL: user.imageURL
       });
     } else if (result === false) {
       res.status(403).json({ logginIn: 'Invalid username or password' });
