@@ -44,14 +44,24 @@ export default class ViewProduct extends Component {
             </Navbar.Text>
           </Navbar.Collapse>
         </Navbar>
-
-        <h4> Product Name: {this.props.productName}</h4>
-        <h4> Grower Name: {this.props.growerName}</h4>
-        <h4> Quantity: {this.props.quantity}</h4>
-        <h4> Price: {this.props.price}</h4>
-        <h4> Average Rating: {this.props.avgRating}</h4>
+        <h4> Product Name: {this.props.currentProduct.productId}</h4>
+        <h4> Grower Name: {this.props.currentProduct.growerName}</h4>
+        <h4> Quantity: {this.props.currentProduct.quantity}</h4>
+        <h4> Price: {this.props.currentProduct.price}</h4>
+        <h4> Average Rating: {this.props.currentProduct.avgRating}</h4>
         <h4> Picture:</h4>
-        <img src={this.props.image} />
+        <img 
+        src={this.props.currentProduct.imageURL} 
+        alt=''
+        />
+        <div className="listingHeader">
+          <Row>
+            <Col xs={3}>Reviewer ID </Col>
+            <Col xs={3}> Content</Col>
+            <Col xs={3}> Rating </Col>
+          </Row>
+        </div>
+        {this.props.renderReviews()}
         <Form>
           <Form.Group controlId="rating">
             <Form.Label>Rate this product</Form.Label>

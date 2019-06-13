@@ -3,20 +3,6 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 
 export default class LoginPage extends Component {
-  /*submitForm = event => {
-    console.log(JSON.stringify(this.state));
-    fetch("http://localhost:5000/login", {
-      method: "POST",
-      headers: {
-        "Content-type": "application/json"
-      },
-      body: JSON.stringify(this.state)
-    })
-      .then(result => result.json())
-      .then(info => {
-        console.log(info);
-      });
-  };*/
 
   render() {
     return (

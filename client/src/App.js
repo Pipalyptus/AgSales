@@ -102,6 +102,10 @@ class App extends Component {
     console.log(registered);
   };
 
+  updateProductReview = newReview => {
+    console.log(newReview);
+  }
+
   render() {
     console.log(this.state);
     if (!this.state.isAuthenticated && this.state.currentPage === 'Login') {
@@ -149,7 +153,7 @@ class App extends Component {
           <h1> View Product </h1>
           <ViewProductContainer
             changePage={this.changePage}
-            currentProduct={this.state.currentProduct}
+            currentProduct={this.state.currentProduct.product}
             userID={this.state.userID}
             userName={this.state.userName}
             productId={this.state.currentProduct.productId}
@@ -160,6 +164,7 @@ class App extends Component {
             quantity={this.state.currentProduct.quantity}
             image={this.state.currentProduct.imageURL}
             avgRating={this.state.currentProduct.avgRating}
+            reviews={this.state.currentProduct.reviews}
             logout={this.logout}
           />
         </div>
@@ -175,6 +180,7 @@ class App extends Component {
             updateCurrentProduct={this.updateCurrentProduct}
             logout={this.logout}
             userName={this.state.userName}
+            updateProductReview={this.updateProductReview}
           />
         </div>
       );
