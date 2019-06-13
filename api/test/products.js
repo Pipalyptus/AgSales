@@ -232,8 +232,8 @@ describe('Products Controller', function() {
                 }
               ],
               reviews: [
-                { id: 36, reviewerId: 79, content: 'decent', rating: 4 },
-                { id: 36, reviewerId: 22, content: 'okay', rating: 3 }
+                { id: 36, Reviewer: 'Reilly, Williamson and Howell', content: 'decent', rating: 4 },
+                { id: 36, Reviewer: 'Gutkowski Inc', content: 'okay', rating: 3 }
               ]
             },
             done

@@ -37,7 +37,7 @@ export default class CreateProductPageContainer extends Component {
     event.preventDefault();
     const productData = JSON.stringify(this.state);
     //console.log(productData);
-    this.props.createProduct(productData, this.props.changePage);
+    this.props.createProduct(productData, this.props.updateProductCreation);
   };
 
   render() {

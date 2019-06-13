@@ -56,7 +56,7 @@ export default class ViewProduct extends Component {
         />
         <div className="listingHeader">
           <Row>
-            <Col xs={3}> Reviewer ID </Col>
+            <Col xs={3}> Reviewer </Col>
             <Col xs={3}> Content</Col>
             <Col xs={3}> Rating </Col>
           </Row>

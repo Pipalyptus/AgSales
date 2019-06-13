@@ -40,8 +40,9 @@ class Product {
     // Connect to the database
     let connection = mysql.createConnection(databaseCreds);
     connection.query(
-      'SELECT Product.id, reviewerId, content, rating ' +
+      'SELECT Product.id, Distributor.name AS Reviewer, content, rating ' +
         'FROM Product INNER JOIN ProductReview ON Product.id = ProductReview.productID ' +
+        'JOIN Distributor ON reviewerId = Distributor.id ' + 
         'WHERE Product.id = ' +
         productId,
       function(error, results) {

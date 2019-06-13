@@ -99,10 +99,31 @@ class App extends Component {
         isAuthenticated: authenticated
       });
     }*/
+    this.setState(
+      {
+        currentPage: 'Login'
+      }
+    )
     console.log(registered);
   };
 
+  updateProductCreation = result => {
+    this.setState(
+      {
+        currentProduct: '',
+        currentPage: 'Search'
+      }
+    )
+  }
+
   updateProductReview = newReview => {
+    this.setState(
+      {
+        currentProduct: '',
+        currentPage: 'Search'
+      }
+    )
+    
     console.log(newReview);
   }
 
@@ -182,7 +203,8 @@ class App extends Component {
             updateCurrentProduct={this.updateCurrentProduct}
             logout={this.logout}
             userName={this.state.userName}
-            updateProductReview={this.updateProductReview}
+            // updateProductReview={this.updateProductReview}
+            updateProductCreation={this.updateProductCreation}
           />
         </div>
       );

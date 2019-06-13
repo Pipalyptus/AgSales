@@ -6,7 +6,7 @@ export default class ViewProductContainer extends Component {
     super(props);
 
     this.state = {
-      productId: this.props.productId,
+      productId: this.props.currentProduct[0].productId,
       userID: this.props.userID,
       newReview: '',
       rating: '1'
@@ -38,7 +38,7 @@ export default class ViewProductContainer extends Component {
           <ReviewItem
             key={review.reviewId}
             productId={review.productId}
-            reviewerId={review.reviewerId}
+            reviewerId={review.Reviewer}
             content={review.content}
             rating={review.rating}
           />
@@ -83,7 +83,6 @@ export default class ViewProductContainer extends Component {
         AvgRating={this.props.currentProduct[0].AvgRating}
         renderReviews={this.renderReviews}
         logout={this.props.logout}
-        validateForm={this.validateForm}
       />
     );
   }
