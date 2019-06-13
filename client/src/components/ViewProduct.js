@@ -53,18 +53,26 @@ export default class ViewProduct extends Component {
         <img 
         src={this.props.productImage} 
         alt=''
+        height='auto'
+        width='50%'
+
         />
         <div className="listingHeader">
           <Row>
-            <Col xs={3}> Reviewer </Col>
-            <Col xs={3}> Content</Col>
-            <Col xs={3}> Rating </Col>
+            <Col xs={3}>Reviewer</Col>
+            <Col xs={3}>Content</Col>
+            <Col xs={1}>Rating</Col>
           </Row>
         </div>
         {this.props.renderReviews()}
+
+        <p></p>
+        <p></p>
+
         <Form onSubmit={this.props.handleSubmit}>
+          <h3>Review</h3>
           <Form.Group controlId="rating">
-            <Form.Label>Rate this product</Form.Label>
+            <Form.Label >Rate this product</Form.Label>
             <Form.Control as="select" onChange={this.props.handleChange}>
               <option>1</option>
               <option>2</option>
@@ -75,9 +83,10 @@ export default class ViewProduct extends Component {
             </Form.Control>
           </Form.Group>
           <Form.Group controlId="newReview">
-            <Form.Label>Review</Form.Label>
+            {/* <Form.Label>Write your review</Form.Label> */}
             <Form.Control
               as="textarea"
+              placeholder= "Write your review here"
               rows={4}
               cols={20}
               input="text"

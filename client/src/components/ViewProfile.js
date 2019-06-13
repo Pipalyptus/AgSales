@@ -54,6 +54,8 @@ export default class ViewProfile extends Component {
         <img 
           src={this.props.imageURL}
           alt='Grower'
+          height='auto'
+          width='50%'
         
         />
 
