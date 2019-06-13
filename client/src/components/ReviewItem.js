@@ -10,11 +10,10 @@ export default class ReviewItem extends Component {
         className="ReviewItem"
       
       >
-        <Row>
+        <Row>   
           <Col xs={3}>{this.props.reviewerId}</Col>
-          <Col xs={3}>{this.props.content}</Col>
-          <Col xs={3}>{this.props.rating}</Col>
-          
+          <Col xs={3}>{this.props.content}</Col>         
+          <Col xs={1}>{this.props.rating}</Col>     
         </Row>
       </div>
     );
