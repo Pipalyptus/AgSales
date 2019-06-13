@@ -149,6 +149,16 @@ class App extends Component {
           <ViewProductContainer
             changePage={this.changePage}
             currentProduct={this.state.currentProduct}
+            userID={this.state.userID}
+            userName={this.state.userName}
+            productId={this.state.currentProduct.productId}
+            productName={this.state.currentProduct.productName}
+            growerId={this.state.currentProduct.growerId}
+            growerName={this.state.currentProduct.growerName}
+            price={this.state.currentProduct.price}
+            quantity={this.state.currentProduct.quantity}
+            image={this.state.currentProduct.imageURL}
+            avgRating={this.state.currentProduct.avgRating}
             logout={this.logout}
           />
         </div>
