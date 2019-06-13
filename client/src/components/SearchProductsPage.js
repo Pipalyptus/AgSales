@@ -61,7 +61,7 @@ export default class SearchProductsPage extends Component {
             <Form.Control
               autoFocus
               type="number"
-              required
+              // required
               value={this.props.minQty}
               onChange={this.props.handleChange}
             />
@@ -71,7 +71,7 @@ export default class SearchProductsPage extends Component {
             <Form.Control
               autoFocus
               type="number"
-              required
+              // required
               value={this.props.minRating}
               onChange={this.props.handleChange}
             />
