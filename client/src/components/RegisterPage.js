@@ -98,7 +98,6 @@ export default class RegisterPage extends Component {
             bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
-            //onClick={() => this.props.changePage("Search")}
           >
             Register
           </Button>

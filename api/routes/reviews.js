@@ -7,11 +7,12 @@ const review = new Review();
 
 // Controller for Review creation endpoint
 router.post('/createReview', function(req, res, next) {
+
   // Get all products that match the search query and return them to the clients
   review.createReview(
     req.body.productId,
-    req.body.reviewerId,
-    req.body.content,
+    req.body.userID,
+    req.body.newReview,
     req.body.rating,
     result => {
       if (result === true) {

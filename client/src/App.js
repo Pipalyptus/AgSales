@@ -7,7 +7,7 @@ import Search from './models/Search.js';
 import Product from './models/Product.js';
 import SearchProductsPageContainer from './containers/SearchProductsPageContainer';
 import ViewProfileContainer from './containers/ViewProfileContainer';
-import ViewProductContainer from './containers/SearchProductsPageContainer';
+import ViewProductContainer from './containers/ViewProductContainer';
 import CreateProductPageContainer from './containers/CreateProductPageContainer';
 
 class App extends Component {
@@ -63,7 +63,8 @@ class App extends Component {
       licenseNumber: result.licenseNumber,
       phoneNumber: result.phoneNumber,
       description: result.description,
-      imageURL: result.imageURL
+      imageURL: result.imageURL,
+      currentPage: 'Search'
     });
   };
 
@@ -98,8 +99,33 @@ class App extends Component {
         isAuthenticated: authenticated
       });
     }*/
+    this.setState(
+      {
+        currentPage: 'Login'
+      }
+    )
     console.log(registered);
   };
+
+  updateProductCreation = result => {
+    this.setState(
+      {
+        currentProduct: '',
+        currentPage: 'Search'
+      }
+    )
+  }
+
+  updateProductReview = newReview => {
+    this.setState(
+      {
+        currentProduct: '',
+        currentPage: 'Search'
+      }
+    )
+    
+    console.log(newReview);
+  }
 
   render() {
     console.log(this.state);
@@ -130,14 +156,14 @@ class App extends Component {
         <div className="App">
           <h1> Profile </h1>
           <ViewProfileContainer
-            changePage={this.changePage} 
+            changePage={this.changePage}
             userName={this.state.userName}
             email={this.state.email}
             licenseNumber={this.state.licenseNumber}
             phoneNumber={this.state.phoneNumber}
             description={this.state.description}
             imageURL={this.state.imageURL}
-            showCreateButton={this.state.userTable === 'Grower' ? true:false}
+            showCreateButton={this.state.userTable === 'Grower' ? true : false}
             logout={this.logout}
           />
         </div>
@@ -148,8 +174,21 @@ class App extends Component {
           <h1> View Product </h1>
           <ViewProductContainer
             changePage={this.changePage}
-            currentProduct={this.state.currentProduct}
+            currentProduct={this.state.currentProduct.product}
+            userID={this.state.userID}
+            userName={this.state.userName}
+            productId={this.state.currentProduct.product.productId}
+            productName={this.state.currentProduct.productName}
+            growerId={this.state.currentProduct.growerId}
+            growerName={this.state.currentProduct.growerName}
+            price={this.state.currentProduct.price}
+            quantity={this.state.currentProduct.quantity}
+            productImage={this.state.currentProduct.productImage}
+            avgRating={this.state.currentProduct.avgRating}
+            reviews={this.state.currentProduct.reviews}
             logout={this.logout}
+            createReview={this.product.createReview}
+            updateProductReview={this.updateProductReview}
           />
         </div>
       );
@@ -164,10 +203,12 @@ class App extends Component {
             updateCurrentProduct={this.updateCurrentProduct}
             logout={this.logout}
             userName={this.state.userName}
+            // updateProductReview={this.updateProductReview}
+            updateProductCreation={this.updateProductCreation}
           />
         </div>
       );
-    } else if (this.state.isAuthenticated) {
+    } else if (this.state.currentPage === 'Search') {
       return (
         <div className="App">
           <h1> Product Listings </h1>
@@ -178,7 +219,7 @@ class App extends Component {
             search={this.search.updateQuery}
             product={this.product.showProduct}
             updateCurrentProduct={this.updateCurrentProduct}
-            showCreateButton={this.state.userTable === 'Grower' ? true:false}
+            showCreateButton={this.state.userTable === 'Grower' ? true : false}
             userName={this.state.userName}
             logout={this.logout}
           />
