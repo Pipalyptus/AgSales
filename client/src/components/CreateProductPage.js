@@ -98,7 +98,6 @@ export default class CreateProductPage extends Component {
             bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
-            onClick={() => this.props.changePage("ViewProduct")}
           >
             Create Product
           </Button>

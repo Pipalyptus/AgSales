@@ -8,19 +8,22 @@ export default class ViewProductContainer extends Component {
     this.state = {
       productId: this.props.productId,
       userID: this.props.userID,
-      rating: '1',
-      newReview: ''
+      newReview: '',
+      rating: '1'
     };
   }
 
   validateForm = () => {
-    return this.state.newReview.length > 0 && this.state.rating.length > 0;
+    return (this.state.newReview.length > 0 && this.state.rating.length > 0);
   };
 
   handleChange = event => {
-    this.setState({
-      [event.target.id]: event.target.value
-    });
+    this.setState(
+      {
+        [event.target.id]: event.target.value
+      },
+      console.log(this.state)
+    );
   };
 
   renderReviews = () => {
@@ -49,20 +52,23 @@ export default class ViewProductContainer extends Component {
 
   handleSubmit = event => {
     event.preventDefault();
-    const userData = JSON.stringify(this.state);
-    this.props.createReview(
-      this.state.productId,
-      this.state.userID,
-      this.state.newReview,
-      this.state.rating,
-      this.props.updateProductReview
-    );
+    const reviewData = JSON.stringify(this.state);
+    this.props.createReview(reviewData, this.props.updateProductReview);
+      //this.state.productId,
+      //this.state.userID,
+      //this.state.newReview,
+      //this.state.rating,
+      //this.props.updateProductReview
+    //);
   };
 
 
   render() {
     return (
       <ViewProduct
+        handleSubmit={this.handleSubmit}
+        handleChange={this.handleChange}
+        validateForm={this.validateForm}
         changePage={this.props.changePage}
         currentProduct={this.props.currentProduct}
         userID={this.props.userID}
@@ -73,8 +79,8 @@ export default class ViewProductContainer extends Component {
         growerName={this.props.currentProduct[0].growerName}
         price={this.props.currentProduct[0].price}
         quantity={this.props.currentProduct[0].quantity}
-        image={this.props.currentProduct[0].productImage}
-        avgRating={this.props.currentProduct[0].avgRating}
+        productImage={this.props.currentProduct[0].productImage}
+        AvgRating={this.props.currentProduct[0].AvgRating}
         renderReviews={this.renderReviews}
         logout={this.props.logout}
         validateForm={this.validateForm}

@@ -30,5 +30,20 @@ export default class Product {
       });
   }
 
+  createReview(reviewData, callback) {
+    console.log(reviewData);
+    fetch('http://localhost:5000/reviews/createReview', {
+      method: 'POST',
+      headers: {
+        'Content-type': 'application/json'
+      },
+      body: reviewData
+    })
+      .then(result => result.json())
+      .then(info => {
+        callback(info);
+      });
+  }
+
 
 }

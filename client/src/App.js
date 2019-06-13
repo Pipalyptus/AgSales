@@ -156,16 +156,18 @@ class App extends Component {
             currentProduct={this.state.currentProduct.product}
             userID={this.state.userID}
             userName={this.state.userName}
-            productId={this.state.currentProduct.productId}
+            productId={this.state.currentProduct.product.productId}
             productName={this.state.currentProduct.productName}
             growerId={this.state.currentProduct.growerId}
             growerName={this.state.currentProduct.growerName}
             price={this.state.currentProduct.price}
             quantity={this.state.currentProduct.quantity}
-            image={this.state.currentProduct.imageURL}
+            productImage={this.state.currentProduct.productImage}
             avgRating={this.state.currentProduct.avgRating}
             reviews={this.state.currentProduct.reviews}
             logout={this.logout}
+            createReview={this.product.createReview}
+            updateProductReview={this.updateProductReview}
           />
         </div>
       );

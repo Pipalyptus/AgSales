@@ -44,25 +44,25 @@ export default class ViewProduct extends Component {
             </Navbar.Text>
           </Navbar.Collapse>
         </Navbar>
-        <h4> Product Name: {this.props.currentProduct.productId}</h4>
-        <h4> Grower Name: {this.props.currentProduct.growerName}</h4>
-        <h4> Quantity: {this.props.currentProduct.quantity}</h4>
-        <h4> Price: {this.props.currentProduct.price}</h4>
-        <h4> Average Rating: {this.props.currentProduct.avgRating}</h4>
+        <h4> Product Name: {this.props.productName}</h4>
+        <h4> Grower Name: {this.props.growerName}</h4>
+        <h4> Quantity: {this.props.quantity}</h4>
+        <h4> Price: {this.props.price}</h4>
+        <h4> Average Rating: {this.props.AvgRating}</h4>
         <h4> Picture:</h4>
         <img 
-        src={this.props.currentProduct.imageURL} 
+        src={this.props.productImage} 
         alt=''
         />
         <div className="listingHeader">
           <Row>
-            <Col xs={3}>Reviewer ID </Col>
+            <Col xs={3}> Reviewer ID </Col>
             <Col xs={3}> Content</Col>
             <Col xs={3}> Rating </Col>
           </Row>
         </div>
         {this.props.renderReviews()}
-        <Form>
+        <Form onSubmit={this.props.handleSubmit}>
           <Form.Group controlId="rating">
             <Form.Label>Rate this product</Form.Label>
             <Form.Control as="select" onChange={this.props.handleChange}>
@@ -74,14 +74,14 @@ export default class ViewProduct extends Component {
               value={this.props.rating}
             </Form.Control>
           </Form.Group>
-          <Form.Group controlId="new_review">
+          <Form.Group controlId="newReview">
             <Form.Label>Review</Form.Label>
             <Form.Control
               as="textarea"
               rows={4}
               cols={20}
               input="text"
-              value={this.props.new_review}
+              value={this.props.newReview}
               onChange={this.props.handleChange}
             />
           </Form.Group>
@@ -90,6 +90,7 @@ export default class ViewProduct extends Component {
             bsSize="large"
             disabled={!this.props.validateForm()}
             type="submit"
+            onClick={() => this.props.changePage('ViewProduct')}
           >
             Submit Review
           </Button>
