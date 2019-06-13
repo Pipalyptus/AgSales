@@ -23,26 +23,31 @@ export default class ViewProductContainer extends Component {
   handleSubmit = event => {
     event.preventDefault();
     const userData = JSON.stringify(this.state);
-    this.props.createReview(this.props.productId, this.props.userID, this.state.newReview, 
-      this.state.rating);
+    this.props.createReview(
+      this.props.productId,
+      this.props.userID,
+      this.state.newReview,
+      this.state.rating
+    );
   };
 
   render() {
     return (
       <ViewProduct
-      changePage={this.props.changePage}
-      currentProduct={this.props.currentProduct}
-      userID={this.props.userID}
-      userName={this.props.userName}
-      productId={this.props.productId}
-      productName={this.props.productName}
-      growerId={this.props.growerId}
-      growerName={this.props.growerName}
-      price={this.props.price}
-      quantity={this.props.quantity}
-      image={this.props.image}
-      avgRating={this.props.avgRating}
-      logout={this.props.logout}
+        changePage={this.props.changePage}
+        currentProduct={this.props.currentProduct}
+        userID={this.props.userID}
+        userName={this.props.userName}
+        productId={this.props.productId}
+        productName={this.props.productName}
+        growerId={this.props.growerId}
+        growerName={this.props.growerName}
+        price={this.props.price}
+        quantity={this.props.quantity}
+        image={this.props.image}
+        avgRating={this.props.avgRating}
+        logout={this.props.logout}
+        validateForm={this.validateForm}
       />
     );
   }

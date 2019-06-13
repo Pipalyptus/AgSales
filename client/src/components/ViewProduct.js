@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-// import Bootstrap from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Nav from 'react-bootstrap/Nav';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 export default class ViewProduct extends Component {
   render() {
@@ -12,36 +15,34 @@ export default class ViewProduct extends Component {
           <Nav className="mr-auto">
             <Nav.Link
               href="#Search"
-              onClick={() => this.props.changePage("Search")}
+              onClick={() => this.props.changePage('Search')}
             >
               Search
             </Nav.Link>
-            {this.props.showCreateButton &&
-            <Nav.Link
-              href="#CreateProduct"
-              onClick={() => this.props.changePage('CreateProduct')}
-            >
-              Create Product
-            </Nav.Link>}
-            <Nav.Link
-              href="#home"
-              onClick={() => this.props.logout()}
-            >
+            {this.props.showCreateButton && (
+              <Nav.Link
+                href="#CreateProduct"
+                onClick={() => this.props.changePage('CreateProduct')}
+              >
+                Create Product
+              </Nav.Link>
+            )}
+            <Nav.Link href="#home" onClick={() => this.props.logout()}>
               Log Out
             </Nav.Link>
           </Nav>
           <Navbar.Toggle />
-            <Navbar.Collapse className="justify-content-end">
-              <Navbar.Text>
-                Signed in as: &nbsp;
-                <a
-                  href="#Profile"
-                  onClick={() => this.props.changePage('ViewProfile')}
-                >
-                  {this.props.userName}
-                </a>
-              </Navbar.Text>
-            </Navbar.Collapse>
+          <Navbar.Collapse className="justify-content-end">
+            <Navbar.Text>
+              Signed in as: &nbsp;
+              <a
+                href="#Profile"
+                onClick={() => this.props.changePage('ViewProfile')}
+              >
+                {this.props.userName}
+              </a>
+            </Navbar.Text>
+          </Navbar.Collapse>
         </Navbar>
 
         <h4> Product Name: {this.props.productName}</h4>
@@ -50,10 +51,7 @@ export default class ViewProduct extends Component {
         <h4> Price: {this.props.price}</h4>
         <h4> Average Rating: {this.props.avgRating}</h4>
         <h4> Picture:</h4>
-        <img 
-          src={this.props.image}
-        
-        />
+        <img src={this.props.image} />
         <Form>
           <Form.Group controlId="rating">
             <Form.Label>Rate this product</Form.Label>

@@ -40,7 +40,10 @@ export default class SearchProductsPageContainer extends Component {
 
   renderProducts = () => {
     var productList = [];
-    if (this.props.products !== [] && typeof this.props.products !== 'undefined') {
+    if (
+      this.props.products !== [] &&
+      typeof this.props.products !== 'undefined'
+    ) {
       console.log(this.props.products);
       productList = this.props.products.map(product => (
         <div>
@@ -79,5 +82,5 @@ export default class SearchProductsPageContainer extends Component {
         logout={this.props.logout}
       />
     );
-  } 
+  }
 }

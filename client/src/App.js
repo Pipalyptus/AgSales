@@ -7,7 +7,7 @@ import Search from './models/Search.js';
 import Product from './models/Product.js';
 import SearchProductsPageContainer from './containers/SearchProductsPageContainer';
 import ViewProfileContainer from './containers/ViewProfileContainer';
-import ViewProductContainer from './containers/SearchProductsPageContainer';
+import ViewProductContainer from './containers/ViewProductContainer';
 import CreateProductPageContainer from './containers/CreateProductPageContainer';
 
 class App extends Component {
@@ -63,7 +63,8 @@ class App extends Component {
       licenseNumber: result.licenseNumber,
       phoneNumber: result.phoneNumber,
       description: result.description,
-      imageURL: result.imageURL
+      imageURL: result.imageURL,
+      currentPage: 'Search'
     });
   };
 
@@ -130,14 +131,14 @@ class App extends Component {
         <div className="App">
           <h1> Profile </h1>
           <ViewProfileContainer
-            changePage={this.changePage} 
+            changePage={this.changePage}
             userName={this.state.userName}
             email={this.state.email}
             licenseNumber={this.state.licenseNumber}
             phoneNumber={this.state.phoneNumber}
             description={this.state.description}
             imageURL={this.state.imageURL}
-            showCreateButton={this.state.userTable === 'Grower' ? true:false}
+            showCreateButton={this.state.userTable === 'Grower' ? true : false}
             logout={this.logout}
           />
         </div>
@@ -177,7 +178,7 @@ class App extends Component {
           />
         </div>
       );
-    } else if (this.state.isAuthenticated) {
+    } else if (this.state.currentPage === 'Search') {
       return (
         <div className="App">
           <h1> Product Listings </h1>
@@ -188,7 +189,7 @@ class App extends Component {
             search={this.search.updateQuery}
             product={this.product.showProduct}
             updateCurrentProduct={this.updateCurrentProduct}
-            showCreateButton={this.state.userTable === 'Grower' ? true:false}
+            showCreateButton={this.state.userTable === 'Grower' ? true : false}
             userName={this.state.userName}
             logout={this.logout}
           />
